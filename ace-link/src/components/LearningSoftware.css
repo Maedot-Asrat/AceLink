@@ -1,0 +1,41 @@
+.learning-software {
+    text-align: center;
+    padding: 50px;
+  }
+ .highlight{
+  color: #05436A;
+ } 
+  .learning-features {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    padding: 30px;
+  }
+  
+  .learning-feature-card {
+    width: 30%;
+    margin: 0 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .learning-feature-card img {
+    max-width: 100%;
+  }
+  
+  .learning-feature-card h3 {
+    margin: 20px 0 10px;
+  }
+  
+  .learning-feature-card p {
+    color: #666;
+    text-align: center;
+  }
+  

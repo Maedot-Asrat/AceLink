@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .feature-cards {
+    flex-direction: column;
+  }
+
+  .role-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
