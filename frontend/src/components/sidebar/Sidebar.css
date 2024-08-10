@@ -91,3 +91,16 @@
   height: 40px;
   cursor: pointer;
 }
+
+.nav-item:hover{
+  background-color: #E9F5FE;
+}
+
+.nav-item:hover a {
+  color: #007bff;
+}
+
+.nav-item:hover .nav-icon {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}

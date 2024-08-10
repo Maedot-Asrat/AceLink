@@ -1,13 +1,15 @@
 import './App.css';
-import Community from './components/community/community';
+import Tutors from './components/tutors/tutors';
 
 function App() {
   return (
     <div className="App">
       {/* <TutorRecommendations/> */}
-      <Community />
+      {/* <Community /> */}
+      {/* <Meeting/> */}
+
       {/* Uncomment the line below to render the Tutors page instead */}
-      {/* <Tutors /> */}
+      <Tutors />
     </div>
   );
 }
