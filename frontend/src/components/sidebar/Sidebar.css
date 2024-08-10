@@ -1,0 +1,93 @@
+/* Sidebar.css */
+.sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  height: 100vh;
+  padding: 20px 15px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo-img {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 7px;
+}
+
+.nav-icon {
+  width: 40px;
+  height: 40px;
+
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.message-count {
+  background-color: #00aaff;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-left: auto;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+
+.profile-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-info {
+  flex-grow: 1;
+}
+
+.profile-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.profile-role {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+}
+
+.settings-icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}

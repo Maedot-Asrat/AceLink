@@ -1,0 +1,93 @@
+/* General Container */
+.tutor-recommendations-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Content Area */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+/* Header */
+header {
+  margin-bottom: 100px;
+  font-size: 20px;
+  color: #5D7285;
+  text-align: start;
+}
+
+/* Tutor Cards Grid */
+.tutor-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px 60px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Individual Tutor Card */
+.tutor-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s;
+  display: flex;
+  gap: 20px;
+}
+
+.tutor-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Tutor Image */
+.tutor-image {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+/* Tutor Details */
+.tutor-details h3 {
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: #333;
+  text-align: start;
+}
+
+.tutor-details p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  text-align: start;
+}
+
+.price {
+  font-weight: bold;
+}
+
+/* Book Session Button */
+.book-session-btn {
+  background-color: #05436A;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 25px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  width: 17vw;
+}
+
+.book-session-btn:hover {
+  background-color: #163d6f;
+}
