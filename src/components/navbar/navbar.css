@@ -1,0 +1,46 @@
+.navbar{
+    display: flex;
+    position: fixed;
+    z-index: 5;
+    width: 250px;
+    height: 100vh;
+    background-color: rgb(244, 248, 255);
+}
+
+.navbar .lis{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .navbar .logo{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .navbar .home{
+    display: flex;
+    align-items: center;
+    padding: 10px 40px;
+
+  }
+  .navbar .profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .profile img{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+  }
+
+  .profile .pro div{
+    font-size: 14px;
+    font-weight: 600;
+  }
