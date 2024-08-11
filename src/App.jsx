@@ -6,6 +6,8 @@ import "./App.css";
 import Navbar from "./components/navbar/Navbar";
 import Mycourses from "./pages/mycourses/Mycourses";
 import Tutors from "./pages/tutors/Tutors";
+import { IoNotificationsSharp } from "react-icons/io5";
+
 
 
 export default function App() {
@@ -18,7 +20,7 @@ export default function App() {
           <div className="contentcontainer">
             <div className="bar">
                 <div className="tit">Home</div>
-                <div className="not">notif</div>
+                <IoNotificationsSharp size={"20px"}/>
             </div>
             <div className="out">
               <CartProvider>
@@ -45,10 +47,9 @@ export default function App() {
         { path: "/profile", element: <Tutors /> },
       ],
     },
-    { path: "/", element: <Welcome /> },
+    // { path: "/", element: <Welcome /> },
     // { path: "/login", element: <Login /> },
     // { path: "/signup", element: <Signup /> },
-    // { path: "/", element: <Welcome /> },
   ]);
 
   return (

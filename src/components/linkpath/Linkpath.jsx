@@ -29,14 +29,14 @@ const pathMap = {
     "Library":"/library"
 }
 
-export default function Linkpath({name}){
+export default function Linkpath({name, isActive, onClick}){
     const IconComponent = iconMap[name];
 
     return(
-        <div className="linkpath">
+        <div className={`linkpath ${isActive ? 'active' : ''}`} onClick={onClick}>
             <Link to={pathMap[name]}>
             <div className="home">
-                {IconComponent && <IconComponent className="icon" color="#000000" size={"20px"} />}
+                {IconComponent && <IconComponent className={`icon ${isActive ? 'active' : ''}`}  size={"20px"} />}
                 <span className="name">{name}</span>
             </div> 
             </Link>  

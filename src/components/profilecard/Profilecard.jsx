@@ -8,8 +8,8 @@ export default function Profilecard({image,name,title,cost}){
                 <div className="text">
                     <span className="name">{name}</span>
                     <div className="title">{title}</div>
+                    <div className="cost">${cost} per Session</div>
                 </div>
-                    <div className="cost">${cost}/ hr</div>
             </div>
             <div className="btn"> Book Session</div>
         </div>

@@ -1,115 +1,12 @@
 import { useState } from "react";
 import Card from "../../components/card/Card";
 import "./mycourses.css"
+import {Courses} from "/src/data.js"
 
-const data = [
-    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },    {
-        id : "ifuinrfin",
-        image : "/cour1.png",
-        title : "Learn Python",
-        description : "Understanding Basic algorithms and data structures with python, and practices on competative programming sites.",
-        enroll : "40+ Enroll",
-    },
-]
+
 
 export default  function Mycourses(){
-    const [courses, setcourses] = useState(data);
+    const [courses, setcourses] = useState(Courses);
 
 
     return(
