@@ -1,0 +1,55 @@
+.middle-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+   
+  }
+  
+  .text-container {
+    max-width: 500px;
+    padding: 20px;
+    margin-right: 50px;
+  }
+  
+  .text-container h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .text-container .highlight {
+    color: #05436A;
+ 
+  }
+  
+  .text-container p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .text-container .learn-more {
+    font-size: 16px;
+    color: #007bff;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.3s ease;
+  }
+  
+  .text-container .learn-more:hover {
+    border-bottom: 1px solid #007bff;
+  }
+  
+  .image-container {
+    max-width: 600px;
+    flex: 1;
+  }
+  
+  .image-container img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
+  }

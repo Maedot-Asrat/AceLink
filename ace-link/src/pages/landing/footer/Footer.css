@@ -1,0 +1,39 @@
+.footer {
+    background-color: #252641;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  .footer-content .left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  }
+  .footer-content .left img{
+    padding-right: 5px;
+  }
+  .right p{
+    color: #B2B3CF;
+  }
+  .right textarea{
+    border-radius: 5em;
+    padding: 0.5em;
+    padding-left: 1em;;
+    width: 180px;
+    height: 25px;
+    background-color: transparent;
+  }
+ 

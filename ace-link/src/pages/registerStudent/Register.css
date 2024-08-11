@@ -1,0 +1,141 @@
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  margin: 0;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+  padding: 23px;
+}
+
+.auth-button {
+  padding: 10px 20px;
+  border: 1px solid #004080;
+  border-radius: 5px;
+  background-color: white;
+  color: #004080;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.auth-button:hover {
+  background-color: #004080;
+  color: white;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 550px;
+  padding: 20px 20px;
+  margin: auto;
+}
+
+.register-form {
+  background-color: white;
+  padding: 40px;
+  border-radius: 8px;
+  
+}
+
+.register-form h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.register-form p {
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.dual-input {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.dual-input input {
+  flex: 1;
+  
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-size: 15px;
+  
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="tel"]::placeholder,
+textarea::placeholder {
+  color: #999;
+  font-size: 15px;
+  
+
+  
+  
+}
+
+textarea {
+  resize: vertical;
+  
+}
+
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #004080;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.checkbox-group label {
+  font-size: 13px;
+}
