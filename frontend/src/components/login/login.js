@@ -1,68 +1,41 @@
 import React from 'react';
-import google from '../../assets/google.svg';
-import image1 from '../../assets/image1.png';
+import loginimg from '../../assets/login.png';
 import logo from '../../assets/Logo.png';
 import './Login.css';
 
-function Login() {
+
+const Login = () => {
   return (
-    <div className="login-page">
-      <div className="login-header">
+    <div className="container">
         <div className="logo">
-          <img src={logo} alt="Logo" />
-          <h4>Acelink</h4>
+            <img src={logo}></img>
+            <h2>Acelink</h2>
         </div>
-        <div className="signup-options">
-          <button className="signup-button">Sign up as a Student</button>
-          <button className="signup-button">Sign up as a Tutor</button>
-        </div>
-      </div>
-      <div className="login-container">
-        <div className="login-image">
-          <img src={image1} alt="Placeholder" />
-        </div>
+      <div className="login-box">
+        <div className='left-side'>
         <div className="login-form">
-          <div className="form-container">
-            <img src={logo} alt="Logo" />
-            <h2>Welcome!</h2>
-            <p>Please, log in to your account.</p>
-            <form>
-              <div className="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="youremail@gmail.com" />
-              </div>
-              <div className="form-group">
-                <label>Password</label>
-                <input type="password" placeholder="*********" />
-    
-              </div>
-
-              <div className="form-group-remeber">
-                <div>
-                <input type="checkbox" id="rememberMe" />
-                <label htmlFor="rememberMe">Remember me</label>
-                </div>
-                <div>
-                  <a href="/" className="forgot-password">Forgot password?</a>
-                </div>
-              </div>
-
-              <button type="submit" className="login-button">Login</button>
-              <p className="or-text">--- OR ---</p>
-
-              <button className="google-login">
-                <div className='google-img'> <img src={google} alt="google" /></div>
-                <p>Continue with Google</p>
-                
-              
-              </button>
-            </form>
-            <p>Already have an account? <a href="/">Login.</a></p>
+          <h2 className="title">Login</h2>
+          <p>Login to access your travelwise account</p>
+          <input type="email" placeholder="Email" value="john.doe@gmail.com" readOnly className="input" />
+          <input type="password" placeholder="Password" className="input" />
+          <div className="remember-forgot">
+            <label>
+              <input type="checkbox" className="checkbox" /> Remember me
+            </label>
+            <a href="#" className="link">Forgot Password</a>
+          </div>
+          <button className="button">Login</button>
+          <p>Don’t have an account? <a href="#" className="link">Sign up</a></p>
+        </div>
+        </div>
+        <div className="right-side">
+          <div className="image">
+            <img src={loginimg}></img>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Login;

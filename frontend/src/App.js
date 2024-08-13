@@ -1,5 +1,5 @@
 import './App.css';
-import Tutors from './components/tutors/tutors';
+import ProfilePolish from './components/profilepolish/profile';
 
 function App() {
   return (
@@ -9,8 +9,13 @@ function App() {
       {/* <Meeting/> */}
 
       {/* Uncomment the line below to render the Tutors page instead */}
-      <Tutors />
+      {/* <Tutors /> */}
+      {/* <Login></Login> */}
+      {/* <Signup/> */}
+    
+      <ProfilePolish/>
     </div>
+
   );
 }
 

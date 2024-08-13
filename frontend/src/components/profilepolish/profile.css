@@ -4,7 +4,7 @@
   height: 100vh;
 }
 
-.login-box {
+.profile-polish-box {
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -16,27 +16,24 @@
 .left-side {
   text-align: start;
   justify-self: center;
-  width: 60%;
+  width: 70%;
   display: flex;
   justify-content: center;
-
 }
 
-.login-form{
-  width: 55%;
+.profile-polish-form {
+  width: 65%;
   display: flex;
   flex-direction: column;
-
-
-
+  gap: 0px;
+  align-items: start;
 }
 
 .right-side {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 40%;
+  width: 50%;
 }
 
 .logo {
@@ -56,14 +53,27 @@
   color: #333333;
 }
 
-.input {
-  padding: 15px;
+.upload-section {
+  display: flex;
+  justify-content: center;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  width: 90%;
-  height: 10px;
+}
+
+.upload-box {
+  width: 100px;
+  height: 100px;
+  background-color: #f2f2f2;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.upload-box span {
+  font-size: 24px;
+  color: #999;
 }
 
 .button {
@@ -74,26 +84,8 @@
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  width: 100%;
+  width: 80%;
   height: 44px;
-}
-
-.remember-forgot {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-
-
-}
-
-.checkbox {
-  margin-right: 10px;
-}
-
-.link {
-  color: #1d4e89;
-  cursor: pointer;
-  font-size: 16;
 }
 
 .image img {
