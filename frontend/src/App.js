@@ -1,5 +1,5 @@
 import './App.css';
-import ProfilePolish from './components/profilepolish/profile';
+import StudyGroups from './components/studygroup/studygroup';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       {/* <Login></Login> */}
       {/* <Signup/> */}
     
-      <ProfilePolish/>
+      <StudyGroups/>
     </div>
 
   );
