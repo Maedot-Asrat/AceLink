@@ -1,0 +1,197 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  margin-left: 20px;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #e5e7eb;
+}
+
+.welcome-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.join-button {
+  background-color: #1d4ed8;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.classes-section {
+  margin-bottom: 20px;
+}
+
+.classes {
+  display: flex;
+  gap: 20px;
+}
+
+.class-card {
+  flex-grow: 1;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: white;
+  position: relative;
+}
+
+.gradient-blue {
+  background: linear-gradient(135deg, #395BA7, #597CB4);
+}
+
+.gradient-purple {
+  background: linear-gradient(135deg, #A08CBC,  #EE8A92);
+}
+
+.gradient-red {
+  background: linear-gradient(135deg, #A08CBC ,  #EE8A92);
+}
+
+.progress-bar {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  height: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: white;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.lessons-section {
+  margin-bottom: 20px;
+}
+
+.lessons-table {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.head-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #020305;
+}
+
+.table-cell {
+  width: 25%;
+  color: #374151;
+}
+
+.right-sidebar {
+  width: 280px;
+  background-color: #f9fafb;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.right-sidebar .calendar {
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ padding: 0;
+  color: black;
+  width:250px;
+}
+
+.reminders {
+  margin-top: 20px;
+}
+
+.reminder-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #374151;
+}
+
+.reminder-icon {
+  margin-right: 17px;
+  color: #1d4ed8;
+}
+/* Override styles for the Calendar component */
+.react-calendar {
+  background-color: #fff; /* Ensure the background is white */
+}
+
+.react-calendar__tile {
+  color: #000; /* Set the default color for dates to black */
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #e5e7eb; /* Set hover and focus background */
+  color: #000; /* Ensure the color stays black on hover/focus */
+}
+
+.react-calendar__tile--active {
+  background-color: #1d4ed8; /* Active date background color */
+  color: white; /* Active date text color */
+}
+
+/* Ensure the calendar header (month and year) are displayed in black */
+.react-calendar__navigation button {
+  color: #000; /* Set the color to black */
+  background: none; /* Remove background to avoid default styles */
+}
+
+/* Change the color of the arrow buttons */
+.react-calendar__navigation button:disabled,
+.react-calendar__navigation button:focus,
+.react-calendar__navigation button:hover {
+  color: #1d4ed8; /* Change color on hover, focus, and disabled states */
+}
+
+/* Customize the background and text color of the calendar days */
+.react-calendar__tile {
+  color: #000;
+}
+
+/* Ensure the month and year text is black on hover/focus */
+.react-calendar__navigation__label {
+  color: #000; /* Ensures the month and year are black */
+}
+
+/* Style the active date */
+.react-calendar__tile--active {
+  background-color: #1d4ed8;
+  color: #fff;
+}

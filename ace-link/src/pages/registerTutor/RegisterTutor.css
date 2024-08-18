@@ -1,0 +1,176 @@
+/* 
+
+
+.register-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-form h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.register-form p {
+  margin-bottom: 20px;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-form button:hover {
+  background-color: #0056b3;
+}
+
+.register-form a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-form a:hover {
+  text-decoration: underline;
+}
+
+.register-form label {
+  display: flex;
+  align-items: center;
+}
+
+.register-form label input[type="checkbox"] {
+  margin-right: 10px;
+} */
+
+
+.container {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signup-box {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+  gap: 0;
+}
+
+.left-side {
+  text-align: start;
+  justify-self: center;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+.signup-form {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.signup-form p{
+  font-size: 14;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-left: 30px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.input-row {
+  display: flex;
+  margin-bottom: 10px;
+  gap: 30px;
+}
+
+.input {
+  padding: 13px;
+  margin-bottom: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.half-width {
+  width: 200px;
+}
+
+.full-width {
+  width: 460px;
+}
+
+.button {
+  padding: 15px;
+  background-color: #1d4e89;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  height: 44px;
+}
+
+.terms-and-register {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.link {
+  color: #1d4e89;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.image img {
+  width: 80%;
+}
