@@ -1,0 +1,30 @@
+.course-detail {
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .course-info {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .course-description {
+    width: 60%;
+  }
+  
+  .course-meta {
+    width: 30%;
+  }
+  
+  .enroll-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .enroll-button:hover {
+    background-color: #0056b3;
+  }
+  

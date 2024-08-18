@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CoursesPage from './pages/coursepage';
+import CourseDetail from './pages/coursedetail';
+import SchedulePage from './pages/SchedulePage';
 
 function App() {
+  const [selectedCourse, setSelectedCourse] = React.useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <CoursesPage />
+        <Routes>
+          <Route
+            path="/courses"
+            element={<CoursesPage onSelectCourse={setSelectedCourse} />}
+          />
+          <Route
+            path="/courses/:id"
+            element={<CourseDetail course={selectedCourse} />}
+          />
+          <Route 
+            path="/schedules" element={<SchedulePage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
