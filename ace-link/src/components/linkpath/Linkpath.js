@@ -7,9 +7,11 @@ import { FaListAlt,FaBookReader,FaPenSquare   } from "react-icons/fa";
 import { IoIosPeople } from "react-icons/io";
 import { PiBooksBold } from "react-icons/pi";
 
+import { FiHome } from "react-icons/fi";
 
 
 const iconMap = {
+    'Dashboard': FiHome,
     'Tutor' : TiHome,
     'My Courses':FaPenSquare ,
     'Study Groups':FaBookReader ,
@@ -20,6 +22,7 @@ const iconMap = {
 }
 
 const pathMap = {
+    'Dashboard': "/dashboard",
     'Tutor' : "/tutors",
     'My Courses':"/mycourses" ,
     'Study Groups':"/studygroups" ,

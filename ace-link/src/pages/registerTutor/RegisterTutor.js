@@ -1,69 +1,129 @@
-import React from 'react';
+
 import logo from '../../assets/Logo.png';
+
+import signupImg from '../../assets/signup.png';
 import './RegisterTutor.css';
 
-function RegisterTutor() {
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
+function Register() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    role:'Tutor',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name.includes('preferredTutorAttributes.')) {
+      const key = name.split('.')[1];
+      setFormData({
+        ...formData,
+        preferredTutorAttributes: {
+          ...formData.preferredTutorAttributes,
+          [key]: value,
+        },
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/register`, formData);
+      alert('Registration successful');
+      navigate('/loginTutor');
+    } catch (error) {
+      alert('Error during registration');
+    }
+  };
+
   return (
-    <div className="register-tutor-page">
-      <header className="register-header">
+
+<div className="container">
       <div className="logo">
-          <img src={logo} alt="Logo" />
-          <h4>Acelink</h4>
+        <img src={logo} alt="Logo" />
+        <h2>Acelink</h2>
+      </div>
+      <div className="signup-box">
+
+      
+      <div className="right-side">
+          <div className="image">
+            <img src={signupImg} alt="Signup" />
+          </div>
         </div>
-        <div className="auth-buttons">
-          <a href='/loginTutor'><button className="auth-button">Log in</button></a>
-          <a href='/registerTutor'><button className="auth-button">Sign up</button></a>
-        </div>
-      </header>
-      <div className="register-container">
-        <div className="register-form">
-          <h1>Register as A Tutor</h1>
-          <p>Do you have an experience in tutoring? Come and join us</p>
-          <form>
-            <div className="form-group">
-              <input type="text" placeholder="Full Name" />
+        <div className='left-side'>
+          <div className="signup-form">
+          <form onSubmit={handleSubmit}>
+            <h2 className="title">Register as a tutor</h2>
+            <p>Let’s get you all set up so you can have the best experience in learning.</p>
+            <div className="input-row">
+              <input  type="text"
+            name="username"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+             className="input half-width" />
+              
             </div>
-            <div className="form-group">
-              <input type="email" placeholder="E-mail Address" />
+            <div className="input-row">
+              <input 
+              type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+              className="input half-width" />
             </div>
-            <div className="form-group dual-input">
-              <input type="password" placeholder="Password" />
-              <input type="text" placeholder="Tutoring Subject" />
-            </div>
-            <div className="form-group">
-              <input type="tel" placeholder="Contact phone" />
-            </div>
-            <div className="form-group">
-              <input type="text" placeholder="Availability" />
-            </div>
-            <div className="form-group">
-              <input type="text" placeholder="year of experience" />
-            </div>
-            <div className="form-group">
-              <input type="text" placeholder="Per session" />
-            </div>
-            <div className="form-group">
-              <textarea placeholder="Write a brief paragraph about your experience"></textarea>
-            </div>
-            <div className="form-group">
-              <label className="upload-cv">
-                <input type="file" />
-                <span>Upload Your CV</span>
+            <input 
+              type="password"
+                      name="password"
+                      placeholder="Password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+            className="input full-width" />
+            <input 
+              type="password"
+                      name="confirmPassword"
+                      placeholder="Confirm Password"
+                      required
+            className="input full-width" />
+            <div className="terms-and-register">
+              <label>
+                <input type="checkbox" className="checkbox" /> I agree to all the <a href="#" className="link">Terms</a> and <a href="#" className="link">Privacy Policies</a>
               </label>
-              <small>Attach file, File size of your documents should not exceed 10MB</small>
+              <a href="/registerStudent" className="link">Register as a student</a>
             </div>
-            <div className="form-group">
-              <button type="submit" className="submit-button">SUBMIT</button>
-            </div>
-            <div className="form-group checkbox-group">
-              <input type="checkbox" id="contact" />
-              <label htmlFor="contact">I want to be contacted by Ace-link</label>
-            </div>
-          </form>
+            <button type="submit" className="button">Create account</button>
+            <p>Already have an account? <a href="/loginTutor" className="link">Login</a></p>
+            </form>
+          </div>
+         
         </div>
+        
       </div>
     </div>
   );
 }
 
-export default RegisterTutor;
+export default Register;
+
+
+
+
+

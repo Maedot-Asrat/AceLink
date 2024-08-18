@@ -2,4 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+   
+}
+.contentcontainer{
+    margin-left: 15%;
 }

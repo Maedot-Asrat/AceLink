@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://8x8.vc/vpaas-magic-cookie-24fead3220f24e59aaa89a08e9e6d520/external_api.js" async></script>
+    <style>
+        html, body, #jaas-container {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        #jaas-container {
+            z-index: 1;
+        }
+        #custom-ui {
+            position: absolute;
+            top: 10px;
+            right: 10px; /* Move the UI to the right side */
+            z-index: 1000; /* Ensure the custom UI is above the Jitsi interface */
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #custom-ui button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        #custom-ui button:hover {
+            background-color: #0056b3;
+        }
+        #code-input {
+            width: 300px;
+            height: 200px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+        #output {
+            white-space: pre-wrap;
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            width: 300px;
+            height: 100px;
+            overflow: auto;
+            border-radius: 4px;
+        }
+    </style>
+    <title>Jitsi with Custom UI and Code Compiler</title>
+</head>
+<body>
+    <div id="jaas-container"></div>
+
+    <!-- Custom UI overlay -->
+    <div id="custom-ui">
+        <button id="startRecordingButton">Start Recording</button>
+        <button id="stopRecordingButton" disabled>Stop Recording</button>
+
+        <!-- Code Compiler UI -->
+        <textarea id="code-input" placeholder="Write your code here..."></textarea>
+        <select id="language-select">
+            <option value="python3">Python 3</option>
+            <option value="javascript">JavaScript</option>
+            <option value="java">Java</option>
+            <!-- Add more languages as needed -->
+        </select>
+        <button id="run-code-button">Run Code</button>
+        <div id="output"></div>
+    </div>
+
+    <script type="text/javascript">
+        let mediaRecorder;
+        let recordedChunks = [];
+
+
+window.onload = () => {
+            const api = new JitsiMeetExternalAPI("8x8.vc", {
+                roomName: "vpaas-magic-cookie-24fead3220f24e59aaa89a08e9e6d520/SampleAppMassiveCommercesSeparateDeeply",
+                parentNode: document.querySelector('#jaas-container'),
+                jwt: "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAvMDY2ODMwLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3MjM5OTU3NjgsImV4cCI6MTcyNDAwMjk2OCwibmJmIjoxNzIzOTk1NzYzLCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOnRydWUsIm91dGJvdW5kLWNhbGwiOnRydWUsInNpcC1vdXRib3VuZC1jYWxsIjpmYWxzZSwidHJhbnNjcmlwdGlvbiI6dHJ1ZSwicmVjb3JkaW5nIjp0cnVlfSwidXNlciI6eyJoaWRkZW4tZnJvbS1yZWNvcmRlciI6ZmFsc2UsIm1vZGVyYXRvciI6dHJ1ZSwibmFtZSI6ImZlbnV0aWdpc3QiLCJpZCI6Imdvb2dsZS1vYXV0aDJ8MTA0MTA1OTMzMTk1MDgxNjcyOTg2IiwiYXZhdGFyIjoiIiwiZW1haWwiOiJmZW51dGlnaXN0QGdtYWlsLmNvbSJ9fSwicm9vbSI6IioifQ.GZEhiieXCA8khkS6xl2P7TvLm-asRcE0O8wYxfvHgV6jxF4L0LYLbgqrw5S5hyU0YR9eu9kbaxMxGvTCyC5-sjfRjzfM2o1CfJGgiG3YVsnxWSqIc_unAprMJjddaFXRNvvSKmtH8BLXIdTvEJEoX-5-d9SrDRIJGhzGz2OMkk7_turwybSN8f00yJnfUWH9PfeBdSO4HQlnVMS9nfmLfMdKnarkAf_HaAyn3Qh3AdU0Ii-EPf7fCWRSBs5RpOX3NXunN4XYIs7AP5AIGwXsvVC61nk31iBADDU8Sv-Khh8RLDLl3-8IKpRjgCNtq4SoFNoQEwh_8zcFYo_CjX7kfg", // Replace with your actual JWT token
+                configOverwrite: {
+                    toolbarButtons: [
+                        'microphone', 'camera', 'closedcaptions', 'desktop', 
+                        'embedmeeting', 'fullscreen', 'fodeviceselection', 'hangup', 
+                        'profile', 'chat', 'recording', 'livestreaming', 'etherpad', 
+                        'sharedvideo', 'settings', 'raisehand', 'videoquality', 
+                        'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts', 
+                        'tileview', 'download', 'help', 'mute-everyone', 'security',
+                        'whiteboard'
+                    ]
+                }
+            });
+
+            document.getElementById('startRecordingButton').onclick = startRecording;
+            document.getElementById('stopRecordingButton').onclick = stopRecording;
+            document.getElementById('run-code-button').onclick = runCode;
+        };
+
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getDisplayMedia({
+                    video: { mediaSource: "screen" },
+                    audio: true // Include audio if needed
+                });
+
+                mediaRecorder = new MediaRecorder(stream);
+                recordedChunks = []; // Clear previous recordings
+
+                mediaRecorder.ondataavailable = function(e) {
+                    if (e.data.size > 0) {
+                        recordedChunks.push(e.data);
+                    }
+                };
+
+                mediaRecorder.onstop = function() {
+                    const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'jitsi-meeting-recording.webm';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a); // Clean up
+                };
+
+                mediaRecorder.start();
+                document.getElementById('startRecordingButton').disabled = true;
+                document.getElementById('stopRecordingButton').disabled = false;
+                alert('Recording started');
+            } catch (err) {
+                console.error("Error starting recording:", err);
+            }
+        }
+
+
+function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                document.getElementById('startRecordingButton').disabled = false;
+                document.getElementById('stopRecordingButton').disabled = true;
+                alert('Recording stopped');
+            }
+        }
+
+        async function runCode() {
+            const code = document.getElementById('code-input').value;
+            const language = document.getElementById('language-select').value;
+            const outputElement = document.getElementById('output');
+
+            const response = await fetch('https://api.jdoodle.com/v1/execute', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    script: code,
+                    language: language,
+                    versionIndex: "0", // Specify the version index for the language
+                    clientId: "df3ff54c65da18d2c5a844d56e7f4721", // Replace with your JDoodle client ID
+                    clientSecret: "87c389da758cd482bc52b268ef973e5e0bd4fa28174272526f72a22041164240" // Replace with your JDoodle client secret
+                })
+            });
+
+            const result = await response.json();
+            if (result.output) {
+                outputElement.textContent = result.output;
+            } else {
+                outputElement.textContent = "Error: " + result.error;
+            }
+        }
+    </script>
+</body>
+</html>

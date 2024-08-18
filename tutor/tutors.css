@@ -1,0 +1,97 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f9fafb;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.tutor-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  
+}
+
+.tutor-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.tutor-image-rate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.tutor-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.tutor-rate {
+  font-size: 16px;
+  font-weight: bold;
+  color: #05436A;
+}
+
+.tutor-info {
+  flex-grow: 1;
+}
+
+.tutor-name-degree {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tutor-name-degree h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.tutor-name-degree .tutor-rating {
+  display: flex;
+  align-items: center;
+}
+
+.rating-star {
+  color: #fbbf24;
+  margin-right: 5px;
+}
+
+.tutor-info p {
+  margin: 5px 0;
+  color: #6b7280;
+}
+
+.view-profile-button {
+  background-color: #05436A;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.view-profile-button:hover {
+  background-color: #05436A;
+}

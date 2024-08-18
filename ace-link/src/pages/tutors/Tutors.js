@@ -8,7 +8,7 @@ export default function Tutors(){
         <div className="tutors">
             {
                 Profiles.map( (profile)=>(
-                    <Profilecard key={profile.id} image = {profile.image} name = {profile.name} title = {profile.title} cost = {profile.cost} />
+                    <Profilecard key={profile.id} id={profile.id} bio={profile.bio} rating={profile.rating} image = {profile.image} name = {profile.name} title = {profile.title} cost = {profile.cost} />
                 )
 
                 )

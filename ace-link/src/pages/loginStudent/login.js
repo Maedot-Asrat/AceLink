@@ -4,7 +4,41 @@ import image1 from '../../assets/image1.png';
 import logo from '../../assets/Logo.png';
 import './Login.css';
 
-function Login() {
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+function Login(){
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log('Form Data:', formData);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`, formData);
+      const { token, user } = res.data;
+  
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+      alert('Login successful');
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Login error:', error.response ? error.response.data : error.message);
+      alert('Error during login: ' + (error.response?.data?.error || 'Please try again.'));
+    }
+  };
+
   return (
     <div className="login-page">
       <div className="login-header">
@@ -27,14 +61,14 @@ function Login() {
             <img src={logo} alt="Logo" />
             <h2>Welcome, Student!</h2>
             <p>Please, log in to your account as a student.</p>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Email</label>
-                <input type="email" placeholder="youremail@gmail.com" />
+                <input type="email" name="email" placeholder="youremail@gmail.com" onChange={handleChange} required/>
               </div>
               <div className="form-group">
                 <label>Password</label>
-                <input type="password" placeholder="*********" />
+                <input type="password" name="password" placeholder="*********" onChange={handleChange} required />
     
               </div>
 
@@ -44,28 +78,26 @@ function Login() {
                 <label htmlFor="rememberMe">Remember me</label>
                 </div>
                 <div>
-                  <a href="/" className="forgot-password">Forgot password?</a>
+                  <a href="/forgotPass" className="forgot-password">Forgot password?</a>
                 </div>
               </div>
 
-              {/* <button type="submit" className="login-button">Login</button> */}
-              
+              <button type="submit" className="login-button">Login</button>
+              </form>
               <p className="or-text">--- OR ---</p>
 
               <button className="google-login">
                 <div className='google-img'> <img src={google} alt="google" /></div>
                 <p>Continue with Google</p>
-                
-              
               </button>
-            </form>
-            <a href='/tutors'><button className="login-button">Login</button></a>
+            
+            
             <p> Don't have an account? <a href="/registerStudent">Signup.</a></p>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Login;
