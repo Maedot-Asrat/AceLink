@@ -11,7 +11,7 @@ ace-link/: Here, you will find the frontend code for the AceLink platform, imple
 # Purpose
 The purpose of this repository is to provide a collaborative space for development and improvement of the AceLink platform. By making the repository publicly accessible, we aim to foster community engagement, allowing developers, education experts, contributors, and users to explore the codebase, report issues, and suggest enhancements.
 
-# How Generative AI Models are Solving the Problem
+# How AI Models are Solving the Problem
 
 AI models are significantly enhancing AceLink by introducing advanced features that transform the learning experience. These models enable personalized content recommendations, ensuring that students receive tailored resources based on their unique learning needs. Real-time support is provided through AI-driven virtual tutors, offering immediate assistance even when human tutors are unavailable.
 
