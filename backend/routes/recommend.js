@@ -5,7 +5,7 @@ const Tutor = require('../models/Tutor');
 const axios = require('axios');
 
 // GPT Access Token
-const chatgptToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9qZWN0X25hbWUiOiJVdG9waWEgVGVjaCJ9.o16dFkfJV42Olf8bjk-p97n9wS6fr6qr7Z0M7GfkICo';
+const chatgptToken = '';
 
 router.post('/tutor', async (req, res) => {
   try {
