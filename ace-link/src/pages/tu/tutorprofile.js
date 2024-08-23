@@ -11,7 +11,7 @@ const TutorProfile = () => {
         <div className="profile-header">
           <img src={picture} alt="Mr Daniel Kebede" className="profile-image" />
           <div className="profile-info">
-            <h2>Mr Daniel Kebede</h2>
+            <h2>Mr Daniel Amare</h2>
             <p>BSc in Mathematics</p>
           </div>
           <div className="profile-rating">
