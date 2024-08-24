@@ -31,8 +31,9 @@ function Login(){
       // Store token and user info in local storage
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('role',user.role);
       alert('Login successful');
-      navigate('/tutors');
+      navigate('/dashboardTutor');
     } catch (error) {
       alert('Error during login');
     }

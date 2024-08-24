@@ -10,6 +10,8 @@ import { PiBooksBold } from "react-icons/pi";
 import { FiHome } from "react-icons/fi";
 
 
+import { FaMicrophone } from "react-icons/fa";
+
 const iconMap = {
     'Dashboard': FiHome,
     'Tutor' : TiHome,
@@ -18,8 +20,10 @@ const iconMap = {
     'Community':IoIosPeople,
     "My Schedules":FaListAlt,
     "Messages":AiFillMessage,
-    "Library":PiBooksBold
+    "Library":PiBooksBold,
+    "Recordings":FaMicrophone
 }
+
 
 const pathMap = {
     'Dashboard': "/dashboard",
@@ -29,7 +33,8 @@ const pathMap = {
     'Community':"/community",
     "My Schedules":"/myschedules",
     "Messages":"/messages",
-    "Library":"/library"
+    "Library":"/library",
+     "Recordings":"/recordings"
 }
 
 export default function Linkpath({name, isActive, onClick}){

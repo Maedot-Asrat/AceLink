@@ -59,7 +59,7 @@ const SchedulePage = () => {
           <p>{meeting.date}</p>
           <p>{meeting.time}</p>
         </div>
-        <a href='/meet' >
+        <a href='/meeting' >
           <button className="join-button">Join Session</button>
         </a>
       </div>

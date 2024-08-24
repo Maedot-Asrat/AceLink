@@ -42,11 +42,13 @@ export default function Navbar(){
                     <Linkpath name="Dashboard" isActive={activeTab === "Dashboard"} onClick={() => handleTabClick("Dashboard")} />
                     <Linkpath name="Tutor" isActive={activeTab === "Tutor"} onClick={() => handleTabClick("Tutor")} />
                     <Linkpath name="My Courses" isActive={activeTab === "My Courses"} onClick={() => handleTabClick("My Courses")} />
-                    <Linkpath name="Study Groups" isActive={activeTab === "Study Groups"} onClick={() => handleTabClick("Study Groups")} />
+                    <Linkpath name="Recordings" isActive={activeTab === "Recordings"} onClick={() => handleTabClick("Recordings")} />
                     <Linkpath name="Community" isActive={activeTab === "Community"} onClick={() => handleTabClick("Community")} />
                     <Linkpath name="My Schedules" isActive={activeTab === "My Schedules"} onClick={() => handleTabClick("My Schedules")} />
                     <Linkpath name="Messages" isActive={activeTab === "Messages"} onClick={() => handleTabClick("Messages")} />
                     <Linkpath name="Library" isActive={activeTab === "Library"} onClick={() => handleTabClick("Library")} />
+                 
+                    {/* <Linkpath name="Study Groups" isActive={activeTab === "Study Groups"} onClick={() => handleTabClick("Study Groups")} /> */}
                 </div>
 
                 <Link to="/profile">

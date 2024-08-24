@@ -1,0 +1,116 @@
+.my-students-container {
+    padding: 20px;
+}
+
+.statistics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    background: #f7f8fc;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1;
+    margin: 0 10px;
+    text-align: center;
+}
+
+.stat-item h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.stat-item p {
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.stat-item span {
+    font-size: 14px;
+    color: #666;
+}
+
+.students-table {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.table-header h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.table-header input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.table-header select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+table th {
+    background: #f7f8fc;
+}
+
+table td {
+    background: #fff;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.status.active {
+    background: #28a745;
+}
+
+.status.inactive {
+    background: #dc3545;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination span {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background: #007bff;
+    color: #fff;
+}

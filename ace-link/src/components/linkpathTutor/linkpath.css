@@ -1,0 +1,24 @@
+.linkpath .home{
+    display: flex;
+    align-items: center;
+    
+}
+
+.linkpath .name{
+margin: 0 20px;
+color: #5D7285;
+}
+
+.linkpath.active {
+    background-color: #E9F5FE; 
+}
+
+.linkpath.active .name{
+    color: #0C7FDA; 
+    font-weight: 700;
+}
+.linkpath .icon{
+color:#5D7285;}
+.linkpath.active .icon{
+    color: #0C7FDA; 
+}

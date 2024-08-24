@@ -1,150 +1,3 @@
-// import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-// import React from 'react';
-// import { CartProvider } from "./components/cartcontext/cartcontext";
-// import "./styles/global.css";
-// import "./App.css";
-// import Navbar from "./components/navbar/Navbar";
-// import Mycourses from "./pages/mycourses/Mycourses";
-// import Tutors from "./pages/tutors/Tutors";
-// import Community from "./pages/community/community";
-// import { IoNotificationsSharp } from "react-icons/io5";
-// import MainApp from './MainApp';
-// import LoginStudent from './pages/loginStudent/login';
-// import RegisterStudent from './pages/registerStudent/register';
-// import LoginTutor from './pages/loginTutor/login';
-// import ForgotPass from './pages/forgotpassword/forgotpassword';
-// import RegisterTutor from './pages/registerTutor/RegisterTutor';
-// import PrivateRoute from './components/PrivateRoute'; // Import the PrivateRoute component
-// import LogoutButton from './components/LogoutButton';
-// import TutorProfilePage from './pages/TutorProfile/TutorProfile';
-// import Dashboard from './pages/dashboard/dashboard';
-// import SchedulePage from "./pages/schedule/SchedulePage";
-// export default function RouterApp() {
-//   const Layout = () => {
-//     return (
-//       <div className="main">
-//         <div className="navbar">
-//         <PrivateRoute>
-//           <Navbar />
-//         </PrivateRoute>
-//         </div>
-//         <div className="contentcontainer">
-//           <div className="bar">
-//             <div className="tit">Home</div>
-//             <div>
-//               <IoNotificationsSharp size={"20px"} />
-//               <LogoutButton />
-//             </div>
-//           </div>
-//           <div className="out">
-//             <CartProvider>
-//               <Outlet />
-//             </CartProvider>
-//           </div>
-          
-//         </div>
-//       </div>
-//     );
-//   };
-
-//   const router = createBrowserRouter([
-//     { path: "/", element: <MainApp /> },
-//     {
-//       path: "/",
-//       element: <Layout />,
-//       children: [
-//         { 
-//           path: "/dashboard", 
-//           element: (
-//             <PrivateRoute>
-//               <Dashboard />
-//             </PrivateRoute>
-//           ) 
-//         },
-//         { 
-//           path: "/tutors", 
-//           element: (
-//             <PrivateRoute>
-//               <Tutors />
-//             </PrivateRoute>
-//           ) 
-//         },
-//         { 
-//           path: "/mycourses", 
-//           element: (
-//             <PrivateRoute>
-//               <Mycourses />
-//             </PrivateRoute>
-//           ) 
-//         },
-//         { 
-//           path: "/studygroups", 
-//           element: (
-//             <PrivateRoute>
-//               <Community />
-//             </PrivateRoute>
-//           ) 
-//         },
-//         { 
-//           path: "/community", 
-//           element: (
-//             <PrivateRoute>
-//               <Community />
-//             </PrivateRoute>
-//           ) 
-//         },
-//         { 
-//           path: "/myschedules", 
-//           element: (
-//             <PrivateRoute>
-//               <SchedulePage />
-//             </PrivateRoute>
-//           ) 
-//         },
-//         { 
-//           path: "/messages", 
-//           element: (
-//             <PrivateRoute>
-//               <Tutors />
-//             </PrivateRoute>
-//           ) 
-//         },
-//         { 
-//           path: "/library", 
-//           element: (
-//             <PrivateRoute>
-//               <Tutors />
-//             </PrivateRoute>
-//           ) 
-//         },
-//         { 
-//           path: "/profile", 
-//           element: (
-//             <PrivateRoute>
-//               <Tutors />
-//             </PrivateRoute>
-//           ) 
-//         },
-//         {
-//           path: "/tutorProfile/:id", 
-//           element: 
-//             <PrivateRoute>
-//               <TutorProfilePage />
-//             </PrivateRoute>
-//         }
-//       ],
-//     },
-//     { path: "/loginStudent", element: <LoginStudent /> },
-//     { path: "/registerStudent", element: <RegisterStudent /> },
-//     { path: "/loginTutor", element: <LoginTutor /> },
-//     { path: "/registerTutor", element: <RegisterTutor /> },
-//     { path: "/forgotPass", element: <ForgotPass /> },
-   
-//   ]);
-
-//   return <RouterProvider router={router} />;
-// }
-
 
 
 import { createBrowserRouter, Outlet, RouterProvider, useLocation } from "react-router-dom";
@@ -165,6 +18,7 @@ import LoginTutor from './pages/loginTutor/login';
 import ForgotPass from './pages/forgotpassword/forgotpassword';
 import RegisterTutor from './pages/registerTutor/RegisterTutor';
 import PrivateRoute from './components/PrivateRoute'; // Import the PrivateRoute component
+
 import LogoutButton from './components/LogoutButton';
 import TutorProfilePage from './pages/TutorProfile/TutorProfile';
 import Dashboard from './pages/dashboard/dashboard';
@@ -173,11 +27,24 @@ import Library from "./pages/library/library";
 import DashboardTutor from "./tutorPages/dashboard/Dashboard";
 import { FiLogOut } from 'react-icons/fi';
 import JitsiMeeting from "./pages/meet/JitsiMeeting";
+import ProfilePage from "./pages/polishPage/ProfilePage";
+import PolishProfile from "./pages/polishPage/GettingToKnowYouPage";
+import JitsiMeet from "./pages/meet/JitsiMeeting";
+import RecordingsPage from './pages/recordings/RecordingsPage';
+import StudyGroup from './pages/studygroup/addmodal';
+import FlashCards from './pages/flashCards/flashcards';
+import Chatbot from './pages/chatbot/chatbot';
+// Tutors
+import NavbarTutor from './components/navbarTutor/NavbarTutor';
+import MySessions from './tutorPages/sessions/ScheduleSessionPage';
+import MyStudents from './tutorPages/mystudents/MyStudents';
+import MyEarnings from './tutorPages/earnings/MyEarnings';
+import Meeting from './tutorPages/meet/JitsiMeeting';
 
 export default function RouterApp() {
   const Layout = () => {
     const location = useLocation();
-
+    const userRole = localStorage.getItem('role'); 
     // Map the pathname to the page name
     const pageTitles = {
       '/dashboard': 'Dashboard',
@@ -188,8 +55,10 @@ export default function RouterApp() {
       '/myschedules': 'My Schedules',
       '/messages': 'Messages',
       '/library': 'Library',
+      '/recordings': 'Recordings',
       '/profile': 'Profile',
-      '/tutorProfile': 'Tutor Profile'
+      '/tutorProfile': 'Tutor Profile',
+      "/dashboardTutor":'Tutor Dashboard'
     };
 
     // Default to 'Home' if no matching pathname is found
@@ -198,9 +67,7 @@ export default function RouterApp() {
     return (
       <div className="main">
         <div className="navbar">
-        <PrivateRoute>
-          <Navbar />
-        </PrivateRoute>
+        {userRole === 'Student' ? <Navbar /> : <NavbarTutor />}
         </div>
         <div className="contentcontainer">
           <div className="bar">
@@ -225,12 +92,12 @@ export default function RouterApp() {
     { path: "/", element: <MainApp /> },
     {
       path: "/",
-      element: <Layout />,
+      element:<PrivateRoute><Layout /></PrivateRoute>,
       children: [
         { 
           path: "/dashboard", 
           element: (
-            <PrivateRoute>
+            <PrivateRoute role="Student">
               <Dashboard />
             </PrivateRoute>
           ) 
@@ -238,7 +105,7 @@ export default function RouterApp() {
         { 
           path: "/tutors", 
           element: (
-            <PrivateRoute>
+            <PrivateRoute role="Student">
               <Tutors />
             </PrivateRoute>
           ) 
@@ -246,7 +113,7 @@ export default function RouterApp() {
         { 
           path: "/mycourses", 
           element: (
-            <PrivateRoute>
+            <PrivateRoute role="Student">
               <Mycourses />
             </PrivateRoute>
           ) 
@@ -254,15 +121,15 @@ export default function RouterApp() {
         { 
           path: "/studygroups", 
           element: (
-            <PrivateRoute>
-              <Community />
+            <PrivateRoute role="Student">
+              <StudyGroup />
             </PrivateRoute>
           ) 
         },
         { 
           path: "/community", 
           element: (
-            <PrivateRoute>
+            <PrivateRoute role="Student">
               <Community />
             </PrivateRoute>
           ) 
@@ -270,7 +137,7 @@ export default function RouterApp() {
         { 
           path: "/myschedules", 
           element: (
-            <PrivateRoute>
+            <PrivateRoute role="Student">
               <SchedulePage />
             </PrivateRoute>
           ) 
@@ -278,31 +145,42 @@ export default function RouterApp() {
         { 
           path: "/messages", 
           element: (
-            <PrivateRoute>
-              <Tutors />
+            <PrivateRoute role="Student">
+              <Community />
             </PrivateRoute>
           ) 
         },
         { 
           path: "/library", 
           element: (
-            <PrivateRoute>
+            <PrivateRoute role="Student">
               <Library />
             </PrivateRoute>
           ) 
         },
         { 
-          path: "/meet", 
+          path: "/meeting", 
           element: (
-            <PrivateRoute>
-              <JitsiMeeting />
+            <PrivateRoute role="Student">
+              <JitsiMeet />
+              <Chatbot />
               </PrivateRoute>
           ) 
         },
         { 
+          path: "/recordings", 
+          element: (
+            <PrivateRoute role="Student">
+              <RecordingsPage />
+             
+              </PrivateRoute>
+          ) 
+        },
+   
+        { 
           path: "/profile", 
           element: (
-            <PrivateRoute>
+            <PrivateRoute role="Student">
               <Tutors />
             </PrivateRoute>
           ) 
@@ -310,10 +188,55 @@ export default function RouterApp() {
         {
           path: "/tutorProfile/:id", 
           element: 
-            <PrivateRoute>
+            <PrivateRoute role="Student">
               <TutorProfilePage />
             </PrivateRoute>
+        },
+
+
+
+        {
+          path: "/dashboardTutor",
+          element: (
+            <PrivateRoute role="Tutor">
+              <DashboardTutor />
+            </PrivateRoute>
+          ),
+        },
+        { 
+          path: "/meetings", 
+          element: (
+            <PrivateRoute role="Tutor">
+              <Meeting />
+              
+              </PrivateRoute>
+          ) 
+        },
+        {
+          path: "/sessions",
+          element: (
+            <PrivateRoute role="Tutor">
+              <MySessions />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/mystudents",
+          element: (
+            <PrivateRoute role="Tutor">
+              <MyStudents />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/earnings",
+          element: (
+            <PrivateRoute role="Tutor">
+              <MyEarnings />
+            </PrivateRoute>
+          ),
         }
+       
       ],
     },
     { path: "/loginStudent", element: <LoginStudent /> },
@@ -321,7 +244,23 @@ export default function RouterApp() {
     { path: "/loginTutor", element: <LoginTutor /> },
     { path: "/registerTutor", element: <RegisterTutor /> },
     { path: "/forgotPass", element: <ForgotPass /> },
-
+    { path: "/meeting", element: <JitsiMeet /> },
+    { 
+      path: "/polishProfile", 
+      element: (
+       
+          <ProfilePage/>
+       
+      ) 
+    },
+    { 
+      path: "/getting-to-know-you", 
+      element: (
+        
+          <PolishProfile/>
+        
+      ) 
+    },
    
   ]);
 

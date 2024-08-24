@@ -1,5 +1,5 @@
 import "./navbar.css"
-import Linkpath from '../linkpath/Linkpath';
+import Linkpath from '../linkpathTutor/Linkpath';
 import { FiSettings } from "react-icons/fi";
 import { Link } from 'react-router-dom';
 import { useState,useEffect } from "react";
@@ -42,11 +42,13 @@ export default function NavbarTutor(){
                     <Linkpath name="Dashboard" isActive={activeTab === "Dashboard"} onClick={() => handleTabClick("Dashboard")} />
                     <Linkpath name="My Courses" isActive={activeTab === "My Courses"} onClick={() => handleTabClick("My Courses")} />
                     <Linkpath name="My Sessions" isActive={activeTab === "My Sessions"} onClick={() => handleTabClick("My Sessions")} />
-                    <Linkpath name="Study Groups" isActive={activeTab === "Study Groups"} onClick={() => handleTabClick("Study Groups")} />
+                    <Linkpath name="My Students" isActive={activeTab === "My Students"} onClick={() => handleTabClick("My Students")} />
+                
                     <Linkpath name="Community" isActive={activeTab === "Community"} onClick={() => handleTabClick("Community")} />
                     <Linkpath name="My Schedules" isActive={activeTab === "My Schedules"} onClick={() => handleTabClick("My Schedules")} />
                     <Linkpath name="Messages" isActive={activeTab === "Messages"} onClick={() => handleTabClick("Messages")} />
                     <Linkpath name="Library" isActive={activeTab === "Library"} onClick={() => handleTabClick("Library")} />
+                    <Linkpath name="Earnings" isActive={activeTab === "Earnings"} onClick={() => handleTabClick("Earnings")} />
                 </div>
 
                 <Link to="/profile">

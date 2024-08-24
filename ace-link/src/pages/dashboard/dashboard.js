@@ -15,8 +15,8 @@ const Dashboard = () => {
       if (storedUser && storedUser.email) {
           setUserEmail(storedUser.email);
       }
-      if (storedUser && storedUser.name) {
-          setUserName(storedUser.name);
+      if (storedUser && storedUser.username) {
+          setUserName(storedUser.username);
       }
   }, []);
   return (
@@ -78,11 +78,7 @@ const Dashboard = () => {
       </div>
 
       <div className="right-sidebar">
-        <div className="profile">
-          <img src="path/to/profile-image.jpg" alt="Profile" className="profile-image" />
-          <h3>Mr John Doe</h3>
-          <p>Student</p>
-        </div>
+      
 
         <div className="calendar">
           <Calendar />

@@ -6,7 +6,7 @@ const MeetingCard = ({ meeting }) => {
       <h3>{meeting.title}</h3>
       <p>{meeting.instructor}</p>
       <p>{meeting.date} {meeting.time}</p>
-      <a href='/meet'>
+      <a href='/meeting'>
       <button>Join Session</button>
       </a>
     </div>

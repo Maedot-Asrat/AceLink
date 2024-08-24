@@ -31,6 +31,15 @@ function Login(){
   
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('role', user.role);
+      localStorage.setItem('id', user.id);
+  
+      if (user.role === 'Student') {
+        // Assuming the student ID is returned within the 'profile' of the user object
+        const studentId = user.profileId; // Adjust according to your backend response
+        localStorage.setItem('studentId', studentId);
+      }
+  
       alert('Login successful');
       navigate('/dashboard');
     } catch (error) {
@@ -38,6 +47,7 @@ function Login(){
       alert('Error during login: ' + (error.response?.data?.error || 'Please try again.'));
     }
   };
+  
 
   return (
     <div className="login-page">
@@ -61,6 +71,7 @@ function Login(){
             <img src={logo} alt="Logo" />
             <h2>Welcome, Student!</h2>
             <p>Please, log in to your account as a student.</p>
+            <p>This may take a few seconds, please hold!.</p>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Email</label>
