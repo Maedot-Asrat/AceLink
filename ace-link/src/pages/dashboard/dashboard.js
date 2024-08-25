@@ -23,14 +23,14 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <div> </div>
 
-      <div className="main-content">
+      <div className="main-contents">
         <div className="welcome-section">
-          <h1>Welcome back, {userName}!</h1>
+          <h1 style={{ color: '#004080' }}>Welcome back, {userName}!</h1>
           <p>you have an upcoming chemistry lesson with your tutor in 2 hours.</p>
-          <button className="join-button">Join session</button>
+          <button className="join-buttons">Join session</button>
         </div>
 
-        <div className="classes-section">
+        <div className="classes-sections">
           <h2>Classes</h2>
           <div className="classes">
             <div className="class-card gradient-blue">
@@ -41,14 +41,14 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="class-card gradient-purple">
-              <h3>maths</h3>
+              <h3>Chemistry</h3>
               <p>Teacher: Meaza</p>
               <div className="progress-bar">
                 <div className="progress" style={{ width: '75%' }}></div>
               </div>
             </div>
             <div className="class-card gradient-red">
-              <h3>Python</h3>
+              <h3>Video Editing</h3>
               <p>Teacher: Meaza</p>
               <div className="progress-bar">
                 <div className="progress" style={{ width: '10%' }}></div>
@@ -61,10 +61,40 @@ const Dashboard = () => {
           <h2>Lessons</h2>
           <div className="lessons-table">
           <div className="head-row">
-              <div className="table-cell">course</div>
-              <div className="table-cell">teacher</div>
-              <div className="table-cell">starts</div>
-              <div className="table-cell">ends</div>
+              <div className="table-cell">Course</div>
+              <div className="table-cell">Teacher</div>
+              <div className="table-cell">Starts</div>
+              <div className="table-cell">Ends</div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">Python 101</div>
+              <div className="table-cell">Abebe</div>
+              <div className="table-cell">4:00 pm, Today</div>
+              <div className="table-cell">5:00 pm, Today</div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">Python 101</div>
+              <div className="table-cell">Abebe</div>
+              <div className="table-cell">4:00 pm, Today</div>
+              <div className="table-cell">5:00 pm, Today</div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">Python 101</div>
+              <div className="table-cell">Abebe</div>
+              <div className="table-cell">4:00 pm, Today</div>
+              <div className="table-cell">5:00 pm, Today</div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">Python 101</div>
+              <div className="table-cell">Abebe</div>
+              <div className="table-cell">4:00 pm, Today</div>
+              <div className="table-cell">5:00 pm, Today</div>
+            </div>
+            <div className="table-row">
+              <div className="table-cell">Python 101</div>
+              <div className="table-cell">Abebe</div>
+              <div className="table-cell">4:00 pm, Today</div>
+              <div className="table-cell">5:00 pm, Today</div>
             </div>
             <div className="table-row">
               <div className="table-cell">Python 101</div>
@@ -85,18 +115,18 @@ const Dashboard = () => {
         </div>
 
         <div className="reminders">
-          <h3>Reminders</h3>
+          <h2>Reminders</h2>
           <div className="reminder-item">
             <FaBell className="reminder-icon" />
-            <span>Eng - essay, 21 August 2024, Friday</span>
+            <span>Eng - essay, <br/> 21 August 2024, Friday</span>
           </div>
           <div className="reminder-item">
             <FaBell className="reminder-icon" />
-            <span>Eng - essay, 21 August 2024, Friday</span>
+            <span>Eng - essay, <br/> 21 August 2024, Friday</span>
           </div>
           <div className="reminder-item">
             <FaBell className="reminder-icon" />
-            <span>Eng - essay, 21 August 2024, Friday</span>
+            <span>Eng - essay, <br/> 21 August 2024, Friday</span>
           </div>
         </div>
       </div>

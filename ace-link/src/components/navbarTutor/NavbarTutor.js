@@ -1,4 +1,4 @@
-import "./navbar.css"
+import "./navbartutor.css"
 import Linkpath from '../linkpathTutor/Linkpath';
 import { FiSettings } from "react-icons/fi";
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ export default function NavbarTutor(){
     };
 
     return(
-        <div className="navbar">
+        <div className="navbartutor">
             <div className="lis">
                 <div className="content">
                     <div className="logo">

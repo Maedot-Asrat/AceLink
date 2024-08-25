@@ -5,32 +5,33 @@
   margin-left: 20px;
 }
 
-.main-content {
+.main-contents {
   flex-grow: 1;
   padding: 20px;
-  background-color: #e5e7eb;
+  background-color: #ffffff;
 }
 
 .welcome-section {
   background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  padding: 30px 50px;
+  border-radius: 17px;
+  margin-bottom: 40px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.join-button {
-  background-color: #1d4ed8;
+.join-buttons {
+  background-color: #0066c0;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 30px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   margin-top: 10px;
+  font-weight: 500;
 }
 
-.classes-section {
-  margin-bottom: 20px;
+.classes-sections {
+  margin: 20px 0 ;
 }
 
 .classes {
@@ -46,17 +47,23 @@
   color: white;
   position: relative;
 }
+.dashboard-container h3{
+  color: white; 
+}
 
+.class-card p{
+  color: white; 
+}
 .gradient-blue {
-  background: linear-gradient(135deg, #395BA7, #597CB4);
+  background: linear-gradient(135deg, #0c317f ,  #277bca);
 }
 
 .gradient-purple {
-  background: linear-gradient(135deg, #A08CBC,  #EE8A92);
+  background: linear-gradient(135deg, #0c317f ,  #277bca);
 }
 
 .gradient-red {
-  background: linear-gradient(135deg, #A08CBC ,  #EE8A92);
+  background: linear-gradient(135deg, #0c317f ,  #277bca);
 }
 
 .progress-bar {
@@ -68,9 +75,21 @@
 }
 
 .progress {
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin:left;
+  transform-origin: left;
+  -webkit-animation: animate 1s cubic-bezier(1, 0, 0.5, 1) forwards;
+  animation: animate 1s cubic-bezier(1,0,0.5,1) forwards;
   background-color: white;
+  transition:  1s all;
   height: 100%;
   border-radius: 4px;
+}
+
+.progress.animate{
+  -webkit-animation: animate 1.5s 0.5s cubic-bezier(1,0,0.5,1) forwards;
+  animation: animate 1.5s 0.5s cubic-bezier(1,0,0.5,1) forwards;
 }
 
 .lessons-section {
@@ -84,11 +103,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.head-row .table-cell{
+  font-weight: 500;
+}
 .table-row {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid #e5e7eb;
+}
+.table-row .table-cell{
+  padding-top: 6px;
+  font-size: 13px;
 }
 
 .head-row {
@@ -105,11 +131,9 @@
 
 .right-sidebar {
   width: 280px;
-  background-color: #f9fafb;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .profile {
@@ -132,8 +156,8 @@
   width:250px;
 }
 
-.reminders {
-  margin-top: 10px;
+.reminders{
+  margin-top: 40px;
 }
 
 .reminder-item {
@@ -141,30 +165,30 @@
   align-items: center;
   margin-bottom: 20px;
   color: #374151;
+  font-size: 14px;
 }
 
 .reminder-icon {
-  margin-right: 17px;
+  margin-right: 10px;
   color: #1d4ed8;
 }
 /* Override styles for the Calendar component */
 .react-calendar {
   background-color: #fff; /* Ensure the background is white */
+  border: none;
+  padding: 5px ;
 }
 
 .react-calendar__tile {
   color: #000; /* Set the default color for dates to black */
 }
 
-.react-calendar__tile:enabled:hover,
-.react-calendar__tile:enabled:focus {
-  background-color: #e5e7eb; /* Set hover and focus background */
-  color: #000; /* Ensure the color stays black on hover/focus */
-}
+
 
 .react-calendar__tile--active {
-  background-color: #1d4ed8; /* Active date background color */
+  background-color: #728cd1; /* Active date background color */
   color: white; /* Active date text color */
+  border-radius: 8px;
 }
 
 /* Ensure the calendar header (month and year) are displayed in black */
@@ -175,9 +199,9 @@
 
 /* Change the color of the arrow buttons */
 .react-calendar__navigation button:disabled,
-.react-calendar__navigation button:focus,
 .react-calendar__navigation button:hover {
-  color: #1d4ed8; /* Change color on hover, focus, and disabled states */
+  color:black; /* Change color on hover, focus, and disabled states */
+  background: white;
 }
 
 /* Customize the background and text color of the calendar days */
@@ -194,4 +218,19 @@
 .react-calendar__tile--active {
   background-color: #1d4ed8;
   color: #fff;
+}
+
+
+@-webkit-keyframes animate{
+  100%{
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+}
+
+@keyframes animate{
+  100%{
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
 }

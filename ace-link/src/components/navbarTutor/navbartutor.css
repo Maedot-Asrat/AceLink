@@ -1,4 +1,4 @@
-.navbar {
+.navbartutor {
   display: flex;
   position: fixed;
   z-index: 5;
@@ -8,7 +8,7 @@
   background-color: #fff;
 }
 
-.navbar .lis {
+.navbartutor .lis {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -17,7 +17,7 @@
   padding: 10px 0;
 }
 
-.navbar .logo {
+.navbartutor .logo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,13 +27,13 @@
 
 }
 
-.navbar .logo img {
+.navbartutor .logo img {
   width: 30px;  /* Ensure size is defined */
   height: 30px;
   object-fit: contain;
 }
 
-.navbar .logo span {
+.navbartutor .logo span {
   padding: 10px;
   font-size: 30px;
   font-weight: 800;
@@ -41,14 +41,14 @@
 }
 
 
-  .navbar .home{
+  .navbartutor .home{
     width: 100%;
     display: flex;
     align-items: center;
     padding: 10px  0 10px 40px;
 
   }
-  .navbar .profile{
+  .navbartutor .profile{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -72,24 +72,24 @@
   .profile .pro .label{
     font-size: 12px;
   }
-  .navbar .home, 
-  .navbar .profile {
+  .navbartutor .home, 
+  .navbartutor .profile {
       cursor: pointer;
       transition: background-color 0.3s ease;
   }
   
-  .navbar .home:hover,
-  .navbar .profile:hover {
+  .navbartutor .home:hover,
+  .navbartutor .profile:hover {
       background-color: #f4f4f4;
       border-radius: 5px;
   }
   
-  .navbar .content a {
+  .navbartutor .content a {
       text-decoration: none;
       color: inherit;
   }
 
-  /* .navbar {
+  /* .navbartutor {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -100,7 +100,7 @@
     background-color: #fff;
 }
 
-.navbar .lis {
+.navbartutor .lis {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -109,14 +109,14 @@
     padding: 10px 0;
 }
 
-.navbar .logo {
+.navbartutor .logo {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
 }
 
-.navbar .logo span {
+.navbartutor .logo span {
   
     color: #333;
     padding: 3px ;
@@ -125,11 +125,11 @@
 
 }
 
-.navbar .content {
+.navbartutor .content {
     flex-grow: 1;
 }
 
-.navbar .profile {
+.navbartutor .profile {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -161,19 +161,19 @@
     color: #777;
 }
 
-.navbar .home, 
-.navbar .profile {
+.navbartutor .home, 
+.navbartutor .profile {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.navbar .home:hover,
-.navbar .profile:hover {
+.navbartutor .home:hover,
+.navbartutor .profile:hover {
     background-color: #f4f4f4;
     border-radius: 5px;
 }
 
-.navbar .content a {
+.navbartutor .content a {
     text-decoration: none;
     color: inherit;
 }
