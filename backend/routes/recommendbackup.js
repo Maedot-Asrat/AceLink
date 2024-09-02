@@ -1,8 +1,8 @@
 const express = require('express');
 const axios = require('axios');
 const router = express.Router();
-const Student = require('../models/Student'); // Import your Student schema
-const Tutor = require('../models/Tutor');     // Import your Tutor schema
+const Student = require('../models/Student');  
+const Tutor = require('../models/Tutor');      
 
 // API endpoint for getting tutor recommendations
 router.post('/recommend-tutor', async (req, res) => {
@@ -18,17 +18,7 @@ router.post('/recommend-tutor', async (req, res) => {
 
     // Example student profile data (adjust as needed based on your schema)
     const studentProfile = student.profile[0];
-    if (!studentProfile) {
-      return res.status(400).json({ message: 'Student profile data is incomplete' });
-    }
-
     const { subject_interests, learning_style, availability } = studentProfile;
-
-    // Ensure availability is defined and correctly formatted
-    if (!availability || !(availability instanceof Map)) {
-      console.warn('Student availability data is missing or not properly formatted.');
-      return res.status(400).json({ message: 'Invalid student availability data' });
-    }
 
     // Fetch all tutor profiles from the database
     const tutors = await Tutor.find();
@@ -36,23 +26,12 @@ router.post('/recommend-tutor', async (req, res) => {
     // Filter tutors based on matching criteria (example: subject expertise and availability)
     const matchedTutors = tutors.filter(tutor => {
       const tutorProfile = tutor.profile[0];
-      if (!tutorProfile) {
-        console.warn(`Tutor ${tutor.username} profile data is incomplete.`);
-        return false;
-      }
-
       const { subject_expertise, availability: tutorAvailability } = tutorProfile;
-
-      // Check if availability or subject expertise data is missing
-      if (!subject_expertise || !tutorAvailability || !(tutorAvailability instanceof Map)) {
-        console.warn(`Tutor ${tutor.username} is missing availability or subject expertise data.`);
-        return false; // Skip this tutor if critical data is missing
-      }
 
       // Match tutor's subject expertise with student's interests
       const hasMatchingSubject = subject_expertise.some(subject => subject_interests.includes(subject));
 
-      // Check availability matching (only if both availability objects are present)
+      // Example logic to check availability matching (you can refine this further)
       const isAvailable = Array.from(availability.keys()).some(day => 
         tutorAvailability.has(day) && tutorAvailability.get(day).some(time => availability.get(day).includes(time))
       );

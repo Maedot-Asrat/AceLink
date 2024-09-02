@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ChatbotPage = () => {
   const [message, setMessage] = useState('');
-  const [response, setResponse] = useState('');
+  const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -20,7 +20,10 @@ const ChatbotPage = () => {
 
     try {
       const res = await axios.post('http://localhost:3000/chatbot', { message });
-      setResponse(res.data.reply || 'No response from chatbot');
+      const reply = res.data.reply || 'No response from chatbot';
+
+      setChatHistory(prevHistory => [...prevHistory, { question: message, answer: reply }]);
+      setMessage('');
     } catch (err) {
       setError('Failed to communicate with the chatbot');
     } finally {
@@ -29,9 +32,45 @@ const ChatbotPage = () => {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ textAlign: 'center', color: '#333', marginBottom: '20px' }}>Chatbot Conversation</h1>
-      <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      <h4 style={{ textAlign: 'center', color: '#333', marginBottom: '20px' }}>Ask AceLink Anything</h4>
+
+      <div style={{
+        maxHeight: '200px',
+    
+        overflowY: 'auto',
+        padding: '15px',
+        backgroundColor: '#000',
+        borderRadius: '5px',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        marginBottom: '20px'
+      }}>
+        {chatHistory.map((chat, index) => (
+          <div key={index} style={{ marginBottom: '15px' }}>
+            <p style={{ fontWeight: 'bold', color: '#007BFF' }}>You:</p>
+            <p style={{
+              backgroundColor: '#e9ecef',
+              padding: '10px',
+              borderRadius: '10px',
+              color: '#333',
+              fontSize: '16px',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+            }}>{chat.question}</p>
+
+            <p style={{ fontWeight: 'bold', color: '#28a745', marginTop: '10px' }}>Chatbot:</p>
+            <p style={{
+              backgroundColor: '#e9ecef',
+              padding: '10px',
+              borderRadius: '10px',
+              color: '#333',
+              fontSize: '16px',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+            }}>{chat.answer}</p>
+          </div>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit}>
         <label style={{ display: 'block', marginBottom: '10px', color: '#555' }}>
           Your Message:
           <input 
@@ -70,20 +109,6 @@ const ChatbotPage = () => {
       </form>
 
       {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
-
-      {response && (
-        <div style={{ marginTop: '20px', backgroundColor: '#f9f9f9', padding: '15px', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
-          <h3 style={{ color: '#333', marginBottom: '10px' }}>Chatbot's Reply:</h3>
-          <p style={{
-            backgroundColor: '#e9ecef',
-            padding: '10px',
-            borderRadius: '10px',
-            color: '#333',
-            fontSize: '16px',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
-          }}>{response}</p>
-        </div>
-      )}
     </div>
   );
 };

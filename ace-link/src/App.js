@@ -40,6 +40,8 @@ import MySessions from './tutorPages/sessions/ScheduleSessionPage';
 import MyStudents from './tutorPages/mystudents/MyStudents';
 import MyEarnings from './tutorPages/earnings/MyEarnings';
 import Meeting from './tutorPages/meet/JitsiMeeting';
+import MySession from './tutorPages/components/MySessions/MySessions';
+import UpdateTutor from './tutorPages/updateProfile/profile';
 
 export default function RouterApp() {
   const Layout = () => {
@@ -163,7 +165,7 @@ export default function RouterApp() {
           element: (
             <PrivateRoute role="Student">
               <JitsiMeet />
-              <Chatbot />
+             
               </PrivateRoute>
           ) 
         },
@@ -216,7 +218,7 @@ export default function RouterApp() {
           path: "/sessions",
           element: (
             <PrivateRoute role="Tutor">
-              <MySessions />
+              <MySession />
             </PrivateRoute>
           ),
         },
@@ -235,7 +237,8 @@ export default function RouterApp() {
               <MyEarnings />
             </PrivateRoute>
           ),
-        }
+        },
+        
        
       ],
     },
@@ -261,6 +264,14 @@ export default function RouterApp() {
         
       ) 
     },
+    {
+      path: "/updatetutor",
+      element: (
+   
+          <UpdateTutor />
+      
+      ),
+    }
    
   ]);
 

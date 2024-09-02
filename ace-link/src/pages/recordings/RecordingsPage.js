@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './Recorddings.css'; // Ensure your CSS file is up to date with the changes
 
 const RecordingsPage = () => {
     const [recordings, setRecordings] = useState({
@@ -6,6 +7,7 @@ const RecordingsPage = () => {
         videoRecordings: []
     });
     const [loading, setLoading] = useState(true);
+    const [activeTab, setActiveTab] = useState('Audio Recordings');
 
     useEffect(() => {
         const fetchRecordings = async () => {
@@ -16,12 +18,10 @@ const RecordingsPage = () => {
                 }
 
                 const data = await response.json();
-
                 setRecordings({
                     audioRecordings: data.audioRecordings || [],
                     videoRecordings: data.videoRecordings || []
                 });
-
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching recordings:', error);
@@ -35,40 +35,31 @@ const RecordingsPage = () => {
     if (loading) return <p>Loading...</p>;
 
     return (
-        <div style={{ padding: '20px', maxWidth: '1200px', margin: '30px' }}>
-            
-            <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-                <div style={{ flex: '1', minWidth: '350px' }}>
-                    <h2 style={{ marginBottom: '20px', borderBottom: '2px solid #ccc', paddingBottom: '10px' }}>Audio Recordings</h2>
+        <div className="recordings-container">
+            <div className="tabs">
+                {['Audio Recordings', 'Video Recordings', 'Summary', 'Quiz', 'Flashcards'].map((tab) => (
+                    <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab)}
+                        className={`tab-button ${activeTab === tab ? 'active' : ''}`}>
+                        {tab}
+                    </button>
+                ))}
+            </div>
+
+            {activeTab === 'Audio Recordings' && (
+                <div className="recording-section">
+                    <h2>Audio Recordings</h2>
                     {recordings.audioRecordings.length > 0 ? (
-                        <ul style={{ listStyle: 'none', padding: 0 }}>
+                        <ul className="recording-list">
                             {recordings.audioRecordings.map(audio => (
-                                <li key={audio._id} style={{ marginBottom: '30px', padding: '20px', border: '1px solid #ddd', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
-                                    <audio controls style={{ width: '100%', marginBottom: '10px' }}>
+                                <li key={audio._id} className="recording-item">
+                                    <audio controls className="media-player">
                                         <source src={`http://localhost:3000/${audio.filepath.replace(/\\/g, '/')}`} type={audio.mimetype} />
                                         Your browser does not support the audio element.
                                     </audio>
-                                    <p><strong>Filename:</strong> {audio.filename}</p>
                                     {audio.transcription && (
                                         <p><strong>Transcription:</strong> {audio.transcription}</p>
-                                    )}
-                                    {audio.summary && (
-                                        <p><strong>Summary:</strong> {audio.summary}</p>
-                                    )}
-                                    {audio.quizzes && (
-                                        <div>
-                                            <h4 style={{ marginTop: '20px' }}>Quiz</h4>
-                                            <ul style={{ paddingLeft: '20px' }}>
-                                                <li><strong>Question 1:</strong> How is technology revolutionizing education?</li>
-                                                <p><strong>Answer:</strong> Technology is revolutionizing education by offering personalized learning experiences and automated grading systems.</p>
-                                                <li><strong>Question 2:</strong> What is the benefit of personalized learning experiences?</li>
-                                                <p><strong>Answer:</strong> Personalized learning experiences tailor learning to individual student needs and paces.</p>
-                                                <li><strong>Question 3:</strong> What is the advantage of automated grading systems?</li>
-                                                <p><strong>Answer:</strong> Automated grading systems save teachers time and provide faster feedback to students.</p>
-                                                <li><strong>Question 4:</strong> What does the future of education look like in the context of technological advancements?</li>
-                                                <p><strong>Answer:</strong> The future of education may see more individualized and efficient learning experiences due to technological advancements.</p>
-                                            </ul>
-                                        </div>
                                     )}
                                 </li>
                             ))}
@@ -77,18 +68,19 @@ const RecordingsPage = () => {
                         <p>No audio recordings available.</p>
                     )}
                 </div>
+            )}
 
-                <div style={{ flex: '1', minWidth: '350px' }}>
-                    <h2 style={{ marginBottom: '20px', borderBottom: '2px solid #ccc', paddingBottom: '10px' }}>Video Recordings</h2>
+            {activeTab === 'Video Recordings' && (
+                <div className="recording-section">
+                    <h2>Video Recordings</h2>
                     {recordings.videoRecordings.length > 0 ? (
-                        <ul style={{ listStyle: 'none', padding: 0 }}>
+                        <ul className="recording-list">
                             {recordings.videoRecordings.map(video => (
-                                <li key={video._id} style={{ marginBottom: '30px', padding: '20px', border: '1px solid #ddd', borderRadius: '8px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)' }}>
-                                    <video controls style={{ width: '100%' }}>
+                                <li key={video._id} className="recording-item">
+                                    <video controls className="media-player">
                                         <source src={`http://localhost:3000/${video.filepath.replace(/\\/g, '/')}`} type={video.mimetype} />
                                         Your browser does not support the video element.
                                     </video>
-                                    <p style={{ marginTop: '10px' }}><strong>Filename:</strong> {video.filename}</p>
                                 </li>
                             ))}
                         </ul>
@@ -96,8 +88,152 @@ const RecordingsPage = () => {
                         <p>No video recordings available.</p>
                     )}
                 </div>
-            </div>
+            )}
+
+            {activeTab === 'Summary' && (
+                <div className="recording-section">
+                    <h2 className="section-title">Summary</h2>
+                    {recordings.audioRecordings.length > 0 ? (
+                        <ul className="summary-list">
+                            {recordings.audioRecordings.map(audio => (
+                                <li key={audio._id} className="summary-item">
+                                    <div className="summary-content">
+                                        <p><strong>{audio.title}</strong></p>
+                                        <p>{audio.summary.replace(/\*\*/g, '')}</p>
+                                    </div>
+                                    <hr className="summary-divider" />
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No summaries available.</p>
+                    )}
+                </div>
+            )}
+
+            {activeTab === 'Quiz' && (
+                <div className="recording-section">
+                    <h2>Quiz</h2>
+                    {recordings.audioRecordings.length > 0 ? (
+                        <ul className="recording-list">
+                            {recordings.audioRecordings.map(audio => (
+                                <QuizItem key={audio._id} quizzes={audio.quizzes} />
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No quizzes available.</p>
+                    )}
+                </div>
+            )}
+
+            {activeTab === 'Flashcards' && (
+                <div className="flashcard-section">
+                    <h2>Flashcards</h2>
+                    {recordings.audioRecordings.length > 0 ? (
+                        <ul className="recording-list">
+                            {recordings.audioRecordings.map(audio => (
+                                <FlashcardItem key={audio._id} flashcards={audio.flashcards} />
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No flashcards available.</p>
+                    )}
+                </div>
+            )}
         </div>
+    );
+};
+
+// Quiz Component
+const QuizItem = ({ quizzes }) => {
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [selectedAnswer, setSelectedAnswer] = useState('');
+    const [isCorrect, setIsCorrect] = useState(null);
+
+    const questions = quizzes.split('**Question').slice(1).map((quiz, index) => {
+        const [questionPart, answerPart] = quiz.split('**Answer:');
+        const question = questionPart.replace('**:', '').replace(/\*\*/g, '').trim();
+        const answer = answerPart.replace(/\*\*/g, '').trim();
+        return { question, answer };
+    });
+
+    const handleAnswerSubmit = () => {
+        const currentQuestion = questions[currentQuestionIndex];
+        if (selectedAnswer.toLowerCase() === currentQuestion.answer.toLowerCase()) {
+            setIsCorrect(true);
+        } else {
+            setIsCorrect(false);
+        }
+    };
+
+    const handleNextQuestion = () => {
+        setIsCorrect(null);
+        setSelectedAnswer('');
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+    };
+
+    if (currentQuestionIndex >= questions.length) {
+        return <p>Quiz complete! You've answered all questions.</p>;
+    }
+
+    return (
+        <div className="quiz-item">
+            <div className="quiz-question">
+                <strong>{questions[currentQuestionIndex].question}</strong>
+            </div>
+            <input
+                type="text"
+                value={selectedAnswer}
+                onChange={(e) => setSelectedAnswer(e.target.value)}
+                placeholder="Type your answer here..."
+            />
+            <button onClick={handleAnswerSubmit} className="tab-button">
+                Submit Answer
+            </button>
+            {isCorrect !== null && (
+                <div className={`quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`}>
+                    {isCorrect ? 'Correct!' : `Incorrect. The correct answer is: ${questions[currentQuestionIndex].answer}`}
+                </div>
+            )}
+            {isCorrect !== null && (
+                <button onClick={handleNextQuestion} className="tab-button">
+                    Next Question
+                </button>
+            )}
+        </div>
+    );
+};
+
+// Flashcard Component
+const FlashcardItem = ({ flashcards }) => {
+    const [showAnswer, setShowAnswer] = useState(false);
+
+    return (
+        <>
+            {flashcards.split('Card').slice(1).map((card, index) => {
+                const [question, answer] = card
+                    .split('Answer:')
+                    .map(str => str.replace(/\*\*/g, '').trim());
+
+                return (
+                    <div key={index} className="flashcard-item">
+                        <div className="flashcard">
+                            <div className="flashcard-question">
+                                <strong>Question:</strong> {question.split('Question:')[1].trim()}
+                            </div>
+                            {showAnswer && (
+                                <div className="flashcard-answer">
+                                    <strong>Answer:</strong> {answer}
+                                </div>
+                            )}
+                            <button className="tab-button" onClick={() => setShowAnswer(!showAnswer)}>
+                                {showAnswer ? 'Hide Answer' : 'Show Answer'}
+                            </button>
+                        </div>
+                    </div>
+                );
+            })}
+        </>
     );
 };
 

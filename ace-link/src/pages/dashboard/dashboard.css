@@ -1,236 +1,72 @@
-.dashboard-container {
-  display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-  margin-left: 20px;
-}
+/* Calendar.css */
 
-.main-contents {
-  flex-grow: 1;
+.calendar-container {
+  width: 300px;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #f1f3f5;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.welcome-section {
-  background-color: #ffffff;
-  padding: 30px 50px;
-  border-radius: 17px;
-  margin-bottom: 40px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.join-buttons {
-  background-color: #0066c0;
-  color: white;
-  padding: 10px 30px;
-  border: none;
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background-color: #fff;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 10px;
-  font-weight: 500;
+  transition: background-color 0.3s;
 }
 
-.classes-sections {
-  margin: 20px 0 ;
+.day.highlighted {
+  background-color: #ffdada;
 }
 
-.classes {
-  display: flex;
-  gap: 20px;
-}
-
-.class-card {
-  flex-grow: 1;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  color: white;
-  position: relative;
-}
-.dashboard-container h3{
-  color: white; 
-}
-
-.class-card p{
-  color: white; 
-}
-.gradient-blue {
-  background: linear-gradient(135deg, #0c317f ,  #277bca);
-}
-
-.gradient-purple {
-  background: linear-gradient(135deg, #0c317f ,  #277bca);
-}
-
-.gradient-red {
-  background: linear-gradient(135deg, #0c317f ,  #277bca);
-}
-
-.progress-bar {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-  height: 10px;
-  margin-top: 10px;
-  overflow: hidden;
-}
-
-.progress {
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transform-origin:left;
-  transform-origin: left;
-  -webkit-animation: animate 1s cubic-bezier(1, 0, 0.5, 1) forwards;
-  animation: animate 1s cubic-bezier(1,0,0.5,1) forwards;
-  background-color: white;
-  transition:  1s all;
-  height: 100%;
-  border-radius: 4px;
-}
-
-.progress.animate{
-  -webkit-animation: animate 1.5s 0.5s cubic-bezier(1,0,0.5,1) forwards;
-  animation: animate 1.5s 0.5s cubic-bezier(1,0,0.5,1) forwards;
-}
-
-.lessons-section {
-  margin-bottom: 20px;
-}
-
-.lessons-table {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.head-row .table-cell{
-  font-weight: 500;
-}
-.table-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #e5e7eb;
-}
-.table-row .table-cell{
-  padding-top: 6px;
-  font-size: 13px;
-}
-
-.head-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #020305;
-}
-
-.table-cell {
-  width: 25%;
-  color: #374151;
-}
-
-.right-sidebar {
-  width: 280px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.profile-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-.right-sidebar .calendar {
-  margin-top: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
- padding: 0;
-  color: black;
-  width:250px;
-}
-
-.reminders{
-  margin-top: 40px;
-}
-
-.reminder-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  color: #374151;
-  font-size: 14px;
-}
-
-.reminder-icon {
-  margin-right: 10px;
-  color: #1d4ed8;
-}
-/* Override styles for the Calendar component */
-.react-calendar {
-  background-color: #fff; /* Ensure the background is white */
-  border: none;
-  padding: 5px ;
-}
-
-.react-calendar__tile {
-  color: #000; /* Set the default color for dates to black */
-}
-
-
-
-.react-calendar__tile--active {
-  background-color: #728cd1; /* Active date background color */
-  color: white; /* Active date text color */
-  border-radius: 8px;
-}
-
-/* Ensure the calendar header (month and year) are displayed in black */
-.react-calendar__navigation button {
-  color: #000; /* Set the color to black */
-  background: none; /* Remove background to avoid default styles */
-}
-
-/* Change the color of the arrow buttons */
-.react-calendar__navigation button:disabled,
-.react-calendar__navigation button:hover {
-  color:black; /* Change color on hover, focus, and disabled states */
-  background: white;
-}
-
-/* Customize the background and text color of the calendar days */
-.react-calendar__tile {
-  color: #000;
-}
-
-/* Ensure the month and year text is black on hover/focus */
-.react-calendar__navigation__label {
-  color: #000; /* Ensures the month and year are black */
-}
-
-/* Style the active date */
-.react-calendar__tile--active {
-  background-color: #1d4ed8;
+.day.selected {
+  background-color: #ff5555;
   color: #fff;
 }
 
-
-@-webkit-keyframes animate{
-  100%{
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-  }
+.calendar-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
-@keyframes animate{
-  100%{
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-  }
+.back-button {
+  background-color: transparent;
+  color: #555;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.apply-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.apply-button:hover {
+  background-color: #0056b3;
 }

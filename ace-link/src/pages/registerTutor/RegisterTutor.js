@@ -1,129 +1,119 @@
-
-import logo from '../../assets/Logo.png';
-
-import signupImg from '../../assets/signup.png';
-import './RegisterTutor.css';
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Container, Box, Typography, TextField, Button, Checkbox, Link, Grid, Paper } from '@mui/material';
+import logo from '../../assets/Logo.png';
+import signupImg from '../../assets/signup.png';
 
-
-function Register() {
+function RegisterTutor() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
-    role:'Tutor',
+    role: 'Tutor',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    if (name.includes('preferredTutorAttributes.')) {
-      const key = name.split('.')[1];
-      setFormData({
-        ...formData,
-        preferredTutorAttributes: {
-          ...formData.preferredTutorAttributes,
-          [key]: value,
-        },
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/register`, formData);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, formData);
       alert('Registration successful');
-      navigate('/loginTutor');
+      navigate('/updatetutor');
     } catch (error) {
       alert('Error during registration');
     }
   };
 
   return (
+    <Container maxWidth="lg" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, alignSelf: 'flex-start', ml: 2, gap: '0.4rem' }}>
+        <img src={logo} alt="Logo" style={{ height: '3em', marginRight: '0.3rem' }} />
+        <Typography variant="h5" component="h1">AceLink</Typography>
+      </Box>
 
-<div className="container">
-      <div className="logo">
-        <img src={logo} alt="Logo" />
-        <h2>Acelink</h2>
-      </div>
-      <div className="signup-box">
-
-      
-      <div className="right-side">
-          <div className="image">
-            <img src={signupImg} alt="Signup" />
-          </div>
-        </div>
-        <div className='left-side'>
-          <div className="signup-form">
-          <form onSubmit={handleSubmit}>
-            <h2 className="title">Register as a tutor</h2>
-            <p>Let’s get you all set up so you can have the best experience in learning.</p>
-            <div className="input-row">
-              <input  type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-             className="input half-width" />
-              
-            </div>
-            <div className="input-row">
-              <input 
-              type="email"
-                      name="email"
-                      placeholder="Email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-              className="input half-width" />
-            </div>
-            <input 
-              type="password"
-                      name="password"
-                      placeholder="Password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      required
-            className="input full-width" />
-            <input 
-              type="password"
-                      name="confirmPassword"
-                      placeholder="Confirm Password"
-                      required
-            className="input full-width" />
-            <div className="terms-and-register">
-              <label>
-                <input type="checkbox" className="checkbox" /> I agree to all the <a href="#" className="link">Terms</a> and <a href="#" className="link">Privacy Policies</a>
-              </label>
-              <a href="/registerStudent" className="link">Register as a student</a>
-            </div>
-            <button type="submit" className="button">Create account</button>
-            <p>Already have an account? <a href="/loginTutor" className="link">Login</a></p>
-            </form>
-          </div>
-         
-        </div>
+      <Grid container spacing={4} component={Paper} elevation={0} sx={{ padding: '1rem', maxWidth: '1200px', alignItems: 'center', margin: '0.5rem' }}>
+        <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Box component="img" src={signupImg} alt="Signup" sx={{ maxWidth: '100%', height: '40rem', borderRadius: '10px' }} />
+        </Grid>
         
-      </div>
-    </div>
+        <Grid item xs={12} md={6}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: '85%', margin: '0 auto' }}>
+            <Typography variant="h4" component="h4" sx={{ fontWeight: 'bold' }}>Register as a Tutor</Typography>
+            <Typography variant="body2" sx={{ mb: 2 }}>Let’s get you all set up for the best experience in teaching.</Typography>
+
+            <TextField
+              label="Username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              fullWidth
+              required
+              sx={{ maxWidth: '90%' }} // Decrease width of input fields
+            />
+            <TextField
+              label="Email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              fullWidth
+              required
+              sx={{ maxWidth: '90%' }}
+            />
+            <TextField
+              label="Password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              fullWidth
+              required
+              sx={{ maxWidth: '90%' }}
+            />
+            <TextField
+              label="Confirm Password"
+              type="password"
+              fullWidth
+              required
+              sx={{ maxWidth: '90%' }}
+            />
+
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', mt: 0 }}>
+              <Checkbox required />
+              <Typography variant="body2">I agree to all the <Link href="#" sx={{ textDecoration: 'none' }}>Terms</Link> and <Link href="#" sx={{ textDecoration: 'none' }}>Privacy Policies</Link></Typography>
+            </Box>
+
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{
+                maxWidth: '90%', // Align with text fields
+                mt: 0,
+                ':hover': {
+                  backgroundColor: '#003360', // Darker blue hover effect
+                },
+              }}
+            >
+              CREATE ACCOUNT
+            </Button>
+
+            <Typography variant="body2" sx={{ mt: 0, textAlign: 'center' }}>
+              Already have an account? <Link href="/loginTutor" sx={{ textDecoration: 'none' }}>Login</Link>
+            </Typography>
+            <Link href="/registerStudent" variant="body2" sx={{ display: 'block', textAlign: 'center', mt: 0, textDecoration: 'none' }}>Register as a Student</Link>
+          </Box>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
-export default Register;
-
-
-
-
-
+export default RegisterTutor;

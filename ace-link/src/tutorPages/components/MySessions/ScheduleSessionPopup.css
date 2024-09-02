@@ -1,0 +1,20 @@
+.form-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .form-column {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  

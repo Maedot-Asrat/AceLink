@@ -1,136 +1,130 @@
 import React from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import { FaBell } from 'react-icons/fa';
-import './dashboard.css';
-import { useState,useEffect } from "react";
+import { AppBar, Toolbar, Typography, Box, Grid, Card, CardContent, CardActions, Button, Avatar, List, ListItem, ListItemAvatar, ListItemText, Container, Divider } from '@mui/material';
+import { Schedule, PersonSearch} from '@mui/icons-material';
+
 const Dashboard = () => {
-  const [userEmail, setUserEmail] = useState('');
-  const [userName, setUserName] = useState('');
-  useEffect(() => {
-      // Retrieve user data from localStorage
-      const storedUser = JSON.parse(localStorage.getItem('user'));
+  const recommendedTutors = [
+    { name: 'John Doe', subject: 'Mathematics' },
+    { name: 'Jane Smith', subject: 'Physics' },
+  ];
 
-      // Set the user's name in state
-      if (storedUser && storedUser.email) {
-          setUserEmail(storedUser.email);
-      }
-      if (storedUser && storedUser.username) {
-          setUserName(storedUser.username);
-      }
-  }, []);
   return (
-    <div className="dashboard-container">
-      <div> </div>
+    <Box sx={{ flexGrow: 1 }}>
+      {/* Top bar */}
+      <AppBar position="static" sx={{ backgroundColor: '#1976d2' }}>
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            AceLink - Welcome, Student!
+          </Typography>
+          <Avatar sx={{ bgcolor: '#fff', color: '#1976d2' }}>S</Avatar> {/* Student avatar */}
+        </Toolbar>
+      </AppBar>
 
-      <div className="main-contents">
-        <div className="welcome-section">
-          <h1 style={{ color: '#004080' }}>Welcome back, {userName}!</h1>
-          <p>you have an upcoming chemistry lesson with your tutor in 2 hours.</p>
-          <button className="join-buttons">Join session</button>
-        </div>
+      {/* Main content */}
+      <Container sx={{ mt: 4 }}>
+        <Grid container spacing={4}>
+          {/* Welcome Section */}
+          <Grid item xs={12}>
+            <Card raised sx={{ borderRadius: 3 }}>
+              <CardContent>
+                <Typography variant="h4" gutterBottom>
+                  Welcome to AceLink!
+                </Typography>
+                <Typography variant="body1" color="textSecondary">
+                  Access your upcoming sessions, find recommended tutors, and stay on top of your learning progress.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
 
-        <div className="classes-sections">
-          <h2>Classes</h2>
-          <div className="classes">
-            <div className="class-card gradient-blue">
-              <h3>Python</h3>
-              <p>Teacher: Meaza</p>
-              <div className="progress-bar">
-                <div className="progress" style={{ width: '90%' }}></div>
-              </div>
-            </div>
-            <div className="class-card gradient-purple">
-              <h3>Chemistry</h3>
-              <p>Teacher: Meaza</p>
-              <div className="progress-bar">
-                <div className="progress" style={{ width: '75%' }}></div>
-              </div>
-            </div>
-            <div className="class-card gradient-red">
-              <h3>Video Editing</h3>
-              <p>Teacher: Meaza</p>
-              <div className="progress-bar">
-                <div className="progress" style={{ width: '10%' }}></div>
-              </div>
-            </div>
-          </div>
-        </div>
+          {/* Upcoming Sessions */}
+          <Grid item xs={12} md={6}>
+            <Card raised sx={{ borderRadius: 3, height: '100%' }}>
+              <CardContent>
+                <Typography variant="h5" gutterBottom>
+                  Upcoming Sessions
+                </Typography>
+                <Divider sx={{ mb: 2 }} />
+                <Typography variant="body1" color="textSecondary">
+                  No upcoming sessions scheduled. Let’s get learning!
+                </Typography>
+              </CardContent>
+              <CardActions sx={{ justifyContent: 'center' }}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  startIcon={<Schedule />}
+                  sx={{ borderRadius: 2, px: 4 }}
+                >
+                  Schedule a Session
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
 
-        <div className="lessons-section">
-          <h2>Lessons</h2>
-          <div className="lessons-table">
-          <div className="head-row">
-              <div className="table-cell">Course</div>
-              <div className="table-cell">Teacher</div>
-              <div className="table-cell">Starts</div>
-              <div className="table-cell">Ends</div>
-            </div>
-            <div className="table-row">
-              <div className="table-cell">Python 101</div>
-              <div className="table-cell">Abebe</div>
-              <div className="table-cell">4:00 pm, Today</div>
-              <div className="table-cell">5:00 pm, Today</div>
-            </div>
-            <div className="table-row">
-              <div className="table-cell">Python 101</div>
-              <div className="table-cell">Abebe</div>
-              <div className="table-cell">4:00 pm, Today</div>
-              <div className="table-cell">5:00 pm, Today</div>
-            </div>
-            <div className="table-row">
-              <div className="table-cell">Python 101</div>
-              <div className="table-cell">Abebe</div>
-              <div className="table-cell">4:00 pm, Today</div>
-              <div className="table-cell">5:00 pm, Today</div>
-            </div>
-            <div className="table-row">
-              <div className="table-cell">Python 101</div>
-              <div className="table-cell">Abebe</div>
-              <div className="table-cell">4:00 pm, Today</div>
-              <div className="table-cell">5:00 pm, Today</div>
-            </div>
-            <div className="table-row">
-              <div className="table-cell">Python 101</div>
-              <div className="table-cell">Abebe</div>
-              <div className="table-cell">4:00 pm, Today</div>
-              <div className="table-cell">5:00 pm, Today</div>
-            </div>
-            <div className="table-row">
-              <div className="table-cell">Python 101</div>
-              <div className="table-cell">Abebe</div>
-              <div className="table-cell">4:00 pm, Today</div>
-              <div className="table-cell">5:00 pm, Today</div>
-            </div>
-          
-          </div>
-        </div>
-      </div>
+          {/* Recommended Tutors */}
+          <Grid item xs={12} md={6}>
+            <Card raised sx={{ borderRadius: 3, height: '100%' }}>
+              <CardContent>
+                <Typography variant="h5" gutterBottom>
+                  Recommended Tutors
+                </Typography>
+                <Divider sx={{ mb: 2 }} />
+                <List>
+                  {recommendedTutors.map((tutor, index) => (
+                    <ListItem key={index}>
+                      <ListItemAvatar>
+                        <Avatar sx={{ bgcolor: 'primary.main' }}>{tutor.name[0]}</Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={tutor.name}
+                        secondary={tutor.subject}
+                        primaryTypographyProps={{ fontWeight: 'bold' }}
+                        secondaryTypographyProps={{ color: 'textSecondary' }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              </CardContent>
+              <CardActions sx={{ justifyContent: 'center' }}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  startIcon={<PersonSearch />}
+                  sx={{ borderRadius: 2, px: 4 }}
+                >
+                  Find More Tutors
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
 
-      <div className="right-sidebar">
-      
-
-        <div className="calendar">
-          <Calendar />
-        </div>
-
-        <div className="reminders">
-          <h2>Reminders</h2>
-          <div className="reminder-item">
-            <FaBell className="reminder-icon" />
-            <span>Eng - essay, <br/> 21 August 2024, Friday</span>
-          </div>
-          <div className="reminder-item">
-            <FaBell className="reminder-icon" />
-            <span>Eng - essay, <br/> 21 August 2024, Friday</span>
-          </div>
-          <div className="reminder-item">
-            <FaBell className="reminder-icon" />
-            <span>Eng - essay, <br/> 21 August 2024, Friday</span>
-          </div>
-        </div>
-      </div>
-    </div>
+          {/* Call to Action Section */}
+          <Grid item xs={12}>
+            <Card raised sx={{ borderRadius: 3 }}>
+              <CardContent>
+                <Typography variant="h5" gutterBottom>
+                  Ready to dive in?
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Begin your learning journey now. Explore tutors, schedule sessions, or review your progress.
+                </Typography>
+              </CardContent>
+              <CardActions sx={{ justifyContent: 'center' }}>
+                <Button
+                  size="large"
+                  variant="contained"
+                  color="primary"
+                  sx={{ borderRadius: 2, px: 4 }}
+                >
+                  Start Learning
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 };
 

@@ -2,8 +2,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-   
+   margin-left: 50px;
 }
 .contentcontainer{
     margin-left: 15%;
+}
+.loading{
+margin-left: 100px;
+}
+.error{
+    margin-left: 100px;
 }

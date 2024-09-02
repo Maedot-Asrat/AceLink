@@ -15,7 +15,7 @@ const StudentSchema = new mongoose.Schema({
       preferred_language: { type: String },
       goals: { type: String },
       current_needs: { type: String },
-      profile_picture: { type: String }, // Added profile picture field
+      profilePicture: { type: String }, // Added profile picture field
       parent_contact: {
         name: { type: String },
         email: { type: String },

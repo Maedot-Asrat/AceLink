@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import ChatbotPage from '../chatbot/chatbot'; // Import your chatbot component
+import { FiMessageSquare } from 'react-icons/fi'; // Optional: Import an icon for the chatbot
 
 const JitsiWithCustomUI = () => {
     const jitsiContainerRef = useRef(null);
@@ -7,12 +9,13 @@ const JitsiWithCustomUI = () => {
     const [videoChunks, setVideoChunks] = useState([]);
     const [audioChunks, setAudioChunks] = useState([]);
     const [isRecording, setIsRecording] = useState(false);
+    const [isChatbotOpen, setIsChatbotOpen] = useState(false); // State to toggle chatbot visibility
 
     useEffect(() => {
         const api = new window.JitsiMeetExternalAPI("8x8.vc", {
             roomName: "vpaas-magic-cookie-24fead3220f24e59aaa89a08e9e6d520/SampleAppMassiveCommercesSeparateDeeply",
             parentNode: jitsiContainerRef.current,
-            jwt: "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAvMDY2ODMwLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3MjQ0MDg0NDUsImV4cCI6MTcyNDQxNTY0NSwibmJmIjoxNzI0NDA4NDQwLCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOnRydWUsIm91dGJvdW5kLWNhbGwiOnRydWUsInNpcC1vdXRib3VuZC1jYWxsIjpmYWxzZSwidHJhbnNjcmlwdGlvbiI6dHJ1ZSwicmVjb3JkaW5nIjp0cnVlfSwidXNlciI6eyJoaWRkZW4tZnJvbS1yZWNvcmRlciI6ZmFsc2UsIm1vZGVyYXRvciI6dHJ1ZSwibmFtZSI6ImZlbnV0aWdpc3QiLCJpZCI6Imdvb2dsZS1vYXV0aDJ8MTA0MTA1OTMzMTk1MDgxNjcyOTg2IiwiYXZhdGFyIjoiIiwiZW1haWwiOiJmZW51dGlnaXN0QGdtYWlsLmNvbSJ9fSwicm9vbSI6IioifQ.ZMDtLqKy-HztUeMm8d5HJ10Pc6Wh9GzzfAdeobKC2gXuDHTJA99_IbNLgH0t50bb_tHBjfg1YT48vZuL1wY5TNmLEZHhoscXCPEUKnNRDX-v3Z36QRcgOpEVNmhdsh52gXei9zihOov-pqZGRsxn104w87g391bMeHiYrvChA9cOm89qynqCjShUIL6ZiSMggRwr-zfe9DQM81wZovAU8y_LhG36Fcy5s6a-DrKhSBa9n1kipeKAbP1xA_Ug_nwAg6XUSx0rgcTLKi6CG7m4R_7rUMlmwPaDGs_n27WYtUOSazLUDaNQ3CKAmlSUVkc38eAc7G9_O1pBvDx2rJB6FQ", // Replace with your actual JWT token
+            jwt: "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAvMDY2ODMwLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3MjUyOTY5NzEsImV4cCI6MTcyNTMwNDE3MSwibmJmIjoxNzI1Mjk2OTY2LCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOnRydWUsIm91dGJvdW5kLWNhbGwiOnRydWUsInNpcC1vdXRib3VuZC1jYWxsIjpmYWxzZSwidHJhbnNjcmlwdGlvbiI6dHJ1ZSwicmVjb3JkaW5nIjp0cnVlfSwidXNlciI6eyJoaWRkZW4tZnJvbS1yZWNvcmRlciI6ZmFsc2UsIm1vZGVyYXRvciI6dHJ1ZSwibmFtZSI6ImZlbnV0aWdpc3QiLCJpZCI6Imdvb2dsZS1vYXV0aDJ8MTA0MTA1OTMzMTk1MDgxNjcyOTg2IiwiYXZhdGFyIjoiIiwiZW1haWwiOiJmZW51dGlnaXN0QGdtYWlsLmNvbSJ9fSwicm9vbSI6IioifQ.gHG2G2hSVQbZwr6XrggjMrXN7Kz9QbFUHXwv4Z8BFtEauSY5CP0SWXIYMxcnNlaL4JPZYniRMsGVZw30lhMfkPRQZoYkNzd5XJ6Q6F0flLbM9TJagltPEzWMfIfTgNOD8Q5oVvMcEoPDCU75T7gOnbRTh78ON_uYwOhqKZ1PY4nqpGuf41P1Q3xr1pLz4VDyz73KlpaBriZflyFG0PyAStu-9l7dGhxGOQ46uXktOBu0m5gFP015AtY63Krcx6gzqewx9DqLfBgaNpCRiFJ6RSPHEtr0FYIexorFhMFXfvPx5HuS4vdK4zlAk4tzO-LGu4hv0kaWLHmpNXXN_mM7gg",
             configOverwrite: {
                 toolbarButtons: [
                     'microphone', 'camera', 'closedcaptions', 'desktop', 
@@ -33,11 +36,11 @@ const JitsiWithCustomUI = () => {
         try {
             const videoStream = await navigator.mediaDevices.getDisplayMedia({
                 video: { mediaSource: "screen" },
-                audio: true // Enable audio in the video stream
+                audio: true
             });
 
             const audioStream = await navigator.mediaDevices.getUserMedia({
-                audio: true // Capture audio separately
+                audio: true
             });
 
             const videoRec = new MediaRecorder(videoStream);
@@ -125,7 +128,7 @@ const JitsiWithCustomUI = () => {
     };
 
     return (
-        <div style={{ height: '100vh', margin:'30px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ height: '100vh',marginLeft:'90px', position: 'relative', overflow: 'hidden' }}>
             <div id="jaas-container" ref={jitsiContainerRef} style={{ height: '100%', zIndex: 1 }}></div>
 
             <div id="custom-ui" style={customUiStyles}>
@@ -143,7 +146,19 @@ const JitsiWithCustomUI = () => {
                 >
                     Stop Recording
                 </button>
+                <button 
+                    onClick={() => setIsChatbotOpen(!isChatbotOpen)} 
+                    style={chatbotButtonStyles}
+                >
+                    <FiMessageSquare size={24} /> Chatbot
+                </button>
             </div>
+
+            {isChatbotOpen && (
+                <div style={chatbotContainerStyles}>
+                    <ChatbotPage />
+                </div>
+            )}
         </div>
     );
 };
@@ -169,6 +184,32 @@ const buttonStyles = {
     border: 'none',
     cursor: 'pointer',
     borderRadius: '4px',
+};
+
+const chatbotButtonStyles = {
+    padding: '10px',
+    backgroundColor: '#28a745',
+    color: 'white',
+    border: 'none',
+    cursor: 'pointer',
+    borderRadius: '4px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '5px',
+};
+
+const chatbotContainerStyles = {
+    position: 'absolute',
+    bottom: '10px',
+    right: '10px',
+    width: '500px',
+    height: '300px',
+    backgroundColor: 'black',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    zIndex: 1000,
+    overflow: 'hidden',
 };
 
 export default JitsiWithCustomUI;

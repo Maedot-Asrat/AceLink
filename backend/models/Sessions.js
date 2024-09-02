@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const sessionSchema = new Schema({
+  jitsiLink: {
+    type: String,
+    required: true
+  },
     title: {
       type: String,
       required: true,
@@ -11,11 +15,11 @@ const sessionSchema = new Schema({
       required: true,
     },
     duration: {
-      type: Number, // in minutes
+      type: Number, 
       required: true,
     },
     recurrence: {
-      type: String, // e.g., 'none', 'daily', 'weekly', etc.
+      type: String,
       default: 'none',
     },
     studentsInvolved: [{

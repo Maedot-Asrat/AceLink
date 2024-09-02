@@ -1,0 +1,82 @@
+/* Styles for the sessions page */
+.sessions-container {
+    padding: 20px;
+    margin-left: 50px;
+  }
+  
+  .schedule-session-btn {
+    background-color: #0d6efd;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .sessions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .sessions-table th, .sessions-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    max-width: 150px;
+  }
+ 
+  tr{
+    max-height: 150px;
+  }
+  .sessions-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .status-cancelled {
+    color: red;
+  }
+  
+  /* Popup styles */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 500px;
+    max-width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  

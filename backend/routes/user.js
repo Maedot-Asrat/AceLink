@@ -8,18 +8,57 @@ const jwt = require('jsonwebtoken');
 const axios = require('axios');
 const multer = require('multer');
 // Route for updating the profile for both students and tutors
+
+
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Directory where the profile pictures will be saved
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Set the destination folder
   },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname); // Create a unique filename
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Set the file name
   }
 });
 
-const upload = multer({ storage: storage });
+// Initialize Multer with the storage config
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024 // 5 MB file size limit (optional)
+  }
+});
+
 // Secret key for JWT
 const jwtSecret = process.env.JWT_SECRET || 'your_jwt_secret_key'; // Use environment variable for production
+
+
+
+router.get('/get-users', async (req, res) => {
+  try {
+    // Fetch all students and tutors from the database
+    const students = await Student.find({});
+    const tutors = await Tutor.find({});
+
+    // Combine both students and tutors into a single array
+    const users = [
+      ...students.map(student => ({ role: 'Student', ...student.toObject() })),
+      ...tutors.map(tutor => ({ role: 'Tutor', ...tutor.toObject() })),
+    ];
+
+    // If no users are found, return a 404 response
+    if (users.length === 0) {
+      return res.status(404).json({ message: 'No users found' });
+    }
+
+    // Return the list of users
+    res.status(200).json({ users });
+  } catch (err) {
+    console.error('Error fetching users:', err.message || err);
+    res.status(500).json({ error: 'Server error', details: err.message });
+  }
+});
+
+
+
 
 // Register User (Student or Tutor)
 router.post('/register', async (req, res) => {
@@ -167,7 +206,7 @@ router.put('/update-profile', upload.single('profilePicture'), async (req, res) 
         {
           $set: {
             ...profile,
-            'profile_picture': profilePictureUrl || profile.profile_picture, // Update profile picture if new one is uploaded
+            'profilePicture': profilePictureUrl || profile.profilePicture, // Update profile picture if new one is uploaded
           }
         },
         { new: true, runValidators: true }
@@ -179,7 +218,7 @@ router.put('/update-profile', upload.single('profilePicture'), async (req, res) 
         {
           $set: {
             ...profile,
-            'profile_picture': profilePictureUrl || profile.profile_picture, // Update profile picture if new one is uploaded
+            'profilePicture': profilePictureUrl || profile.profilePicture, // Update profile picture if new one is uploaded
           }
         },
         { new: true, runValidators: true }

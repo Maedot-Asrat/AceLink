@@ -64,7 +64,6 @@ const Community = () => {
     <div className="community-page">
   
       <div className="community-content">
-        <h2>Community</h2>
         <h3>Top Questions</h3>
         {questions.map((question, index) => (
           <div

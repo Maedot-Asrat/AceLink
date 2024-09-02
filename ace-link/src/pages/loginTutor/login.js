@@ -1,102 +1,194 @@
-import React from 'react';
-import google from '../../assets/google.svg';
-import image1 from '../../assets/image1.png';
-import logo from '../../assets/Logo.png';
-import './Login.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-
 import { useNavigate } from 'react-router-dom';
-function Login(){
+import { Container, Box, Typography, TextField, Button, Checkbox, Link, Grid, Paper } from '@mui/material';
+import google from '../../assets/google.svg';
+import logo from '../../assets/Logo.png';
+import image1 from '../../assets/image1.png';
+
+function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password: '',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`, formData);
-      const { token, user } = res.data; // Assuming the response contains a token and user info
-      
-      // Store token and user info in local storage
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/login`, formData);
+      const { token, user } = res.data;
+
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('role',user.role);
+      localStorage.setItem('role', user.role);
+      localStorage.setItem('id', user.id);
+
+      if (user.role === 'Student') {
+        const studentId = user.profileId;
+        localStorage.setItem('studentId', studentId);
+      }
+
       alert('Login successful');
-      navigate('/dashboardTutor');
+      navigate('/dashboard');
     } catch (error) {
-      alert('Error during login');
+      alert('Error during login: ' + (error.response?.data?.error || 'Please try again.'));
     }
   };
+
   return (
-    <div className="login-page">
-      <div className="login-header">
-        <div className="logo">
-          <img src={logo} alt="Logo" />
-          <h4>Acelink</h4>
-        </div>
-        <div className="signup-options">
-          <a href='/registerStudent'><button className="signup-button">Sign up as a Student</button></a>
-          <a href='/registerTutor'><button className="signup-button">Sign up as a Tutor</button></a>
-         
-        </div>
-      </div>
-      <div className="login-container">
-        <div className="login-image">
-          <img src={image1} alt="Placeholder" />
-        </div>
-        <div className="login-form">
-          <div className="form-container">
-            <img src={logo} alt="Logo" />
-            <h2>Welcome, Tutor!</h2>
-            <p>Please, log in to your account as a tutor.</p>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Email</label>
-                <input type="email" name="email" placeholder="youremail@gmail.com" onChange={handleChange} required/>
-              </div>
-              <div className="form-group">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="*********" onChange={handleChange} required />
-    
-              </div>
+    <Container
+      maxWidth="lg"
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: '100vh', position: 'relative' }}
+    >
+      {/* Header */}
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, alignSelf: 'flex-start', ml: 2, gap: '0.4rem' }}>
+        <img src={logo} alt="Logo" style={{ height: '3em', marginRight: '0.3rem' }} />
+        <Typography variant="h5" component="h1">AceLink</Typography>
+      </Box>
 
-              <div className="form-group-remeber">
-                <div>
-                <input type="checkbox" id="rememberMe" />
-                <label htmlFor="rememberMe">Remember me</label>
-                </div>
-                <div>
-                  <a href="/" className="forgot-password">Forgot password?</a>
-                </div>
-              </div>
+      {/* Sign Up Buttons */}
+      <Box sx={{ position: 'absolute', top: 40, right: 40 }}>
+        <Button
+          variant="outlined"
+          sx={{
+            mr: 2,
+            color: '#003360',
+            borderColor: '#003360',
+            backgroundColor: 'white',
+            ':hover': {
+              backgroundColor: '#003360',
+              color: 'white',
+            },
+          }}
+          onClick={() => navigate('/registerTutor')}
+        >
+          Sign up as a Tutor
+        </Button>
+        <Button
+          variant="outlined"
+          sx={{
+            color: 'white',
+            borderColor: '#003360',
+            backgroundColor: '#003360',
+            ':hover': {
+              backgroundColor: '#003360',
+              color: 'white',
+            },
+          }}
+          onClick={() => navigate('/registerStudent')}
+        >
+          Sign up as a Student
+        </Button>
+      </Box>
 
-              <button type="submit" className="login-button">Login</button>
-              </form>
-              <p className="or-text">--- OR ---</p>
+      {/* Main Content */}
+      <Grid
+        container
+        spacing={4}
+        component={Paper}
+        elevation={0}
+        sx={{ padding: '1rem', maxWidth: '1200px', alignItems: 'center', margin: '0.5rem', boxShadow: 'none' }}
+      >
+        {/* Image Section */}
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap:'2' }}
+        >
+          <Box
+            component="img"
+            src={image1}
+            alt="Login Illustration"
+            sx={{ maxWidth: '100%', height: '40rem', borderRadius: '10px' }}
+          />
+        </Grid>
 
-              <button className="google-login">
-                <div className='google-img'> <img src={google} alt="google" /></div>
-                <p>Continue with Google</p>
-              </button>
-            
-           
-            <p> Don't have an account? <a href="/registerStudent">Signup.</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
+        {/* Login Form */}
+        <Grid item xs={12} md={6}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: '85%', margin: '0 auto', justifyContent:'center' }}
+          >
+            <Box sx={{ textAlign: 'center', mb: 2 , justifySelf:'flex-start',display:'flex',flexDirection:'column' ,alignItems:'baseline'}}>
+              <Typography variant="h4" component="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+                Welcome, Tutor!
+              </Typography>
+              <Typography variant="body1">
+                Please, log in to your account as a tutor.
+              </Typography>
+            </Box>
+
+            <TextField
+              label="Email"
+              type="email"
+              name="email"
+              placeholder="youremail@gmail.com"
+              value={formData.email}
+              onChange={handleChange}
+              fullWidth
+              required
+              sx={{ maxWidth: '80%', mb: 2 }} 
+            />
+            <TextField
+              label="Password"
+              type="password"
+              name="password"
+              placeholder="*********"
+              value={formData.password}
+              onChange={handleChange}
+              fullWidth
+              required
+              sx={{ maxWidth: '80%', mb: 0}}
+            />
+
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '80%', mb: 0 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Checkbox />
+                <Typography variant="body2">Remember me</Typography>
+              </Box>
+              <Link href="/forgotpassword" variant="body2" sx={{ textDecoration: 'none' }}>
+                Forgot password?
+              </Link>
+            </Box>
+
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{
+                maxWidth: '80%',
+                mt: 0,
+                mb: 0,
+                backgroundColor: '#003360',
+                ':hover': {
+                  backgroundColor: '#002244',
+                },
+              }}
+            >
+              Login
+            </Button>
+
+          
+
+          
+
+            <Typography variant="body2" align="center">
+              Don't have an account? <Link href="/registerStudent" sx={{ textDecoration: 'none' }}>Signup.</Link>
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+    </Container>
   );
-};
+}
 
 export default Login;

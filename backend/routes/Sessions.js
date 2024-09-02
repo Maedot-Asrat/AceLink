@@ -81,22 +81,36 @@ router.post('/sessions/:id/materials', upload.array('materials', 5), async (req,
 // Create a new session
 router.post('/sessions', async (req, res) => {
     try {
+        // Generate a unique Jitsi room name
+        const jitsiRoomName = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+        // Create the Jitsi meeting link
+        const jitsiLink = `https://8x8.vc/${jitsiRoomName}`; // Use 8x8.vc as the domain
+
+        // Create a new session
         const session = new Session({
             ...req.body,
-            createdBy: req.body.tutorId // Assuming you're passing the tutor's ID as tutorId
+            createdBy: req.body.tutorId, // Assuming you're passing the tutor's ID as tutorId
+            jitsiLink: jitsiLink // Add the Jitsi link to the session document
         });
 
+        // Save the session
         await session.save();
 
+        // Notify students about the new session
         const students = session.studentsInvolved; // Assuming this is an array of student IDs
         students.forEach(studentId => {
+            console.log(`Notifying student ${studentId.toString()}`);
             req.io.to(studentId.toString()).emit('sessionScheduled', {
                 sessionId: session._id,
                 message: 'A new session has been scheduled',
-                sessionDetails: session
+                sessionDetails: session,
+                jitsiLink: session.jitsiLink
             });
         });
+        
 
+        // Respond with the created session
         res.status(201).json(session);
     } catch (error) {
         console.error('Error creating session:', error);
