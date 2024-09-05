@@ -16,13 +16,12 @@ router.post('/recommend-tutor', async (req, res) => {
       return res.status(404).json({ message: 'Student not found' });
     }
 
-    // Example student profile data (adjust as needed based on your schema)
-    const studentProfile = student.profile[0];
-    if (!studentProfile) {
-      return res.status(400).json({ message: 'Student profile data is incomplete' });
-    }
-
-    const { subject_interests, learning_style, availability } = studentProfile;
+    // Destructure necessary fields from the student's profile
+    const {
+      subject_interests,
+      learning_style,
+      availability
+    } = student.profile || {};
 
     // Ensure availability is defined and correctly formatted
     if (!availability || !(availability instanceof Map)) {
@@ -35,12 +34,7 @@ router.post('/recommend-tutor', async (req, res) => {
 
     // Filter tutors based on matching criteria (example: subject expertise and availability)
     const matchedTutors = tutors.filter(tutor => {
-      const tutorProfile = tutor.profile[0];
-      if (!tutorProfile) {
-        console.warn(`Tutor ${tutor.username} profile data is incomplete.`);
-        return false;
-      }
-
+      const tutorProfile = tutor.profile || {};
       const { subject_expertise, availability: tutorAvailability } = tutorProfile;
 
       // Check if availability or subject expertise data is missing
@@ -62,7 +56,7 @@ router.post('/recommend-tutor', async (req, res) => {
 
     // Construct the content for the recommendation API request including matched tutors
     const tutorDescriptions = matchedTutors.map(tutor => {
-      const tutorProfile = tutor.profile[0];
+      const tutorProfile = tutor.profile || {};
       return `${tutor.username} teaches ${tutorProfile.subject_expertise.join(', ')} and is available ${Array.from(tutorProfile.availability.entries()).map(([day, times]) => `${day}: ${times.join(', ')}`).join('; ')}`;
     }).join('. ');
 

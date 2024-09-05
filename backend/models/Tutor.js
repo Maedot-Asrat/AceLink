@@ -4,17 +4,17 @@ const mongoose = require('mongoose');
 const TutorSchema = new mongoose.Schema({
   username: { type: String, unique: true }, // No `required: true`
   email: { type: String, unique: true },    // No `required: true`
-  profile: [
+  profile: 
     {
-      subject_expertise: { type: [String] },  // No `required: true`
-      grade_levels: { type: [String] },       // No `required: true`
-      teaching_style: { type: String },       // No `required: true`
+      subject_expertise: { type: [String] }, 
+      fee: { type: [Number] },
+      grade_levels: { type: [String] },
+      teaching_style: { type: String },
       availability: { type: Map, of: [String] },
-      languages_spoken: { type: [String] },   // No `required: true`
-      rating: { type: Number },
-      experience: { type: Number },           // No `required: true`
+      languages_spoken: { type: [String] },
+      experience: { type: Number },
       qualifications: { type: String },
-      profile_picture: { type: String },        // No `required: true`
+      profile_picture: { type: String },
       specialization_areas: { type: [String] },
       certifications: { type: [String] },
       performance_metrics: {
@@ -30,8 +30,19 @@ const TutorSchema = new mongoose.Schema({
       professional_development: { type: String },
       personal_interests: { type: [String] }
     }
+  ,
+  requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Request' }],
+
+  // Add ratings at the top level
+  ratings: [
+    {
+      student_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Student' },
+      score: { type: Number, required: true, min: 1, max: 5 }, // Rating score between 1 and 5
+      comment: { type: String },  // Optional comment
+      date: { type: Date, default: Date.now }
+    }
   ],
-  requests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Request' }]
+  average_rating: { type: Number, default: 0 }  // Average rating of the tutor
 });
 
 module.exports = mongoose.model('Tutor', TutorSchema);

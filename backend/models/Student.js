@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const StudentSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
-  profile: [
+  profile: 
     {
-      grade_level: { type: Number },
+      grade_level: { type: String },
       learning_style: { type: String },
       age: { type: Number },
       subject_interests: { type: [String] },
@@ -15,7 +15,7 @@ const StudentSchema = new mongoose.Schema({
       preferred_language: { type: String },
       goals: { type: String },
       current_needs: { type: String },
-      profilePicture: { type: String }, // Added profile picture field
+      profile_picture: { type: String }, // Added profile picture field
       parent_contact: {
         name: { type: String },
         email: { type: String },
@@ -32,7 +32,7 @@ const StudentSchema = new mongoose.Schema({
       language_proficiency: { type: Map, of: String },
       gender_preference: { type: String, enum: ['No preference', 'Male', 'Female'] }
     }
-  ]
+  
 });
 
 
