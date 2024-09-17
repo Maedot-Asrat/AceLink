@@ -1,5 +1,5 @@
 ## AceLink - AI Powered Tutoring Platform
-Welcome to the AceLink GitHub repository! AceLink is an AI-powered learning platform designed to provide students with personalized, engaging, and effective tutoring experiences. This repository contains the source code, development history, and supporting materials for the AceLink platform. 
+Welcome to the AceLink GitHub repository! AceLink is an AI-powered learning platform designed to provide students with personalized, engaging, and effective tutoring experiences. It uses advanced AI algorithims to match students with tutors based on their preferences. This repository contains the source code, development history, and supporting materials for the AceLink platform. 
 
 # Structure
 The repository is structured as follows:
