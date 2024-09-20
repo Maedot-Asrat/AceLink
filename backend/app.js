@@ -29,7 +29,7 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
-const cors = require('cors');
+
 
 // Allow any origin without credentials
 app.use(cors());
