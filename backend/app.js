@@ -28,12 +28,12 @@ const app = express();
 const server = http.createServer(app);
 
 const corsOptions = {
-  origin: 'http://localhost:3001', // Only allow HTTP for now
+  origin: 'https://acelink-tutoring.netlify.app', // Only allow HTTP for now
   credentials: true,
 };
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3001', // Allow requests from this origin
+    origin: 'https://acelink-tutoring.netlify.app', // Allow requests from this origin
     methods: ['GET', 'POST'], // Allow these HTTP methods
     allowedHeaders: ['Content-Type'], // Allow these headers
     credentials: true, // Allow credentials like cookies
