@@ -2,12 +2,15 @@
     text-align: center;
     padding: 50px;
   }
+
   .features-section h1{
    font-size: xx-large;
   }
+
   .highlight{
     color: #05436A;
   }
+
   .feature-cards {
     display: flex;
     flex-direction: column;
@@ -44,11 +47,13 @@
     flex-direction: column;
     width: 50vh;
   }
+
   .feature-info .one{
     display: flex;
     align-items: center;
     justify-content: left;
   }
+
   .feature-info .one p{
     padding-left: 5px;
   }

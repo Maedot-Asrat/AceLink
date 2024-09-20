@@ -6,7 +6,7 @@
 
 .linkpath .name{
 margin: 0 20px;
-color: #ffffff;
+color: #fff;
 }
 
 .linkpath.active {
@@ -17,8 +17,10 @@ color: #ffffff;
     color: #0C7FDA; 
     font-weight: 700;
 }
+
 .linkpath .icon{
-color:#ffffff;}
+color:#fff;}
+
 .linkpath.active .icon{
     color: #0C7FDA; 
 }

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './Recorddings.css'; // Ensure your CSS file is up to date with the changes
+import { Card, CardContent, CardActions, Button, Typography, Box, IconButton, CardMedia } from '@mui/material';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+// Ensure your CSS file is up to date with the changes
 
 const RecordingsPage = () => {
     const [recordings, setRecordings] = useState({
@@ -37,176 +39,270 @@ const RecordingsPage = () => {
     return (
         <div className="recordings-container">
             <div className="tabs">
-                {['Audio Recordings', 'Video Recordings', 'Summary', 'Quiz', 'Flashcards'].map((tab) => (
-                    <button
+                {['Audio Recordings', 'Video Recordings', 'Summary', 'Flashcards'].map((tab) => (
+                    <Button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`tab-button ${activeTab === tab ? 'active' : ''}`}>
+                        variant={activeTab === tab ? 'contained' : 'outlined'}
+                        sx={{ mx: 1, mb: 2 }}
+                    >
                         {tab}
-                    </button>
+                    </Button>
                 ))}
             </div>
 
+            {/* Audio Recordings Section */}
             {activeTab === 'Audio Recordings' && (
-                <div className="recording-section">
-                    <h2>Audio Recordings</h2>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3 }}>
                     {recordings.audioRecordings.length > 0 ? (
-                        <ul className="recording-list">
-                            {recordings.audioRecordings.map(audio => (
-                                <li key={audio._id} className="recording-item">
-                                    <audio controls className="media-player">
-                                        <source src={`http://localhost:3000/${audio.filepath.replace(/\\/g, '/')}`} type={audio.mimetype} />
-                                        Your browser does not support the audio element.
-                                    </audio>
+                        recordings.audioRecordings.map((audio) => (
+                            <Card
+                                key={audio._id}
+                                sx={{
+                                    width: '300px',
+                                    borderRadius: '15px',
+                                    boxShadow: '0 6px 12px rgba(0,0,0,0.15)',
+                                    transition: 'transform 0.3s',
+                                    '&:hover': {
+                                        transform: 'translateY(-10px)',
+                                        boxShadow: '0 12px 24px rgba(0,0,0,0.2)',
+                                    },
+                                }}
+                            >
+                                <CardContent>
+                                    {/* <Typography
+                                        variant="h6"
+                                        sx={{ fontWeight: 'bold', textAlign: 'center', mb: 1 }}
+                                    >
+                                        {audio.title || 'Untitled Recording'}
+                                    </Typography> */}
+
+                                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                        <IconButton
+                                            color="primary"
+                                            sx={{ p: 1 }}
+                                        >
+                                            <PlayArrowIcon sx={{ fontSize: '40px' }} />
+                                        </IconButton>
+
+                                        <audio controls className="media-player">
+                                            <source
+                                                src={`${process.env.REACT_APP_API_URL}/${audio.filepath.replace(/\\/g, '/')}`}
+                                                type={audio.mimetype}
+                                            />
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    </Box>
+
                                     {audio.transcription && (
-                                        <p><strong>Transcription:</strong> {audio.transcription}</p>
+                                        <Typography
+                                            sx={{
+                                                mt: 2,
+                                                fontSize: '0.9rem',
+                                                color: '#555',
+                                                textAlign: 'left',
+                                                whiteSpace: 'pre-wrap',
+                                            }}
+                                        >
+                                            <strong>Transcription:</strong> {audio.transcription}
+                                        </Typography>
                                     )}
-                                </li>
-                            ))}
-                        </ul>
+                                </CardContent>
+
+                                {/* <CardActions sx={{ justifyContent: 'center' }}>
+                                    <Button
+                                        variant="outlined"
+                                        color="primary"
+                                        sx={{ mt: 1, borderRadius: '30px', px: 3 }}
+                                    >
+                                        Download
+                                    </Button>
+                                </CardActions> */}
+                            </Card>
+                        ))
                     ) : (
-                        <p>No audio recordings available.</p>
+                        <Typography>No audio recordings available.</Typography>
                     )}
-                </div>
+                </Box>
             )}
 
+            {/* Video Recordings Section */}
             {activeTab === 'Video Recordings' && (
-                <div className="recording-section">
-                    <h2>Video Recordings</h2>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3 }}>
                     {recordings.videoRecordings.length > 0 ? (
-                        <ul className="recording-list">
-                            {recordings.videoRecordings.map(video => (
-                                <li key={video._id} className="recording-item">
-                                    <video controls className="media-player">
-                                        <source src={`http://localhost:3000/${video.filepath.replace(/\\/g, '/')}`} type={video.mimetype} />
-                                        Your browser does not support the video element.
-                                    </video>
-                                </li>
-                            ))}
-                        </ul>
+                        recordings.videoRecordings.map((video) => (
+                            <Card
+                                key={video._id}
+                                sx={{
+                                    width: '340px',
+                                    borderRadius: '15px',
+                                    boxShadow: '0 6px 12px rgba(0,0,0,0.15)',
+                                    transition: 'transform 0.3s',
+                                    '&:hover': {
+                                        transform: 'translateY(-10px)',
+                                        boxShadow: '0 12px 24px rgba(0,0,0,0.2)',
+                                    },
+                                }}
+                            >
+                                <CardMedia
+                                    component="video"
+                                    controls
+                                    sx={{
+                                        height: '200px',
+                                        borderRadius: '15px 15px 0 0',
+                                    }}
+                                    src={`${process.env.REACT_APP_API_URL}/${video.filepath.replace(/\\/g, '/')}`}
+                                    // title={video.title || 'Untitled Video'}
+                                />
+                                <CardContent sx={{ p: 2 }}>
+                                    {/* <Typography
+                                        variant="h6"
+                                        sx={{ fontWeight: 'bold', textAlign: 'center', mb: 1 }}
+                                    >
+                                        {video.title || 'Untitled Video'}
+                                    </Typography> */}
+
+                                    {/* <Typography
+                                        sx={{
+                                            mt: 2,
+                                            fontSize: '0.9rem',
+                                            color: '#555',
+                                            textAlign: 'center',
+                                            whiteSpace: 'pre-wrap',
+                                        }}
+                                    >
+                                        {video.description || 'No description available.'}
+                                    </Typography> */}
+                                </CardContent>
+
+                                {/* <Box sx={{ textAlign: 'center', mb: 2 }}>
+                                    <Button
+                                        variant="outlined"
+                                        color="primary"
+                                        sx={{
+                                            borderRadius: '30px',
+                                            px: 3,
+                                        }}
+                                    >
+                                        Download
+                                    </Button>
+                                </Box> */}
+                            </Card>
+                        ))
                     ) : (
-                        <p>No video recordings available.</p>
+                        <Typography>No video recordings available.</Typography>
                     )}
-                </div>
+                </Box>
             )}
 
+            {/* Summary Section */}
             {activeTab === 'Summary' && (
-                <div className="recording-section">
-                    <h2 className="section-title">Summary</h2>
+                <Box
+                    className="recording-section"
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        maxWidth: '800px',
+                        mx: 'auto',
+                        mb: 4
+                    }}
+                >
                     {recordings.audioRecordings.length > 0 ? (
-                        <ul className="summary-list">
-                            {recordings.audioRecordings.map(audio => (
-                                <li key={audio._id} className="summary-item">
-                                    <div className="summary-content">
-                                        <p><strong>{audio.title}</strong></p>
-                                        <p>{audio.summary.replace(/\*\*/g, '')}</p>
-                                    </div>
-                                    <hr className="summary-divider" />
-                                </li>
+                        <Box sx={{ width: '100%' }}>
+                            {recordings.audioRecordings.map((audio) => (
+                                <Card
+                                    key={audio._id}
+                                    sx={{
+                                        my: 2,
+                                        p: 2,
+                                        borderRadius: '12px',
+                                        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                                        backgroundColor: '#f9f9f9',
+                                        transition: 'transform 0.3s ease',
+                                        '&:hover': {
+                                            transform: 'scale(1.02)',
+                                        },
+                                    }}
+                                >
+                                    <CardContent sx={{ display: 'flex', flexDirection: 'column' }}>
+                                        <Typography
+                                            variant="h6"
+                                            sx={{ fontWeight: 'bold', color: '#333', mb: 1 }}
+                                        >
+                                            {audio.title || 'Untitled Recording'}
+                                        </Typography>
+                                        <Typography
+                                            variant="body1"
+                                            sx={{
+                                                fontSize: '1rem',
+                                                color: '#555',
+                                                whiteSpace: 'pre-line',
+                                                mb: 2,
+                                            }}
+                                        >
+                                            {audio.summary || 'No summary available for this recording.'}
+                                        </Typography>
+
+                                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                sx={{
+                                                    borderRadius: '30px',
+                                                    px: 3,
+                                                    textTransform: 'none',
+                                                }}
+                                            >
+                                                View Full Summary
+                                            </Button>
+                                            {/* <Button
+                                                variant="outlined"
+                                                color="secondary"
+                                                sx={{
+                                                    borderRadius: '30px',
+                                                    px: 3,
+                                                    textTransform: 'none',
+                                                }}
+                                            >
+                                                Download
+                                            </Button> */}
+                                        </Box>
+                                    </CardContent>
+                                </Card>
                             ))}
-                        </ul>
+                        </Box>
                     ) : (
-                        <p>No summaries available.</p>
+                        <Typography sx={{ mt: 2, color: '#999' }}>
+                            No summaries available.
+                        </Typography>
                     )}
-                </div>
+                </Box>
             )}
 
-            {activeTab === 'Quiz' && (
-                <div className="recording-section">
-                    <h2>Quiz</h2>
-                    {recordings.audioRecordings.length > 0 ? (
-                        <ul className="recording-list">
-                            {recordings.audioRecordings.map(audio => (
-                                <QuizItem key={audio._id} quizzes={audio.quizzes} />
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>No quizzes available.</p>
-                    )}
-                </div>
-            )}
-
+            {/* Flashcards Section */}
             {activeTab === 'Flashcards' && (
-                <div className="flashcard-section">
-                    <h2>Flashcards</h2>
+                <Box className="flashcard-section" sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3 }}>
                     {recordings.audioRecordings.length > 0 ? (
-                        <ul className="recording-list">
-                            {recordings.audioRecordings.map(audio => (
-                                <FlashcardItem key={audio._id} flashcards={audio.flashcards} />
-                            ))}
-                        </ul>
+                        recordings.audioRecordings.map((audio) => (
+                            <FlashcardItem key={audio._id} flashcards={audio.flashcards} />
+                        ))
                     ) : (
-                        <p>No flashcards available.</p>
+                        <Typography>No flashcards available.</Typography>
                     )}
-                </div>
+                </Box>
             )}
         </div>
     );
 };
 
-// Quiz Component
-const QuizItem = ({ quizzes }) => {
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [selectedAnswer, setSelectedAnswer] = useState('');
-    const [isCorrect, setIsCorrect] = useState(null);
-
-    const questions = quizzes.split('**Question').slice(1).map((quiz, index) => {
-        const [questionPart, answerPart] = quiz.split('**Answer:');
-        const question = questionPart.replace('**:', '').replace(/\*\*/g, '').trim();
-        const answer = answerPart.replace(/\*\*/g, '').trim();
-        return { question, answer };
-    });
-
-    const handleAnswerSubmit = () => {
-        const currentQuestion = questions[currentQuestionIndex];
-        if (selectedAnswer.toLowerCase() === currentQuestion.answer.toLowerCase()) {
-            setIsCorrect(true);
-        } else {
-            setIsCorrect(false);
-        }
-    };
-
-    const handleNextQuestion = () => {
-        setIsCorrect(null);
-        setSelectedAnswer('');
-        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-    };
-
-    if (currentQuestionIndex >= questions.length) {
-        return <p>Quiz complete! You've answered all questions.</p>;
-    }
-
-    return (
-        <div className="quiz-item">
-            <div className="quiz-question">
-                <strong>{questions[currentQuestionIndex].question}</strong>
-            </div>
-            <input
-                type="text"
-                value={selectedAnswer}
-                onChange={(e) => setSelectedAnswer(e.target.value)}
-                placeholder="Type your answer here..."
-            />
-            <button onClick={handleAnswerSubmit} className="tab-button">
-                Submit Answer
-            </button>
-            {isCorrect !== null && (
-                <div className={`quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`}>
-                    {isCorrect ? 'Correct!' : `Incorrect. The correct answer is: ${questions[currentQuestionIndex].answer}`}
-                </div>
-            )}
-            {isCorrect !== null && (
-                <button onClick={handleNextQuestion} className="tab-button">
-                    Next Question
-                </button>
-            )}
-        </div>
-    );
-};
-
-// Flashcard Component
+// Flashcards Section
 const FlashcardItem = ({ flashcards }) => {
-    const [showAnswer, setShowAnswer] = useState(false);
+    const [flippedIndex, setFlippedIndex] = useState(null);
+
+    const handleCardClick = (index) => {
+        setFlippedIndex((prevIndex) => (prevIndex === index ? null : index));
+    };
 
     return (
         <>
@@ -215,22 +311,82 @@ const FlashcardItem = ({ flashcards }) => {
                     .split('Answer:')
                     .map(str => str.replace(/\*\*/g, '').trim());
 
+                const isFlipped = flippedIndex === index;
+
                 return (
-                    <div key={index} className="flashcard-item">
-                        <div className="flashcard">
-                            <div className="flashcard-question">
-                                <strong>Question:</strong> {question.split('Question:')[1].trim()}
-                            </div>
-                            {showAnswer && (
-                                <div className="flashcard-answer">
-                                    <strong>Answer:</strong> {answer}
-                                </div>
-                            )}
-                            <button className="tab-button" onClick={() => setShowAnswer(!showAnswer)}>
-                                {showAnswer ? 'Hide Answer' : 'Show Answer'}
-                            </button>
-                        </div>
-                    </div>
+                    <Box
+                        key={index}
+                        sx={{
+                            perspective: '1000px',
+                            my: 2,
+                            cursor: 'pointer',
+                        }}
+                        onClick={() => handleCardClick(index)}
+                    >
+                        <Box
+                            sx={{
+                                width: '300px',
+                                height: '200px',
+                                position: 'relative',
+                                transformStyle: 'preserve-3d',
+                                transition: 'transform 0.6s',
+                                transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                            }}
+                        >
+                            {/* Front Side (Question) */}
+                            <Card
+                                sx={{
+                                    position: 'absolute',
+                                    width: '100%',
+                                    height: '100%',
+                                    backfaceVisibility: 'hidden',
+                                    borderRadius: '12px',
+                                    boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    textAlign: 'center',
+                                    backgroundColor: '#f9f9f9',
+                                    transition: 'background-color 0.3s ease',
+                                    '&:hover': {
+                                        backgroundColor: '#e0e0e0',
+                                    },
+                                }}
+                            >
+                                <CardContent>
+                                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                                        Question
+                                    </Typography>
+                                    <Typography>{question.split('Question:')[1].trim()}</Typography>
+                                </CardContent>
+                            </Card>
+
+                            {/* Back Side (Answer) */}
+                            <Card
+                                sx={{
+                                    position: 'absolute',
+                                    width: '100%',
+                                    height: '100%',
+                                    backfaceVisibility: 'hidden',
+                                    borderRadius: '12px',
+                                    boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    textAlign: 'center',
+                                    backgroundColor: '#f1f1f1',
+                                    transform: 'rotateY(180deg)',
+                                }}
+                            >
+                                <CardContent>
+                                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                                        Answer
+                                    </Typography>
+                                    <Typography>{answer}</Typography>
+                                </CardContent>
+                            </Card>
+                        </Box>
+                    </Box>
                 );
             })}
         </>

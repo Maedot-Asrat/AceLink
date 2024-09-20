@@ -1,184 +1,23 @@
-.navbartutor {
-  display: flex;
-  position: fixed;
-  z-index: 5;
-  width: 250px;
-  height: 100vh;
-  box-shadow: 4px 2px 10px rgb(239, 239, 239);
-  background-color: #fff;
+.ps-menu-button:hover {
+  background-color: #E9F5FE !important;
 }
 
-.navbartutor .lis {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding: 10px 0;
+.ps-menu-label:active {
+  color: #0C7FDA !important;
 }
 
-.navbartutor .logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
-  width: 100%;
-  flex-shrink: 0;
-
+.ps-menu-label:focus {
+  color: #0C7FDA !important;
 }
 
-.navbartutor .logo img {
-  width: 30px;  /* Ensure size is defined */
-  height: 30px;
-  object-fit: contain;
+.ps-menu-button:active {
+  background-color: #E9F5FE !important;
 }
 
-.navbartutor .logo span {
-  padding: 10px;
-  font-size: 30px;
-  font-weight: 800;
-  color: #333;
+.MuiToolbar-root {
+  min-height: 0 !important; 
+  padding-left: 0;
+  padding-right: 0;
 }
 
 
-  .navbartutor .home{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 10px  0 10px 40px;
-
-  }
-  .navbartutor .profile{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    margin: 0px;
-  }
-.profile-left{
-  display: flex;
-}
-  .profile img{
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-  }
-
-  .profile .pro .name{
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .profile .pro .label{
-    font-size: 12px;
-  }
-  .navbartutor .home, 
-  .navbartutor .profile {
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  }
-  
-  .navbartutor .home:hover,
-  .navbartutor .profile:hover {
-      background-color: #f4f4f4;
-      border-radius: 5px;
-  }
-  
-  .navbartutor .content a {
-      text-decoration: none;
-      color: inherit;
-  }
-
-  /* .navbartutor {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    z-index: 5;
-    width: 250px;
-    height: 100vh;
-    box-shadow: 4px 2px 10px rgb(239, 239, 239);
-    background-color: #fff;
-}
-
-.navbartutor .lis {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    padding: 10px 0;
-}
-
-.navbartutor .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.navbartutor .logo span {
-  
-    color: #333;
-    padding: 3px ;
-  font-size: 30px;
-  font-weight: 800;
-
-}
-
-.navbartutor .content {
-    flex-grow: 1;
-}
-
-.navbartutor .profile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px;
-    border-top: 1px solid #e0e0e0;
-    margin-top: 20px;
-}
-
-.profile img {
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    object-fit: cover;
-}
-
-.profile .pro {
-    flex-grow: 1;
-    padding-left: 10px;
-}
-
-.profile .pro .name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-}
-
-.profile .pro .label {
-    font-size: 12px;
-    color: #777;
-}
-
-.navbartutor .home, 
-.navbartutor .profile {
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.navbartutor .home:hover,
-.navbartutor .profile:hover {
-    background-color: #f4f4f4;
-    border-radius: 5px;
-}
-
-.navbartutor .content a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.active-link {
-    background-color: #e0e0e0;
-    border-radius: 5px;
-} */

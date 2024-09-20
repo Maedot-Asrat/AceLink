@@ -1,11 +1,10 @@
-/* Calendar.css */
 
 .calendar-container {
   width: 300px;
   padding: 20px;
   background-color: #f1f3f5;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
 .calendar-header {
@@ -38,7 +37,7 @@
 }
 
 .day.selected {
-  background-color: #ff5555;
+  background-color: #f55;
   color: #fff;
 }
 

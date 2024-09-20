@@ -7,13 +7,13 @@ const Header = () => {
     <header className="header">
       <div className="logo">
         <img src={Logo} className="logo_img" alt="Logo" />
-        <h3>Acelink</h3>
+        <h3>AceLink</h3>
         </div>
       <div className="right_bar">
       <nav className="nav">
         <a href="#home">Home</a>
         <a href="#feature">Feature</a>
-        <a href="#about">About Us</a>
+        <a href="#about_us">About Us</a>
       </nav>
       <div className="auth-buttons">
         <a href='/loginStudent'><button className="login-btn">Login</button></a>

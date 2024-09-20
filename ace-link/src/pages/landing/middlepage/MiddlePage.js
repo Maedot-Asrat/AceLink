@@ -10,7 +10,7 @@ const MiddlePage = () => {
           Acelink’s school management software upgrades traditional with efficient tutor matching, adaptive study plans,
           and interactive tools, enhancing relevance and engagement all in one secure cloud-based system.
         </p>
-        <a href="/learn-more" className="learn-more">Learn more</a>
+       
       </div>
       <div className="image-container">
         <img src={ClassroomImage} alt="Classroom" />

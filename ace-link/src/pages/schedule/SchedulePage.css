@@ -16,7 +16,7 @@
   padding: 30px;
   margin-left: 30px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 }
 
 .meeting-card .icon {
@@ -60,5 +60,5 @@
 }
 
 .join-button button:hover {
-  background-color: #003366;
+  background-color: #036;
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Container, Box, Typography, TextField, Button, Checkbox, Link, Grid, Paper } from '@mui/material';
-import logo from '../../assets/Logo.png';
+import TitleBar from '../../components/titlebar/TitleBar';
 import signupImg from '../../assets/signup.png';
 
 function RegisterTutor() {
@@ -23,7 +23,11 @@ function RegisterTutor() {
     e.preventDefault();
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/user/register`, formData);
-      alert('Registration successful');
+      const { token, user } = res.data;
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user)); 
+      localStorage.setItem('userId', user._id);
       navigate('/updatetutor');
     } catch (error) {
       alert('Error during registration');
@@ -31,11 +35,11 @@ function RegisterTutor() {
   };
 
   return (
+    <>
+      <TitleBar /> {/* Add the TitleBar component here */}
+    
     <Container maxWidth="lg" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, alignSelf: 'flex-start', ml: 2, gap: '0.4rem' }}>
-        <img src={logo} alt="Logo" style={{ height: '3em', marginRight: '0.3rem' }} />
-        <Typography variant="h5" component="h1">AceLink</Typography>
-      </Box>
+
 
       <Grid container spacing={4} component={Paper} elevation={0} sx={{ padding: '1rem', maxWidth: '1200px', alignItems: 'center', margin: '0.5rem' }}>
         <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -113,6 +117,7 @@ function RegisterTutor() {
         </Grid>
       </Grid>
     </Container>
+    </>
   );
 }
 

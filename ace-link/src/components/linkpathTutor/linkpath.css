@@ -17,8 +17,10 @@ color: #5D7285;
     color: #0C7FDA; 
     font-weight: 700;
 }
+
 .linkpath .icon{
 color:#5D7285;}
+
 .linkpath.active .icon{
     color: #0C7FDA; 
 }

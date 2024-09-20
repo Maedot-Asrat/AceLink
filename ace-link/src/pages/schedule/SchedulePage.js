@@ -1,101 +1,212 @@
-import React from 'react';
-import './SchedulePage.css';
-import video from '../../assets/video-svgrepo-com.svg';
-const meetings = [
-  {
-    id: 1,
-    title: 'Data structure and Algorithm',
-    instructor: 'Daniel Abebe',
-    date: '2024-07-15',
-    time: '10:00AM',
-  },
-  {
-    id: 2,
-    title: 'Advanced Mathematics',
-    instructor: 'Meaza Tadle',
-    date: '2024-08-10',
-    time: '02:00PM',
-  },
-  {
-    id: 3,
-    title: 'Machine Learning Basics',
-    instructor: 'Fenet Girma',
-    date: '2024-08-25',
-    time: '11:00AM',
-  },
-  {
-    id: 4,
-    title: 'Introduction to React',
-    instructor: 'Maedot Asrat',
-    date: '2024-09-01',
-    time: '09:00AM',
-  },
-];
+import React, { useEffect, useState } from 'react';
+import { Box, Container, Typography, Paper, Button, CircularProgress } from '@mui/material';
+import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import axios from 'axios';
 
 const SchedulePage = () => {
+  const [sessions, setSessions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const today = new Date().toISOString().split('T')[0];
   const currentMonth = new Date().getMonth() + 1;
   const currentYear = new Date().getFullYear();
 
-  const filterMeetings = (condition) => {
-    return meetings.filter(condition);
-  };
+  // Get studentId from localStorage
+  const studentId = localStorage.getItem('studentId');
+
+  useEffect(() => {
+    const fetchSessions = async () => {
+      try {
+        // Fetch sessions for the logged-in student using the new route
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/trust/sessions/student/${studentId}`);
+        setSessions(response.data);
+        setLoading(false);
+      } catch (err) {
+        if (err.response && err.response.status === 404) {
+          setError('No sessions found for this student.');
+        } else {
+          setError('Failed to load sessions. Please try again later.');
+        }
+        setLoading(false);
+      }
+    };
+
+    if (studentId) {
+      fetchSessions();
+    } else {
+      setError('No student ID found.');
+      setLoading(false);
+    }
+  }, [studentId]);
+
+  const filterMeetings = (condition) => sessions.filter(condition);
 
   const renderMeetings = (meetingList, emptyMessage) => {
     if (meetingList.length === 0) {
-      return <p>{emptyMessage}</p>;
+      return (
+        <Typography variant="body1" sx={{ color: 'text.secondary', fontStyle: 'italic' }}>
+          {emptyMessage}
+        </Typography>
+      );
     }
+    const handleJoinSession = (sessionId) => {
+      // Navigate to a route where the Jitsi meeting will be displayed
+      window.location.href = `/meeting/${sessionId}`;
+    };
+    
     return meetingList.map((meeting) => (
-      <div className="meeting-card" key={meeting.id}>
-        <div className="icon">
-          <img src={video} alt="Meeting Icon" />
-        </div>
-        <div className='details'>
-          <h3>{meeting.title}</h3>
-          <p>by {meeting.instructor}</p>
-          </div>
-        <div className="details">
-          
-          <p>{meeting.date}</p>
-          <p>{meeting.time}</p>
-        </div>
-        <a href='/meeting' >
-          <button className="join-button">Join Session</button>
-        </a>
-      </div>
+      <Paper
+        elevation={4}
+        key={meeting._id}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: 2,
+          mb: 3,
+          borderRadius: 2,
+          boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.08)',
+          transition: 'all 0.3s ease',
+          '&:hover': {
+            transform: 'scale(1.02)',
+            boxShadow: '0px 8px 20px rgba(0, 0, 0, 0.12)',
+          },
+          backgroundColor: '#fff',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 60,
+            height: 60,
+            backgroundColor: '#e3f2fd',
+            borderRadius: 2,
+          }}
+        >
+          <VideoCameraFrontIcon sx={{ fontSize: 30, color: '#166A9E' }} />
+        </Box>
+        <Box sx={{ flexGrow: 1, pl: 3 }}>
+          <Typography variant="h6" sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#004080' }}>
+            {meeting.title}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            by {meeting.createdBy?.name || 'Unknown'}
+          </Typography>
+        </Box>
+        <Box sx={{ textAlign: 'right' }}>
+          <Typography variant="body2" sx={{ fontWeight: 'bold', color: '#555' }}>
+            {new Date(meeting.sessionDateTime).toLocaleDateString()}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            {new Date(meeting.sessionDateTime).toLocaleTimeString()}
+          </Typography>
+        </Box>
+        <Button
+  variant="contained"
+  onClick={() => handleJoinSession(meeting._id)}
+  sx={{
+    ml: 3,
+    backgroundColor: '#166A9E',
+    color: '#fff',
+    textTransform: 'none',
+    padding: '8px 16px',
+    borderRadius: 2,
+    '&:hover': {
+      backgroundColor: '#003366',
+    },
+  }}
+>
+  Join Session
+</Button>
+
+      </Paper>
     ));
   };
 
-  const todayMeetings = filterMeetings(
-    (meeting) => meeting.date === today
-  );
+  if (loading) {
+    return (
+      <Container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 5 }}>
+        <CircularProgress />
+        <Typography variant="body2" sx={{ mt: 2 }}>
+          Loading sessions...
+        </Typography>
+      </Container>
+    );
+  }
 
-  const thisMonthMeetings = filterMeetings(
-    (meeting) => 
-      new Date(meeting.date).getMonth() + 1 === currentMonth &&
-      new Date(meeting.date).getFullYear() === currentYear
-  );
-
-  const laterMeetings = filterMeetings(
-    (meeting) => new Date(meeting.date).getMonth() + 1 > currentMonth ||
-                 new Date(meeting.date).getFullYear() > currentYear
-  );
+  if (error) {
+    if (error === 'No sessions found for this student.') {
+      return (
+        <Container sx={{ textAlign: 'center', mt: 5 }}>
+          <EventNoteIcon sx={{ fontSize: 80, color: '#166A9E' }} />
+          <Typography variant="h6" sx={{ color: 'text.secondary', mt: 2 }}>
+            No sessions found for you.
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary', mt: 2 }}>
+            You haven’t scheduled any sessions yet. Start by scheduling a session to see it here.
+          </Typography>
+        </Container>
+      );
+    } else {
+      return (
+        <Container sx={{ textAlign: 'center', mt: 5 }}>
+          <Typography variant="body2" sx={{ color: 'red' }}>
+            {error}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary', mt: 2 }}>
+            Please check your connection or try refreshing the page.
+          </Typography>
+        </Container>
+      );
+    }
+  }
 
   return (
-    <div className="schedule-page">
-      <div className="timeframe">
-        <h2>Today</h2>
-        {renderMeetings(todayMeetings, 'None Today')}
-      </div>
-      <div className="timeframe">
-        <h2>This Month</h2>
-        {renderMeetings(thisMonthMeetings, 'None This Month')}
-      </div>
-      <div className="timeframe">
-        <h2>Later</h2>
-        {renderMeetings(laterMeetings, 'No Later Sessions')}
-      </div>
-    </div>
+    <Container>
+      <Box sx={{ mb: 5 }}>
+        <Typography variant="h5" sx={{ fontWeight: 600, mb: 2, color: '#004080' }}>
+          Today
+        </Typography>
+        {renderMeetings(
+          filterMeetings(
+            (meeting) => new Date(meeting.sessionDateTime).toISOString().split('T')[0] === today
+          ),
+          'No sessions today'
+        )}
+      </Box>
+
+      <Box sx={{ mb: 5 }}>
+        <Typography variant="h5" sx={{ fontWeight: 600, mb: 2, color: '#004080' }}>
+          This Month
+        </Typography>
+        {renderMeetings(
+          filterMeetings(
+            (meeting) =>
+              new Date(meeting.sessionDateTime).getMonth() + 1 === currentMonth &&
+              new Date(meeting.sessionDateTime).getFullYear() === currentYear
+          ),
+          'No sessions this month'
+        )}
+      </Box>
+
+      <Box sx={{ mb: 5 }}>
+        <Typography variant="h5" sx={{ fontWeight: 600, mb: 2, color: '#004080' }}>
+          Later
+        </Typography>
+        {renderMeetings(
+          filterMeetings(
+            (meeting) =>
+              new Date(meeting.sessionDateTime).getMonth() + 1 > currentMonth ||
+              new Date(meeting.sessionDateTime).getFullYear() > currentYear
+          ),
+          'No sessions later'
+        )}
+      </Box>
+    </Container>
   );
 };
 

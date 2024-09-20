@@ -96,7 +96,7 @@ const JitsiWithCustomUI = () => {
         formData.append(type, blob, filename);
 
         try {
-            const response = await fetch('http://localhost:3000/trust/upload', {
+            const response = await fetch('https://acelink-w1qp.onrender.com/trust/upload', {
                 method: 'POST',
                 body: formData,
             });

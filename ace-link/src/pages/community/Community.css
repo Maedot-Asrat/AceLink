@@ -1,4 +1,4 @@
-/* Community.css */
+
 .expanded-content {
   padding-top: 10px;
   border-top: 1px solid #e0e0e0;
@@ -42,6 +42,7 @@
 
 .community-page {
   display: flex;
+  flex-direction: column;
   margin-left: 70px;
 }
 
@@ -81,15 +82,20 @@
 }
 
 .question-card {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 20px;
   border: 1px solid #e1e4e8;
   border-radius: 8px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.question-card .b {
+  display: flex;
+ 
 }
 
 .question-header h4 {
@@ -160,7 +166,7 @@
 
 .answer-section .answer-box {
   background-color: #2f855a;
-  color: #ffffff;
+  color: #fff;
   padding: 5px 10px;
   border-radius: 4px;
   font-size: 14px;
@@ -195,6 +201,7 @@
 .question-tags {
   margin-top: 10px;
   display: flex;
+  flex-direction: column;
   gap: 40px;
   width: 97%;
   justify-content: space-between;

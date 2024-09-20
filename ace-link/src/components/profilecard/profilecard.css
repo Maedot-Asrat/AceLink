@@ -1,42 +1,15 @@
 .profilecard {
     display: flex;
     padding: 20px;
-    border: 1px solid rgba(246, 245, 245, 0.645);
+    border: 1px solid rgb(246 245 245 / 64.5%);
     border-radius: 8px;
     margin: 20px 10px;
-    box-shadow: 2px 2px 8px rgb(248, 248, 248);
+    box-shadow: 2px 2px 8px rgb(248 248 248);
     align-self: flex-start;
     width: 35vw;
 }
-/* .profilecard .cont{
-    display: flex;
-    align-items: center;
-    margin: 10px 0 20px 5px;
-}
-
-.profilecard img {
-    border-radius: 50%;
-    width: 70px;
-    margin-right: 25px;
-    margin-left: 5px;
-}
-
-.profilecard .name{
-    font-weight: 700;
-}
-
-.profilecard .title{
-    font-size: 12px;
-    color: grey;
-    margin-bottom: 6px;
-}
 
 
-.profilecard .cost{
-    font-weight: 600;
-    font-size: 12px;
-    color: #031b2a;
-} */
 .profilecard .btn{
     padding: 8px 40px;
     background-color:#05436A;
@@ -47,6 +20,7 @@
     font-size: small;
     font-weight: 500;
 }
+
 .profilecard .btn a{
     color: white;
     font-size: small;
@@ -80,10 +54,10 @@
   }
   
   .tutor-card {
-    background-color: #ffffff;
+    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
     display: flex;
     align-items: center;
   }

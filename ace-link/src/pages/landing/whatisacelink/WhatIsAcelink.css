@@ -1,50 +1,3 @@
-/* .what-is-acelink {
-    text-align: center;
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-  .what-is-acelink p{
-    margin-left: 60px;
-    margin-right: 60px;
-  }
-  
-  .what-is-acelink .highlight {
-    color: #05436A;
-  }
-  
-  .roles {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-  }
-  
-  .role-card {
-    width: 40%;
-    margin: 0 10px;
-    text-align: left;
-  }
-  
-  .role-card img {
-    max-width: 100%;
-    border-radius: 10px;
-  }
-  
-  .role-card h3 {
-    margin: 20px 0 10px;
-  }
-  
-  .role-btn {
-    margin-top: 10px;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 30px;
-    background-color: #05436A;
-    color: white;
-    cursor: pointer;
-  }
-   */
 
    .what-is-acelink {
     text-align: center;
@@ -60,14 +13,12 @@
   .roles {
     display: flex;
     justify-content: center;
-    
     gap: 20px;
     margin-top: 20px;
   }
   
   .role-card {
     position: relative;
-   
     width: 35vw;
     height: 45vh;
   }
@@ -76,23 +27,23 @@
     width: 100%;
     height: 100%;
 
-    /* object-fit: cover; */
+  
   }
+
   .overImage{
     position: absolute;
     top: 70px;
     left: 50%;
     transform: translateX(-50%);
   }
+
   .role-card h3 {
-    
     color: white;
     font-size: 24px;
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 10px rgb(0 0 0 / 50%);
   }
   
   .role-btn {
-    
     background-color: #23BDEE;
     color: white;
     border: none;

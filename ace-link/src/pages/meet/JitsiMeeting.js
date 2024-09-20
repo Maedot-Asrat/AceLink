@@ -15,7 +15,7 @@ const JitsiWithCustomUI = () => {
         const api = new window.JitsiMeetExternalAPI("8x8.vc", {
             roomName: "vpaas-magic-cookie-24fead3220f24e59aaa89a08e9e6d520/SampleAppMassiveCommercesSeparateDeeply",
             parentNode: jitsiContainerRef.current,
-            jwt: "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAvMDY2ODMwLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3MjUyOTY5NzEsImV4cCI6MTcyNTMwNDE3MSwibmJmIjoxNzI1Mjk2OTY2LCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOnRydWUsIm91dGJvdW5kLWNhbGwiOnRydWUsInNpcC1vdXRib3VuZC1jYWxsIjpmYWxzZSwidHJhbnNjcmlwdGlvbiI6dHJ1ZSwicmVjb3JkaW5nIjp0cnVlfSwidXNlciI6eyJoaWRkZW4tZnJvbS1yZWNvcmRlciI6ZmFsc2UsIm1vZGVyYXRvciI6dHJ1ZSwibmFtZSI6ImZlbnV0aWdpc3QiLCJpZCI6Imdvb2dsZS1vYXV0aDJ8MTA0MTA1OTMzMTk1MDgxNjcyOTg2IiwiYXZhdGFyIjoiIiwiZW1haWwiOiJmZW51dGlnaXN0QGdtYWlsLmNvbSJ9fSwicm9vbSI6IioifQ.gHG2G2hSVQbZwr6XrggjMrXN7Kz9QbFUHXwv4Z8BFtEauSY5CP0SWXIYMxcnNlaL4JPZYniRMsGVZw30lhMfkPRQZoYkNzd5XJ6Q6F0flLbM9TJagltPEzWMfIfTgNOD8Q5oVvMcEoPDCU75T7gOnbRTh78ON_uYwOhqKZ1PY4nqpGuf41P1Q3xr1pLz4VDyz73KlpaBriZflyFG0PyAStu-9l7dGhxGOQ46uXktOBu0m5gFP015AtY63Krcx6gzqewx9DqLfBgaNpCRiFJ6RSPHEtr0FYIexorFhMFXfvPx5HuS4vdK4zlAk4tzO-LGu4hv0kaWLHmpNXXN_mM7gg",
+            jwt: "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAvMDY2ODMwLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3MjY4MjE5NTUsImV4cCI6MTcyNjgyOTE1NSwibmJmIjoxNzI2ODIxOTUwLCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOnRydWUsIm91dGJvdW5kLWNhbGwiOnRydWUsInNpcC1vdXRib3VuZC1jYWxsIjpmYWxzZSwidHJhbnNjcmlwdGlvbiI6dHJ1ZSwicmVjb3JkaW5nIjp0cnVlfSwidXNlciI6eyJoaWRkZW4tZnJvbS1yZWNvcmRlciI6ZmFsc2UsIm1vZGVyYXRvciI6dHJ1ZSwibmFtZSI6ImZlbnV0aWdpc3QiLCJpZCI6Imdvb2dsZS1vYXV0aDJ8MTA0MTA1OTMzMTk1MDgxNjcyOTg2IiwiYXZhdGFyIjoiIiwiZW1haWwiOiJmZW51dGlnaXN0QGdtYWlsLmNvbSJ9fSwicm9vbSI6IioifQ.FA1UHABAGbOFEzXfHEZ1Xb2BrP6AwvUugZI73Hyag-jj--hiHugJmtpMchvlXeR-lZ9pFQs6_RLq3l2226GN99N0Rq2OzcdLizlmXgkln24xPx9P0LpMBQexADCudCAkVKl8kphGsveFDy2p5FTq3RsN-TPha74KNqnZEsihtNQbOlmPg8K5A8dCi3h27pd9oZuRnZSCCRo38g-ENRoG39ecQiBtGgGh3TGBYXPpbgMOoypP4hCs6w5quWtrs-cJC3oX3deSlEp3wpMA20QoZOuhMZEMqZ2l4344NdxEfCxKS1rdpfEOSUpavS1839TJYCdZMSmGCDE5bGIG851tnQ",
             configOverwrite: {
                 toolbarButtons: [
                     'microphone', 'camera', 'closedcaptions', 'desktop', 
@@ -99,7 +99,7 @@ const JitsiWithCustomUI = () => {
         formData.append(type, blob, filename);
 
         try {
-            const response = await fetch('http://localhost:3000/trust/upload', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/trust/upload`, {
                 method: 'POST',
                 body: formData,
             });
@@ -128,7 +128,7 @@ const JitsiWithCustomUI = () => {
     };
 
     return (
-        <div style={{ height: '100vh',marginLeft:'90px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ height: '100vh', position: 'relative', overflow: 'hidden' }}>
             <div id="jaas-container" ref={jitsiContainerRef} style={{ height: '100%', zIndex: 1 }}></div>
 
             <div id="custom-ui" style={customUiStyles}>

@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Container, Box, Typography, TextField, Button, Checkbox, Link, Grid, Paper } from '@mui/material';
-import google from '../../assets/google.svg';
-import logo from '../../assets/Logo.png';
 import image1 from '../../assets/image1.png';
+import TitleBar from '../../components/titlebar/TitleBar';
 
 function Login() {
   const navigate = useNavigate();
@@ -28,11 +27,9 @@ function Login() {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('role', user.role);
       localStorage.setItem('id', user.id);
-
-      if (user.role === 'Student') {
-        const studentId = user.profileId;
-        localStorage.setItem('studentId', studentId);
-      }
+      localStorage.setItem('tutorId',user.profileId);
+      
+      
 
       alert('Login successful');
       navigate('/dashboard');
@@ -42,50 +39,14 @@ function Login() {
   };
 
   return (
+    <>
+      <TitleBar /> {/* Add the TitleBar component here */}
     <Container
       maxWidth="lg"
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: '100vh', position: 'relative' }}
     >
-      {/* Header */}
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, alignSelf: 'flex-start', ml: 2, gap: '0.4rem' }}>
-        <img src={logo} alt="Logo" style={{ height: '3em', marginRight: '0.3rem' }} />
-        <Typography variant="h5" component="h1">AceLink</Typography>
-      </Box>
 
-      {/* Sign Up Buttons */}
-      <Box sx={{ position: 'absolute', top: 40, right: 40 }}>
-        <Button
-          variant="outlined"
-          sx={{
-            mr: 2,
-            color: '#003360',
-            borderColor: '#003360',
-            backgroundColor: 'white',
-            ':hover': {
-              backgroundColor: '#003360',
-              color: 'white',
-            },
-          }}
-          onClick={() => navigate('/registerTutor')}
-        >
-          Sign up as a Tutor
-        </Button>
-        <Button
-          variant="outlined"
-          sx={{
-            color: 'white',
-            borderColor: '#003360',
-            backgroundColor: '#003360',
-            ':hover': {
-              backgroundColor: '#003360',
-              color: 'white',
-            },
-          }}
-          onClick={() => navigate('/registerStudent')}
-        >
-          Sign up as a Student
-        </Button>
-      </Box>
+   
 
       {/* Main Content */}
       <Grid
@@ -150,10 +111,10 @@ function Login() {
             />
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '80%', mb: 0 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Checkbox />
                 <Typography variant="body2">Remember me</Typography>
-              </Box>
+              </Box> */}
               <Link href="/forgotpassword" variant="body2" sx={{ textDecoration: 'none' }}>
                 Forgot password?
               </Link>
@@ -188,6 +149,7 @@ function Login() {
         </Grid>
       </Grid>
     </Container>
+    </>
   );
 }
 

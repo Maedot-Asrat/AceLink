@@ -1,307 +1,541 @@
 import React, { useState } from 'react';
-import './profile.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import {
+  Container,
+  Typography,
+  Box,
+  TextField,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  Button,
+  Avatar,
+  IconButton,
+  Grid,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+} from '@mui/material';
+import { AddAPhoto } from '@mui/icons-material';
+import { ToggleButton, ToggleButtonGroup, Stack } from '@mui/material';
+import logo from '../../assets/Logo.png';
+
+const steps = ['Personal Info', 'Expertise & Experience', 'Availability & Preferences', 'Additional Details'];
 
 const EditProfile = () => {
-  const [subjects, setSubjects] = useState(["Math", "Physics"]);
-  const [languages, setLanguages] = useState(["English", "Spanish"]);
-  const [specializations, setSpecializations] = useState(["STEM"]);
-  const [certifications, setCertifications] = useState(["Certified Math Tutor"]);
-  const [interests, setInterests] = useState(["Reading", "Music"]);
-  const [fee, setFee] = useState(50);
-  const [gradeLevels, setGradeLevels] = useState(["9", "10"]);
-  const [teachingStyle, setTeachingStyle] = useState("Interactive");
-  const [experience, setExperience] = useState(5);
-  const [timeZone, setTimeZone] = useState("UTC");
+  const navigate = useNavigate();
+  const [activeStep, setActiveStep] = useState(0);
 
-  const timeZones = [
-    "UTC", "GMT", "EST", "CST", "MST", "PST", "AKST", "HST",
-    "Europe/London", "Europe/Paris", "Asia/Tokyo", "Australia/Sydney"
-  ];
+  // State variables
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [previewPicture, setPreviewPicture] = useState(null);
+  const [subjectExpertise, setSubjectExpertise] = useState([]);
+  const [fee, setFee] = useState('');
+  const [gradeLevels, setGradeLevels] = useState([]);
+  const [teachingStyle, setTeachingStyle] = useState('');
+  const [availability, setAvailability] = useState({});
+  const [availabilityTimeZone, setAvailabilityTimeZone] = useState('');
+  const [languagesSpoken, setLanguagesSpoken] = useState([]);
+  const [experience, setExperience] = useState('');
+  const [qualifications, setQualifications] = useState('');
+  const [specializationAreas, setSpecializationAreas] = useState([]);
+  const [certifications, setCertifications] = useState('');
+  const [tutoringApproach, setTutoringApproach] = useState('');
+  const [professionalDevelopment, setProfessionalDevelopment] = useState('');
+  const [personalInterests, setPersonalInterests] = useState('');
+  const userId = localStorage.getItem('userId');
 
-  const [newSubject, setNewSubject] = useState('');
-  const [newLanguage, setNewLanguage] = useState('');
-  const [newSpecialization, setNewSpecialization] = useState('');
-  const [newCertification, setNewCertification] = useState('');
-  const [newInterest, setNewInterest] = useState('');
+  const handleNext = () => setActiveStep((prevStep) => prevStep + 1);
+  const handleBack = () => setActiveStep((prevStep) => prevStep - 1);
 
-  const handleAdd = (setter, currentList, newItem, setNewItem) => {
-    if (newItem.trim() && !currentList.includes(newItem)) {
-      setter([...currentList, newItem]);
-      setNewItem('');
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setProfilePicture(file);
+
+    // Preview the selected image
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewPicture(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  const handleDelete = (setter, currentList, itemToRemove) => {
-    setter(currentList.filter(item => item !== itemToRemove));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!userId) {
+      alert("User not authenticated");
+      return;
+    }
+
+    const profileData = {
+      subject_expertise: subjectExpertise,
+      fee,
+      grade_levels: gradeLevels,
+      teaching_style: teachingStyle,
+      availability,
+      languages_spoken: languagesSpoken,
+      experience,
+      qualifications,
+      profile_picture: profilePicture ? profilePicture.name : undefined,
+      specialization_areas: specializationAreas,
+      certifications: certifications.split(',').map(cert => cert.trim()),
+      availability_time_zone: availabilityTimeZone,
+      tutoring_approach: tutoringApproach,
+      professional_development: professionalDevelopment,
+      personal_interests: personalInterests.split(',').map(interest => interest.trim()),
+    };
+
+    const formData = new FormData();
+    formData.append('userId', userId);
+    formData.append('profile', JSON.stringify(profileData));
+
+    if (profilePicture) {
+      formData.append('profilePicture', profilePicture);
+    }
+
+    try {
+      const response = await axios.patch(`${process.env.REACT_APP_API_URL}/user/update-profile`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      });
+      console.log(response);
+      navigate('/dashboardTutor'); // Redirect to tutor dashboard or appropriate page
+    } catch (error) {
+      console.error('Profile update error:', error.response ? error.response.data : error.message);
+      alert('Failed to update profile. Please try again.');
+    }
   };
 
-  const handleGradeLevelChange = (event) => {
-    const { value, checked } = event.target;
-    setGradeLevels(prev =>
-      checked ? [...prev, value] : prev.filter(level => level !== value)
-    );
+  const renderStepContent = (step) => {
+    switch (step) {
+      case 0:
+        return (
+          <Grid container spacing={3}>
+      
+            <Grid item xs={12}>
+              <Box textAlign="center" mb={4}>
+                <IconButton component="label">
+                  <Avatar
+                    src={previewPicture || ''}
+                    sx={{ width: 120, height: 120, margin: '0 auto', boxShadow: 3 }}
+                  >
+                    {!profilePicture && <AddAPhoto fontSize="large" />}
+                  </Avatar>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    hidden
+                  />
+                </IconButton>
+                <Typography variant="body2" mt={1}>
+                  Upload your profile picture
+                </Typography>
+              </Box>
+            </Grid>
+
+    
+            <Grid item xs={12}>
+              <TextField
+                label="Qualifications"
+                value={qualifications}
+                onChange={(e) => setQualifications(e.target.value)}
+                required
+                fullWidth
+                variant="outlined"
+                multiline
+                rows={3}
+                sx={{
+                  backgroundColor: "#f0f0f0",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Grid>
+
+  
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Years of Experience"
+                type="number"
+                value={experience}
+                onChange={(e) => setExperience(e.target.value)}
+                required
+                fullWidth
+                variant="outlined"
+                sx={{
+                  backgroundColor: "#f0f0f0",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Grid>
+
+   
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Certifications"
+                placeholder="Separate with commas"
+                value={certifications}
+                onChange={(e) => setCertifications(e.target.value)}
+                fullWidth
+                variant="outlined"
+                sx={{
+                  backgroundColor: "#f0f0f0",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Grid>
+          </Grid>
+        );
+      case 1:
+        return (
+          <Grid container spacing={3}>
+   
+            <Grid item xs={12}>
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>Subject Expertise</InputLabel>
+                <Select
+                  multiple
+                  value={subjectExpertise}
+                  onChange={(e) => setSubjectExpertise(e.target.value)}
+                  required
+                  label="Subject Expertise"
+                  sx={{
+                    backgroundColor: "#f0f0f0",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      border: "none",
+                    },
+                  }}
+                >
+                  <MenuItem value="Math">Math</MenuItem>
+                  <MenuItem value="Science">Science</MenuItem>
+                  <MenuItem value="History">History</MenuItem>
+                  <MenuItem value="English">English</MenuItem>
+                  <MenuItem value="Technology">Technology</MenuItem>
+                 
+                </Select>
+              </FormControl>
+            </Grid>
+
+    
+            <Grid item xs={12}>
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>Grade Levels</InputLabel>
+                <Select
+                  multiple
+                  value={gradeLevels}
+                  onChange={(e) => setGradeLevels(e.target.value)}
+                  required
+                  label="Grade Levels"
+                  sx={{
+                    backgroundColor: "#f0f0f0",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      border: "none",
+                    },
+                  }}
+                >
+                  <MenuItem value="Elementary">Elementary</MenuItem>
+                  <MenuItem value="Middle School">Middle School</MenuItem>
+                  <MenuItem value="High School">High School</MenuItem>
+                  <MenuItem value="College">College</MenuItem>
+              
+                </Select>
+              </FormControl>
+            </Grid>
+
+         
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Fee (per hour)"
+                type="number"
+                value={fee}
+                onChange={(e) => setFee(e.target.value)}
+                required
+                fullWidth
+                variant="outlined"
+                sx={{
+                  backgroundColor: "#f0f0f0",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Grid>
+
+           
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Specialization Areas"
+                placeholder="Separate with commas"
+                value={specializationAreas}
+                onChange={(e) => setSpecializationAreas(e.target.value.split(',').map(area => area.trim()))}
+                fullWidth
+                variant="outlined"
+                sx={{
+                  backgroundColor: "#f0f0f0",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Grid>
+          </Grid>
+        );
+      case 2:
+        return (
+          <Grid container spacing={3}>
+           
+            <Grid item xs={12}>
+              <TextField
+                label="Teaching Style"
+                value={teachingStyle}
+                onChange={(e) => setTeachingStyle(e.target.value)}
+                required
+                fullWidth
+                variant="outlined"
+                multiline
+                rows={3}
+                sx={{
+                  backgroundColor: "#f0f0f0",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Grid>
+
+           
+            <Grid item xs={12}>
+              <TextField
+                label="Tutoring Approach"
+                value={tutoringApproach}
+                onChange={(e) => setTutoringApproach(e.target.value)}
+                required
+                fullWidth
+                variant="outlined"
+                multiline
+                rows={3}
+                sx={{
+                  backgroundColor: "#f0f0f0",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Grid>
+
+           
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Availability Time Zone"
+                value={availabilityTimeZone}
+                onChange={(e) => setAvailabilityTimeZone(e.target.value)}
+                required
+                fullWidth
+                variant="outlined"
+                sx={{
+                  backgroundColor: "#f0f0f0",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Grid>
+
+         
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>Languages Spoken</InputLabel>
+                <Select
+                  multiple
+                  value={languagesSpoken}
+                  onChange={(e) => setLanguagesSpoken(e.target.value)}
+                  label="Languages Spoken"
+                  sx={{
+                    backgroundColor: "#f0f0f0",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      border: "none",
+                    },
+                  }}
+                >
+                  <MenuItem value="English">English</MenuItem>
+                  <MenuItem value="Spanish">Spanish</MenuItem>
+                  <MenuItem value="French">French</MenuItem>
+                  <MenuItem value="Mandarin">Mandarin</MenuItem>
+                  <MenuItem value="Other">Other</MenuItem>
+             
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+        );
+      case 3:
+        return (
+          <Grid container spacing={3}>
+           
+            <Grid item xs={12}>
+              <TextField
+                label="Professional Development"
+                value={professionalDevelopment}
+                onChange={(e) => setProfessionalDevelopment(e.target.value)}
+                fullWidth
+                variant="outlined"
+                multiline
+                rows={3}
+                sx={{
+                  backgroundColor: "#f0f0f0",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Grid>
+
+           
+            <Grid item xs={12}>
+              <TextField
+                label="Personal Interests"
+                placeholder="Separate with commas"
+                value={personalInterests}
+                onChange={(e) => setPersonalInterests(e.target.value)}
+                fullWidth
+                variant="outlined"
+                sx={{
+                  backgroundColor: "#f0f0f0",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              />
+            </Grid>
+          </Grid>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
-    <div className="edit-profile-container">
-      <h1 className="edit-profile-title">Edit Profile</h1>
-      <form className="edit-profile-form">
-        
-        {/* Subject Expertise */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label" htmlFor="subject_expertise">Subject Expertise</label>
-          <div className="edit-profile-subject-tags">
-            {subjects.map((subject, index) => (
-              <div key={index} className="edit-profile-tag">
-                <span>{subject}</span>
-                <button
-                  type="button"
-                  className="edit-profile-delete-tag"
-                  onClick={() => handleDelete(setSubjects, subjects, subject)}
-                >
-                  &times;
-                </button>
-              </div>
-            ))}
-            <input
-              type="text"
-              id="subject_expertise"
-              className="edit-profile-input"
-              value={newSubject}
-              onChange={(e) => setNewSubject(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleAdd(setSubjects, subjects, newSubject, setNewSubject);
-                  e.preventDefault();
-                }
-              }}
-              placeholder="Add a subject and press Enter"
-            />
-          </div>
-        </div>
+    <Container maxWidth="lg">
+     
+      <Box
+        sx={{ display: 'flex', alignItems: 'center', mt: 2, alignSelf: 'left', ml: 0, gap: '0.4rem', justifyContent: 'flex-end' }}
+      >
+        <img src={logo} alt="Logo" style={{ height: '3em', marginRight: '0.3rem' }} />
+        <Typography variant="h5" component="h1" sx={{ fontFamily: "Poppins", color: "#313131", fontWeight: '500' }}>
+          AceLink
+        </Typography>
+      </Box>
 
-        {/* Fee */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label" htmlFor="fee">Fee</label>
-          <input
-            type="number"
-            id="fee"
-            className="edit-profile-input"
-            value={fee}
-            onChange={(e) => setFee(Number(e.target.value))}
-            placeholder="Enter fee"
-          />
-        </div>
-
-        {/* Grade Levels */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label">Grade Levels</label>
-          <div className="edit-profile-checkbox-group">
-            {["9", "10", "11", "12"].map(level => (
-              <label key={level} className="edit-profile-checkbox-label">
-                <input
-                  type="checkbox"
-                  name="grade_levels"
-                  value={level}
-                  checked={gradeLevels.includes(level)}
-                  onChange={handleGradeLevelChange}
-                />
-                {level}
-              </label>
-            ))}
-          </div>
-        </div>
-
-        {/* Teaching Style */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label" htmlFor="teaching_style">Teaching Style</label>
-          <select
-            id="teaching_style"
-            className="edit-profile-select"
-            value={teachingStyle}
-            onChange={(e) => setTeachingStyle(e.target.value)}
+      <Box sx={{ marginTop: 4 }}>
+        <Paper elevation={0} sx={{ padding: 4 }}>
+          <Typography
+            variant="h4"
+            align="flex-start"
+            gutterBottom
+            sx={{
+              fontFamily: 'Poppins',
+              fontSize: '40px',
+              fontWeight: 600,
+              color: "#05436A",
+              letterSpacing: '0%',
+              lineHeight: 'auto',
+              marginTop: '10px',
+            }}
           >
-            <option value="Interactive">Interactive</option>
-            <option value="Lecture">Lecture</option>
-            <option value="Practical">Practical</option>
-          </select>
-        </div>
-
-        {/* Experience */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label" htmlFor="experience">Experience (years)</label>
-          <input
-            type="number"
-            id="experience"
-            className="edit-profile-input"
-            value={experience}
-            onChange={(e) => setExperience(Number(e.target.value))}
-            placeholder="Enter years of experience"
-          />
-        </div>
-
-        {/* Languages Spoken */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label" htmlFor="languages_spoken">Languages Spoken</label>
-          <div className="edit-profile-subject-tags">
-            {languages.map((language, index) => (
-              <div key={index} className="edit-profile-tag">
-                <span>{language}</span>
-                <button
-                  type="button"
-                  className="edit-profile-delete-tag"
-                  onClick={() => handleDelete(setLanguages, languages, language)}
-                >
-                  &times;
-                </button>
-              </div>
-            ))}
-            <input
-              type="text"
-              id="languages_spoken"
-              className="edit-profile-input"
-              value={newLanguage}
-              onChange={(e) => setNewLanguage(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleAdd(setLanguages, languages, newLanguage, setNewLanguage);
-                  e.preventDefault();
-                }
-              }}
-              placeholder="Add a language and press Enter"
-            />
-          </div>
-        </div>
-
-        {/* Specialization Areas */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label" htmlFor="specialization_areas">Specialization Areas</label>
-          <div className="edit-profile-subject-tags">
-            {specializations.map((specialization, index) => (
-              <div key={index} className="edit-profile-tag">
-                <span>{specialization}</span>
-                <button
-                  type="button"
-                  className="edit-profile-delete-tag"
-                  onClick={() => handleDelete(setSpecializations, specializations, specialization)}
-                >
-                  &times;
-                </button>
-              </div>
-            ))}
-            <input
-              type="text"
-              id="specialization_areas"
-              className="edit-profile-input"
-              value={newSpecialization}
-              onChange={(e) => setNewSpecialization(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleAdd(setSpecializations, specializations, newSpecialization, setNewSpecialization);
-                  e.preventDefault();
-                }
-              }}
-              placeholder="Add a specialization and press Enter"
-            />
-          </div>
-        </div>
-
-        {/* Certifications */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label" htmlFor="certifications">Certifications</label>
-          <div className="edit-profile-subject-tags">
-            {certifications.map((certification, index) => (
-              <div key={index} className="edit-profile-tag">
-                <span>{certification}</span>
-                <button
-                  type="button"
-                  className="edit-profile-delete-tag"
-                  onClick={() => handleDelete(setCertifications, certifications, certification)}
-                >
-                  &times;
-                </button>
-              </div>
-            ))}
-            <input
-              type="text"
-              id="certifications"
-              className="edit-profile-input"
-              value={newCertification}
-              onChange={(e) => setNewCertification(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleAdd(setCertifications, certifications, newCertification, setNewCertification);
-                  e.preventDefault();
-                }
-              }}
-              placeholder="Add a certification and press Enter"
-            />
-          </div>
-        </div>
-
-        {/* Availability Time Zone */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label" htmlFor="availability_time_zone">Availability Time Zone</label>
-          <select
-            id="availability_time_zone"
-            className="edit-profile-select"
-            value={timeZone}
-            onChange={(e) => setTimeZone(e.target.value)}
+            Enhancing Your Tutor Profile
+          </Typography>
+          <Typography
+            variant="body1"
+            align="left"
+            gutterBottom
+            sx={{
+              fontFamily: 'Poppins',
+              fontSize: '16px',
+              fontWeight: 400,
+              color: "#313131",
+              letterSpacing: '0%',
+              lineHeight: 'auto',
+              marginBottom: '50px',
+              marginTop: '10px',
+            }}
           >
-            {timeZones.map((zone, index) => (
-              <option key={index} value={zone}>{zone}</option>
+            Let's complete your profile to connect you with the right students.
+          </Typography>
+
+          <Stepper activeStep={activeStep} alternativeLabel>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
             ))}
-          </select>
-        </div>
+          </Stepper>
 
-        {/* Tutoring Approach */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label" htmlFor="tutoring_approach">Tutoring Approach</label>
-          <textarea
-            id="tutoring_approach"
-            className="edit-profile-textarea"
-            value={interests}
-            onChange={(e) => setInterests(e.target.value)}
-            placeholder="Describe your tutoring approach"
-          />
-        </div>
-
-        {/* Interests */}
-        <div className="edit-profile-input-group">
-          <label className="edit-profile-label" htmlFor="interests">Interests</label>
-          <div className="edit-profile-subject-tags">
-            {interests.map((interest, index) => (
-              <div key={index} className="edit-profile-tag">
-                <span>{interest}</span>
-                <button
-                  type="button"
-                  className="edit-profile-delete-tag"
-                  onClick={() => handleDelete(setInterests, interests, interest)}
+          <form onSubmit={handleSubmit}>
+            <Box sx={{ marginTop: 4 }}>
+              {renderStepContent(activeStep)}
+            </Box>
+            <Box sx={{ marginTop: 4, display: 'flex', justifyContent: 'space-between' }}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                variant="outlined"
+                sx={{
+                  borderColor: '#166A9E',
+                  color: '#166A9E',
+                  '&:hover': {
+                    borderColor: '#0F4C75',
+                    backgroundColor: 'rgba(15, 76, 117, 0.1)',
+                    color: '#0F4C75',
+                  },
+                }}
+              >
+                Back
+              </Button>
+              {activeStep === steps.length - 1 ? (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    '&:hover': {
+                      backgroundColor: '#0F4C75',
+                    },
+                  }}
                 >
-                  &times;
-                </button>
-              </div>
-            ))}
-            <input
-              type="text"
-              id="interests"
-              className="edit-profile-input"
-              value={newInterest}
-              onChange={(e) => setNewInterest(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleAdd(setInterests, interests, newInterest, setNewInterest);
-                  e.preventDefault();
-                }
-              }}
-              placeholder="Add an interest and press Enter"
-            />
-          </div>
-        </div>
-
-        <button type="submit" className="edit-profile-submit-button">Save Changes</button>
-      </form>
-    </div>
+                  Submit
+                </Button>
+              ) : (
+                <Button
+                  onClick={handleNext}
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    '&:hover': {
+                      backgroundColor: '#0F4C75',
+                    },
+                  }}
+                >
+                  Next
+                </Button>
+              )}
+            </Box>
+          </form>
+        </Paper>
+      </Box>
+    </Container>
   );
 };
 

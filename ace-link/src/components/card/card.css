@@ -1,10 +1,11 @@
 .card {
     width: 270px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255 255 255);
     border-radius: 8px;
     margin: 20px 10px;
+
     /* border: 1px solid rgb(231, 231, 231); */
-    box-shadow: 5px 7px 14px rgba(184, 184, 184, 0.373);
+    box-shadow: 5px 7px 14px rgb(184 184 184 / 37.3%);
 }
 
 .card .img{
@@ -24,14 +25,16 @@
     padding: 0 15px;
     font-size: large;
     font-weight: 500;
-    margin: 20px 0 7px 0;;
+    margin: 20px 0 7px;;
 }
+
 .card .auth{
     padding: 0 10px;
     font-size:small;
     font-weight: 600;
 
 }
+
 .card .desc{
     padding: 0 15px;
     font-size:x-small;
@@ -46,12 +49,13 @@
     align-items: center;
     justify-content: center;
     width: 130px;
-    background-color: rgb(3, 13, 28);
+    background-color: #166A9E;
     padding: 10px;
     color: white;
     border-radius: 5px;
     font-size: 14px;
 }
+
 .card .last{
     margin: 10px;
     display: flex;

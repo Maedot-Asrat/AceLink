@@ -1,4 +1,4 @@
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .hero-section {
     flex-direction: column;
     text-align: center;
@@ -13,31 +13,25 @@
     margin-bottom: 20px;
   }
 }
+
 .main{
   display: flex;
 
 }
+
 .contentcontainer {
   width: 100%;
-  /* margin-left: 19%; */
+
+ 
 }
 
-.main .bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-  padding: 0 70px;
-  height: 60px;
-  background-color: white;
-  box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.1);
-}
 
 
 
 .tit{
   font-size: x-large;
   font-weight: bold;
-  color: rgb(121, 117, 117);
-  margin-left: 70px;
+  color: rgb(121 117 117);
+
+
 }

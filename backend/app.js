@@ -27,21 +27,21 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
-const corsOptions = {
-  origin: 'https://acelink-tutoring.netlify.app', // Only allow HTTP for now
-  credentials: true,
-};
+const cors = require('cors');
+
+// Allow any origin without credentials
+app.use(cors());
 const io = new Server(server, {
   cors: {
-    origin: 'https://acelink-tutoring.netlify.app', // Allow requests from this origin
-    methods: ['GET', 'POST'], // Allow these HTTP methods
-    allowedHeaders: ['Content-Type'], // Allow these headers
-    credentials: true, // Allow credentials like cookies
+    origin: '*', // Allow any origin
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
   }
 });
-app.use(cors(corsOptions));
+
+
 app.use(express.json());
-app.use(cors());
+
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
