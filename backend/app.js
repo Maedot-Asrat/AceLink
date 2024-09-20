@@ -5,9 +5,9 @@ const http = require('http');
 const { Server } = require('socket.io');
 const axios = require('axios');
 const fs = require('fs');
-const AudioRecording = require('./models/audiorecording'); // Adjust path to your AudioRecording model
 const path = require('path');
-
+const AudioRecording = require('./models/audiorecording'); // Adjust path to your AudioRecording model
+const cors =require('cors');
 // Import your routes
 const userRoutes = require('./routes/user');
 const studyGroupRoutes = require('./routes/sgRoutes');
@@ -15,25 +15,31 @@ const recommendRoutes = require('./routes/recommend');
 const requestRoutes = require('./routes/requests');
 const sessionRoutes = require('./routes/Sessions');
 const courseRoutes = require('./routes/Courses');
-const chatbotRoute = require('./routes/chatbot');
+const libraryRoutes = require('./routes/Library');
+const ratingRoutes=require('./routes/Rating');
+const authRoutes = require('./routes/auth');
+const passwordRoutes = require('./routes/password');
+const Message = require('./models/Message'); 
 const messageRoute = require('./routes/messageRoutes');
-const cors = require('cors');
-const router = require('./routes/user');
 // Load environment variables
 dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
 
+const corsOptions = {
+  origin: 'http://localhost:3001', // Only allow HTTP for now
+  credentials: true,
+};
 const io = new Server(server, {
   cors: {
-    origin: 'https://acelink-tutoring.netlify.app', // Allow requests from this origin
+    origin: 'http://localhost:3001', // Allow requests from this origin
     methods: ['GET', 'POST'], // Allow these HTTP methods
     allowedHeaders: ['Content-Type'], // Allow these headers
     credentials: true, // Allow credentials like cookies
   }
 });
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cors());
 
@@ -50,16 +56,48 @@ app.use((req, res, next) => {
   req.io = io;
   next();
 });
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const chatbotRoute = require('./routes/chatbot');
+app.use('',chatbotRoute);
 
 // Use your routes here
 app.use('/user', userRoutes);
-app.use('', studyGroupRoutes);
+app.use('/group', studyGroupRoutes);
 app.use('/api', recommendRoutes);
 app.use('', requestRoutes);
 app.use('/trust', sessionRoutes);
 app.use('/courses', courseRoutes);
-app.use('',chatbotRoute);
-app.use('/api', messageRoute(io));
+app.use('/library',libraryRoutes);
+app.use('/rating',ratingRoutes);
+app.use('/pass', authRoutes);
+app.use('/pass', passwordRoutes);
+app.use('/api', messageRoute);
+io.on('connection', (socket) => {
+  console.log('A user connected');
+
+  // Emit all messages when a user connects
+  socket.on('getMessages', async () => {
+    const messages = await Message.find().populate('replies');
+    socket.emit('loadMessages', messages);
+  });
+
+  // Handle new questions
+  socket.on('chatMessage', async (msg) => {
+    const newMessage = new Message(msg);
+    const savedMessage = await newMessage.save();
+    io.emit('newMessage', savedMessage); // Emit to all users
+  });
+
+  // Handle new replies
+  socket.on('chatReply', async (reply) => {
+    const newReply = new Message({ content: reply.content, sender: reply.sender });
+    const savedReply = await newReply.save();
+    await Message.findByIdAndUpdate(reply.parentMessageId, {
+      $push: { replies: savedReply._id },
+    });
+    io.emit('newReply', { ...savedReply._doc, parentMessageId: reply.parentMessageId });
+  });
+});
 
 // Summarization Function using Gemini
 async function summarizeTranscription(transcription) {
@@ -301,6 +339,7 @@ async function processRecordings() {
 
 
 // Transcription and Saving Function
+// Transcription and Saving Function
 async function transcribeAndSave(recording) {
   try {
     if (!fs.existsSync(recording.filepath)) {
@@ -317,13 +356,35 @@ async function transcribeAndSave(recording) {
       },
       params: {
         'punctuate': true,
-        'language': 'en-US'
+        'language': 'en-US',
+        'sentiment': true, // Enable sentiment analysis in the request
+        'topics': true,
+        'summarize': true
       }
     });
 
+    console.log('Deepgram API Response:', JSON.stringify(response.data, null, 2));
+    
     if (response.data && response.data.results && response.data.results.channels.length > 0) {
       const transcription = response.data.results.channels[0].alternatives[0].transcript;
-      console.error('Deepgram API Error Response:', response.data);
+      
+      // Handle sentiment analysis results
+      const sentimentAnalysis = response.data.results.channels[0].alternatives[0].sentiment;
+      if (sentimentAnalysis) {
+        console.log(`Sentiment analysis for ${recording.filename}:`, sentimentAnalysis);
+        recording.sentiment = sentimentAnalysis;  // Save sentiment analysis
+      } else {
+        console.log(`No sentiment analysis available for ${recording.filename}.`);
+      }
+
+      // Handle topic analysis results
+      const topics = response.data.results.channels[0].alternatives[0].topics;
+      if (topics && topics.length > 0) {
+        console.log(`Topics detected for ${recording.filename}:`, topics);
+        recording.topics = topics;  // Save detected topics
+      } else {
+        console.log(`No topics detected for ${recording.filename}.`);
+      }
 
       if (!transcription || transcription.trim() === '') {
         console.error(`Transcription failed or empty for ${recording.filename}.`);
@@ -353,6 +414,7 @@ async function transcribeAndSave(recording) {
     }
   }
 }
+
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

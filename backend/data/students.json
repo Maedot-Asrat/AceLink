@@ -1,0 +1,629 @@
+[
+  {
+    "username": "student2",
+    "email": "<student2_email>",
+    "profile": [
+      {
+        "grade_level": 11,
+        "learning_style": "auditory",
+        "subject_interests": ["history", "English"],
+        "availability": {
+          "Tue": ["16:00-18:00"],
+          "Thu": ["15:00-17:00"]
+        },
+        "preferred_language": "Spanish",
+        "feedback": [
+          { "tutor_id": "103", "rating": 5.0, "comments": "Excellent explanations!" },
+          { "tutor_id": "104", "rating": 4.0, "comments": "Very knowledgeable." }
+        ],
+        "age": 16,
+        "goals": "Improve writing skills",
+        "current_needs": "Extra help with essay writing",
+        "parent_contact": {
+          "name": "Maria Garcia",
+          "email": "maria.garcia@example.com",
+          "phone": "555-1234"
+        },
+        "study_habits": "Studying in short bursts",
+        "extracurricular_activities": ["Debate club"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Intermediate", "Spanish": "Native"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student3",
+    "email": "<student3_email>",
+    "profile": [
+      {
+        "grade_level": 12,
+        "learning_style": "kinesthetic",
+        "subject_interests": ["physics", "chemistry"],
+        "availability": {
+          "Mon": ["14:00-16:00"],
+          "Fri": ["10:00-12:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "105", "rating": 4.8, "comments": "Engaging lessons!" },
+          { "tutor_id": "106", "rating": 3.8, "comments": "Good for practice problems." }
+        ],
+        "age": 17,
+        "goals": "Prepare for college exams",
+        "current_needs": "Help with lab techniques",
+        "parent_contact": {
+          "name": "John Smith",
+          "email": "john.smith@example.com",
+          "phone": "555-5678"
+        },
+        "study_habits": "Hands-on experiments",
+        "extracurricular_activities": ["Science club"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "Female"
+      }
+    ]
+  },
+  {
+    "username": "student4",
+    "email": "<student4_email>",
+    "profile": [
+      {
+        "grade_level": 9,
+        "learning_style": "visual",
+        "subject_interests": ["art", "geography"],
+        "availability": {
+          "Wed": ["15:00-17:00"],
+          "Sat": ["12:00-14:00"]
+        },
+        "preferred_language": "French",
+        "feedback": [
+          { "tutor_id": "107", "rating": 4.7, "comments": "Very patient tutor." },
+          { "tutor_id": "108", "rating": 4.2, "comments": "Good for creative subjects." }
+        ],
+        "age": 14,
+        "goals": "Enhance artistic skills",
+        "current_needs": "Guidance in art techniques",
+        "parent_contact": {
+          "name": "Sophie Dubois",
+          "email": "sophie.dubois@example.com",
+          "phone": "555-8765"
+        },
+        "study_habits": "Using visual aids",
+        "extracurricular_activities": ["Art class"],
+        "health_considerations": "None",
+        "language_proficiency": {"French": "Fluent", "English": "Intermediate"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student5",
+    "email": "<student5_email>",
+    "profile": [
+      {
+        "grade_level": 10,
+        "learning_style": "auditory",
+        "subject_interests": ["music", "literature"],
+        "availability": {
+          "Tue": ["17:00-19:00"],
+          "Thu": ["18:00-20:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "109", "rating": 4.6, "comments": "Great at explaining complex ideas." },
+          { "tutor_id": "110", "rating": 4.4, "comments": "Very enthusiastic and supportive." }
+        ],
+        "age": 15,
+        "goals": "Develop musical skills",
+        "current_needs": "Improvement in music theory",
+        "parent_contact": {
+          "name": "Emily Johnson",
+          "email": "emily.johnson@example.com",
+          "phone": "555-2345"
+        },
+        "study_habits": "Listening to recordings",
+        "extracurricular_activities": ["School band"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student6",
+    "email": "<student6_email>",
+    "profile": [
+      {
+        "grade_level": 11,
+        "learning_style": "kinesthetic",
+        "subject_interests": ["sports", "biology"],
+        "availability": {
+          "Mon": ["16:00-18:00"],
+          "Fri": ["11:00-13:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "111", "rating": 4.9, "comments": "Engaging and practical lessons." },
+          { "tutor_id": "112", "rating": 4.1, "comments": "Very interactive teaching style." }
+        ],
+        "age": 16,
+        "goals": "Improve athletic performance",
+        "current_needs": "Understanding sports science",
+        "parent_contact": {
+          "name": "Michael Brown",
+          "email": "michael.brown@example.com",
+          "phone": "555-3456"
+        },
+        "study_habits": "Active learning through practice",
+        "extracurricular_activities": ["Soccer team"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student7",
+    "email": "<student7_email>",
+    "profile": [
+      {
+        "grade_level": 12,
+        "learning_style": "visual",
+        "subject_interests": ["economics", "mathematics"],
+        "availability": {
+          "Tue": ["15:00-17:00"],
+          "Thu": ["13:00-15:00"]
+        },
+        "preferred_language": "German",
+        "feedback": [
+          { "tutor_id": "113", "rating": 4.3, "comments": "Excellent understanding of complex concepts." },
+          { "tutor_id": "114", "rating": 3.9, "comments": "Good for problem-solving practice." }
+        ],
+        "age": 17,
+        "goals": "Prepare for university entrance exams",
+        "current_needs": "Advanced math tutoring",
+        "parent_contact": {
+          "name": "Anna Schmidt",
+          "email": "anna.schmidt@example.com",
+          "phone": "555-4567"
+        },
+        "study_habits": "Visual aids and charts",
+        "extracurricular_activities": ["Economics club"],
+        "health_considerations": "None",
+        "language_proficiency": {"German": "Fluent", "English": "Advanced"},
+        "gender_preference": "Male"
+      }
+    ]
+  },
+  {
+    "username": "student8",
+    "email": "<student8_email>",
+    "profile": [
+      {
+        "grade_level": 9,
+        "learning_style": "auditory",
+        "subject_interests": ["music", "drama"],
+        "availability": {
+          "Wed": ["14:00-16:00"],
+          "Sat": ["10:00-12:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "115", "rating": 1.6, "comments": "Passionate about teaching." },
+          { "tutor_id": "116", "rating": 3.0, "comments": "Good for performance arts." }
+        ],
+        "age": 14,
+        "goals": "Improve performance skills",
+        "current_needs": "Guidance on stage presence",
+        "parent_contact": {
+          "name": "Laura Davis",
+          "email": "laura.davis@example.com",
+          "phone": "555-6789"
+        },
+        "study_habits": "Listening and role-playing",
+        "extracurricular_activities": ["Drama club"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student9",
+    "email": "<student9_email>",
+    "profile": [
+      {
+        "grade_level": 10,
+        "learning_style": "kinesthetic",
+        "subject_interests": ["engineering", "mathematics"],
+        "availability": {
+          "Mon": ["13:00-15:00"],
+          "Thu": ["14:00-16:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "117", "rating": 4.8, "comments": "Great hands-on approach." },
+          { "tutor_id": "118", "rating": 4.3, "comments": "Effective problem-solving skills." }
+        ],
+        "age": 15,
+        "goals": "Pursue a career in engineering",
+        "current_needs": "Understanding engineering concepts",
+        "parent_contact": {
+          "name": "James Wilson",
+          "email": "james.wilson@example.com",
+          "phone": "555-7890"
+        },
+        "study_habits": "Hands-on projects",
+        "extracurricular_activities": ["Robotics club"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student10",
+    "email": "<student10_email>",
+    "profile": [
+      {
+        "grade_level": 11,
+        "learning_style": "visual",
+        "subject_interests": ["computer science", "graphic design"],
+        "availability": {
+          "Tue": ["16:00-18:00"],
+          "Fri": ["13:00-15:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "119", "rating": 4.7, "comments": "Very knowledgeable in tech." },
+          { "tutor_id": "120", "rating": 4.2, "comments": "Creative and helpful." }
+        ],
+        "age": 16,
+        "goals": "Develop coding and design skills",
+        "current_needs": "Advanced programming help",
+        "parent_contact": {
+          "name": "Rachel Adams",
+          "email": "rachel.adams@example.com",
+          "phone": "555-8901"
+        },
+        "study_habits": "Using online resources and tutorials",
+        "extracurricular_activities": ["Coding club"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student11",
+    "email": "<student11_email>",
+    "profile": [
+      {
+        "grade_level": 12,
+        "learning_style": "auditory",
+        "subject_interests": ["philosophy", "political science"],
+        "availability": {
+          "Wed": ["17:00-19:00"],
+          "Sat": ["14:00-16:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "121", "rating": 4.9, "comments": "Great discussions and insights." },
+          { "tutor_id": "122", "rating": 4.4, "comments": "Good at explaining theories." }
+        ],
+        "age": 17,
+        "goals": "Explore political science further",
+        "current_needs": "Guidance on philosophical concepts",
+        "parent_contact": {
+          "name": "Paul Martinez",
+          "email": "paul.martinez@example.com",
+          "phone": "555-9012"
+        },
+        "study_habits": "Listening to lectures",
+        "extracurricular_activities": ["Philosophy club"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student12",
+    "email": "<student12_email>",
+    "profile": [
+      {
+        "grade_level": 10,
+        "learning_style": "visual",
+        "subject_interests": ["environmental science", "geology"],
+        "availability": {
+          "Mon": ["15:00-17:00"],
+          "Thu": ["10:00-12:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "123", "rating": 4.6, "comments": "Very engaging with real-life examples." },
+          { "tutor_id": "124", "rating": 4.1, "comments": "Good at making complex topics accessible." }
+        ],
+        "age": 15,
+        "goals": "Study environmental science in college",
+        "current_needs": "Assistance with research methods",
+        "parent_contact": {
+          "name": "Laura Harris",
+          "email": "laura.harris@example.com",
+          "phone": "555-2346"
+        },
+        "study_habits": "Visualizing data through graphs",
+        "extracurricular_activities": ["Environmental club"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student13",
+    "email": "<student13_email>",
+    "profile": [
+      {
+        "grade_level": 11,
+        "learning_style": "kinesthetic",
+        "subject_interests": ["sports medicine", "health sciences"],
+        "availability": {
+          "Tue": ["14:00-16:00"],
+          "Fri": ["16:00-18:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "125", "rating": 4.7, "comments": "Interactive and practical sessions." },
+          { "tutor_id": "126", "rating": 4.3, "comments": "Great for understanding anatomy." }
+        ],
+        "age": 16,
+        "goals": "Become a physical therapist",
+        "current_needs": "Understanding human anatomy",
+        "parent_contact": {
+          "name": "Emily Wilson",
+          "email": "emily.wilson@example.com",
+          "phone": "555-3457"
+        },
+        "study_habits": "Hands-on practice and simulation",
+        "extracurricular_activities": ["Athletic training"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student14",
+    "email": "<student14_email>",
+    "profile": [
+      {
+        "grade_level": 9,
+        "learning_style": "visual",
+        "subject_interests": ["literature", "art history"],
+        "availability": {
+          "Mon": ["13:00-15:00"],
+          "Thu": ["14:00-16:00"]
+        },
+        "preferred_language": "Italian",
+        "feedback": [
+          { "tutor_id": "127", "rating": 4.5, "comments": "Passionate about literature." },
+          { "tutor_id": "128", "rating": 4.0, "comments": "Good with historical context." }
+        ],
+        "age": 14,
+        "goals": "Improve analytical reading skills",
+        "current_needs": "Understanding literary analysis",
+        "parent_contact": {
+          "name": "Giovanni Rossi",
+          "email": "giovanni.rossi@example.com",
+          "phone": "555-4568"
+        },
+        "study_habits": "Analyzing texts visually",
+        "extracurricular_activities": ["Literature club"],
+        "health_considerations": "None",
+        "language_proficiency": {"Italian": "Fluent", "English": "Intermediate"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student15",
+    "email": "<student15_email>",
+    "profile": [
+      {
+        "grade_level": 12,
+        "learning_style": "auditory",
+        "subject_interests": ["philosophy", "sociology"],
+        "availability": {
+          "Wed": ["16:00-18:00"],
+          "Sat": ["11:00-13:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "129", "rating": 4.9, "comments": "Deep understanding of subjects." },
+          { "tutor_id": "130", "rating": 4.2, "comments": "Very good at fostering critical thinking." }
+        ],
+        "age": 17,
+        "goals": "Prepare for university in social sciences",
+        "current_needs": "Help with critical essays",
+        "parent_contact": {
+          "name": "Robert Green",
+          "email": "robert.green@example.com",
+          "phone": "555-5679"
+        },
+        "study_habits": "Listening to academic podcasts",
+        "extracurricular_activities": ["Debate team"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student16",
+    "email": "<student16_email>",
+    "profile": [
+      {
+        "grade_level": 10,
+        "learning_style": "kinesthetic",
+        "subject_interests": ["engineering", "robotics"],
+        "availability": {
+          "Mon": ["14:00-16:00"],
+          "Thu": ["15:00-17:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "131", "rating": 4.6, "comments": "Very hands-on and practical." },
+          { "tutor_id": "132", "rating": 4.0, "comments": "Good at explaining technical concepts." }
+        ],
+        "age": 15,
+        "goals": "Build a career in robotics",
+        "current_needs": "Understanding robotic systems",
+        "parent_contact": {
+          "name": "Linda Miller",
+          "email": "linda.miller@example.com",
+          "phone": "555-6780"
+        },
+        "study_habits": "Working on projects and prototypes",
+        "extracurricular_activities": ["Robotics competition"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student17",
+    "email": "<student17_email>",
+    "profile": [
+      {
+        "grade_level": 11,
+        "learning_style": "visual",
+        "subject_interests": ["astronomy", "physics"],
+        "availability": {
+          "Tue": ["13:00-15:00"],
+          "Fri": ["14:00-16:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "133", "rating": 4.8, "comments": "Excellent at making complex topics understandable." },
+          { "tutor_id": "134", "rating": 4.2, "comments": "Very enthusiastic and knowledgeable." }
+        ],
+        "age": 16,
+        "goals": "Pursue astrophysics in college",
+        "current_needs": "Advanced understanding of astrophysics",
+        "parent_contact": {
+          "name": "James Roberts",
+          "email": "james.roberts@example.com",
+          "phone": "555-7891"
+        },
+        "study_habits": "Using visual simulations and models",
+        "extracurricular_activities": ["Astronomy club"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student18",
+    "email": "<student18_email>",
+    "profile": [
+      {
+        "grade_level": 12,
+        "learning_style": "auditory",
+        "subject_interests": ["economics", "business studies"],
+        "availability": {
+          "Wed": ["15:00-17:00"],
+          "Sat": ["13:00-15:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "135", "rating": 4.7, "comments": "Very insightful and practical lessons." },
+          { "tutor_id": "136", "rating": 4.1, "comments": "Good for understanding economic theories." }
+        ],
+        "age": 17,
+        "goals": "Study business management",
+        "current_needs": "Help with economic modeling",
+        "parent_contact": {
+          "name": "Sarah Thompson",
+          "email": "sarah.thompson@example.com",
+          "phone": "555-8902"
+        },
+        "study_habits": "Listening to case studies and business news",
+        "extracurricular_activities": ["Business club"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student19",
+    "email": "<student19_email>",
+    "profile": [
+      {
+        "grade_level": 9,
+        "learning_style": "visual",
+        "subject_interests": ["graphic design", "media studies"],
+        "availability": {
+          "Tue": ["16:00-18:00"],
+          "Thu": ["13:00-15:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "137", "rating": 4.5, "comments": "Creative and very supportive." },
+          { "tutor_id": "138", "rating": 4.0, "comments": "Good at providing constructive feedback." }
+        ],
+        "age": 14,
+        "goals": "Pursue a career in media design",
+        "current_needs": "Improvement in design techniques",
+        "parent_contact": {
+          "name": "Amanda Scott",
+          "email": "amanda.scott@example.com",
+          "phone": "555-9013"
+        },
+        "study_habits": "Creating and reviewing design projects",
+        "extracurricular_activities": ["Design club"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  },
+  {
+    "username": "student20",
+    "email": "<student20_email>",
+    "profile": [
+      {
+        "grade_level": 10,
+        "learning_style": "kinesthetic",
+        "subject_interests": ["sports management", "physical education"],
+        "availability": {
+          "Mon": ["16:00-18:00"],
+          "Thu": ["12:00-14:00"]
+        },
+        "preferred_language": "English",
+        "feedback": [
+          { "tutor_id": "139", "rating": 4.8, "comments": "Excellent at making physical concepts relatable." },
+          { "tutor_id": "140", "rating": 4.3, "comments": "Good for practical sports knowledge." }
+        ],
+        "age": 15,
+        "goals": "Become a sports coach",
+        "current_needs": "Understanding sports strategies",
+        "parent_contact": {
+          "name": "Daniel Johnson",
+          "email": "daniel.johnson@example.com",
+          "phone": "555-6781"
+        },
+        "study_habits": "Active learning through physical activities",
+        "extracurricular_activities": ["Track and field team"],
+        "health_considerations": "None",
+        "language_proficiency": {"English": "Fluent"},
+        "gender_preference": "No preference"
+      }
+    ]
+  }
+]

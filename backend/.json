@@ -1,0 +1,83 @@
+{
+    "version": "1.0",
+    "collections": [
+      {
+        "name": "User Routes",
+        "requests": [
+          {
+            "name": "Register User",
+            "method": "POST",
+            "url": "http://localhost:3000/register",
+            "headers": [
+              { "name": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "type": "json",
+              "raw": {
+                "username": "student123",
+                "email": "student123@example.com",
+                "password": "password123",
+                "role": "Student",
+                "profile": {
+                  "grade_level": 10,
+                  "learning_style": "Visual",
+                  "age": 16,
+                  "subject_interests": ["Math", "Physics"],
+                  "availability": { "Monday": ["10:00-12:00"], "Wednesday": ["14:00-16:00"] },
+                  "preferred_language": "English",
+                  "goals": "Improve in math",
+                  "current_needs": "Tutoring in calculus",
+                  "parent_contact": {
+                    "name": "John Doe",
+                    "email": "parent@example.com",
+                    "phone": "1234567890"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "Login User",
+            "method": "POST",
+            "url": "http://localhost:3000/login",
+            "headers": [
+              { "name": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "type": "json",
+              "raw": {
+                "email": "student123@example.com",
+                "password": "password123"
+              }
+            }
+          },
+          {
+            "name": "Update Profile (With Picture)",
+            "method": "PUT",
+            "url": "http://localhost:3000/update-profile",
+            "headers": [
+              { "name": "Authorization", "value": "Bearer {{token}}" },
+              { "name": "Content-Type", "value": "multipart/form-data" }
+            ],
+            "body": {
+              "type": "formdata",
+              "form": [
+                { "name": "userId", "value": "{{userId}}" },
+                { "name": "profile", "value": "{\"grade_level\": 11, \"goals\": \"Improve in Physics\"}", "type": "text" },
+                { "name": "profilePicture", "value": "/path/to/your/profile.jpg", "type": "file" }
+              ]
+            }
+          },
+          {
+            "name": "Get Tutors",
+            "method": "GET",
+            "url": "http://localhost:3000/get-tutors",
+            "headers": [
+              { "name": "Authorization", "value": "Bearer {{token}}" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

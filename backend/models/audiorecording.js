@@ -7,11 +7,13 @@ const AudioRecordingSchema = new mongoose.Schema({
     mimetype: String,
     size: Number,
     createdAt: { type: Date, default: Date.now },
-    transcription: { type: String, default: null }, // Field for transcription
-    summary: { type: String, default: null }, // Field for summary
-    flashcards: { type: String, default: null }, // Field for flashcards
-    quizzes: { type: String, default: null }, // Field for quizzes
-    reviewNotes: { type: String, default: null }, // Field for review notes
+    transcription: { type: String, default: null },
+    summary: { type: String, default: null },
+    flashcards: { type: String, default: null },
+    quizzes: { type: String, default: null },
+    reviewNotes: { type: String, default: null },
+    sentiment: { type: mongoose.Schema.Types.Mixed, default: null },  // Field for sentiment analysis
+    topics: { type: [String], default: [] }  // Field for detected topics
 });
 
 // Check if the model is already defined

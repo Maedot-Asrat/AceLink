@@ -7,6 +7,7 @@ const TutorSchema = new mongoose.Schema({
   profile: 
     {
       subject_expertise: { type: [String] }, 
+      gender:{type: String},
       fee: { type: [Number] },
       grade_levels: { type: [String] },
       teaching_style: { type: String },
@@ -15,6 +16,7 @@ const TutorSchema = new mongoose.Schema({
       experience: { type: Number },
       qualifications: { type: String },
       profile_picture: { type: String },
+      video: { type: String },
       specialization_areas: { type: [String] },
       certifications: { type: [String] },
       performance_metrics: {

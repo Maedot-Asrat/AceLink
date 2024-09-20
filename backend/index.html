@@ -61,7 +61,7 @@
             const api = new JitsiMeetExternalAPI("8x8.vc", {
                 roomName: "vpaas-magic-cookie-24fead3220f24e59aaa89a08e9e6d520/SampleAppMassiveCommercesSeparateDeeply",
                 parentNode: document.querySelector('#jaas-container'),
-                jwt: "YOUR_JWT_TOKEN", // Replace with your actual JWT token
+                jwt: "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAvMDY2ODMwLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3MjQ3NzEyNTAsImV4cCI6MTcyNDc3ODQ1MCwibmJmIjoxNzI0NzcxMjQ1LCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtMjRmZWFkMzIyMGYyNGU1OWFhYTg5YTA4ZTllNmQ1MjAiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOnRydWUsIm91dGJvdW5kLWNhbGwiOnRydWUsInNpcC1vdXRib3VuZC1jYWxsIjpmYWxzZSwidHJhbnNjcmlwdGlvbiI6dHJ1ZSwicmVjb3JkaW5nIjp0cnVlfSwidXNlciI6eyJoaWRkZW4tZnJvbS1yZWNvcmRlciI6ZmFsc2UsIm1vZGVyYXRvciI6dHJ1ZSwibmFtZSI6ImZlbnV0aWdpc3QiLCJpZCI6Imdvb2dsZS1vYXV0aDJ8MTA0MTA1OTMzMTk1MDgxNjcyOTg2IiwiYXZhdGFyIjoiIiwiZW1haWwiOiJmZW51dGlnaXN0QGdtYWlsLmNvbSJ9fSwicm9vbSI6IioifQ.OVy83Fwf93Sc2-AXbECZBl6Yv_tYedovuW0xr2I8h3UCP5-Mc_jJPu0XmIfWEhkcpGpTq6Ah2My-L7kcJ4ItWa6tzsPUJ8NRy-vilcGVpa9WjxOBqqxfG5hfN2aUNWglojhS-wvcrTEIrIBln3xFzkh2OuP3r7bQD_rfKEmQd3zPfjLph4W3dMguNpRpQuENMtN9zJOuYv2qlGUBe-S0VaMASR5lmM83J38xgLN1S8zc19uzcSgDaqnnmycMxLzkGcGsok70yXJwd_EAHQXOc9qQnZDiG-pRzUP2U1e_Yuc42i_0cB9HClvylZ2Y4l9VjbqRGr0LyqwPa-oxHAEZ8w", // Replace with your actual JWT token
                 configOverwrite: {
                     toolbarButtons: [
                         'microphone', 'camera', 'closedcaptions', 'desktop', 
@@ -137,7 +137,7 @@
             formData.append(type, blob, filename);
 
             try {
-                const response = await fetch('http://localhost:3000/upload', {
+                const response = await fetch('http://localhost:3000/trust/upload', {
                     method: 'POST',
                     body: formData,
                 });

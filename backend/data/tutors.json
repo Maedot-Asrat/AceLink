@@ -1,0 +1,602 @@
+[
+  {
+    "username": "tutor1",
+    "email": "<tutor1_email>",
+    "profile": [
+      {
+        "subject_expertise": ["math", "science"],
+        "grade_levels": [9, 10, 11],
+        "teaching_style": "visual",
+        "availability": {
+          "Mon": ["18:00-20:00"],
+          "Wed": ["17:00-19:00"]
+        },
+        "languages_spoken": ["English", "Spanish"],
+        "rating": 4.6,
+        "experience": 5,
+        "qualifications": "B.Sc. in Physics",
+        "specialization_areas": ["Algebra", "Biology"],
+        "certifications": ["Certified Tutor"],
+        "performance_metrics": {
+          "average_improvement": "20%",
+          "student_retention": "85%"
+        },
+        "availability_time_zone": "EST",
+        "tutoring_approach": "Hands-on learning",
+        "past_student_outcomes": ["Improved grades in math"],
+        "professional_development": "Ongoing workshops in education",
+        "personal_interests": ["Photography", "Traveling"]
+      }
+    ]
+  },
+  {
+    "username": "tutor2",
+    "email": "<tutor2_email>",
+    "profile": [
+      {
+        "subject_expertise": ["literature", "history"],
+        "grade_levels": [10, 11, 12],
+        "teaching_style": "discussion-based",
+        "availability": {
+          "Tue": ["15:00-17:00"],
+          "Thu": ["16:00-18:00"]
+        },
+        "languages_spoken": ["English", "French"],
+        "rating": 4.8,
+        "experience": 7,
+        "qualifications": "M.A. in Literature",
+        "specialization_areas": ["Shakespeare", "World History"],
+        "certifications": ["Certified ESL Instructor"],
+        "performance_metrics": {
+          "average_improvement": "25%",
+          "student_retention": "90%"
+        },
+        "availability_time_zone": "PST",
+        "tutoring_approach": "Socratic method",
+        "past_student_outcomes": ["High scores in AP exams"],
+        "professional_development": "Literature seminars",
+        "personal_interests": ["Writing", "Travel"]
+      }
+    ]
+  },
+  {
+    "username": "tutor3",
+    "email": "<tutor3_email>",
+    "profile": [
+      {
+        "subject_expertise": ["chemistry", "biology"],
+        "grade_levels": [9, 10, 11],
+        "teaching_style": "hands-on",
+        "availability": {
+          "Mon": ["17:00-19:00"],
+          "Fri": ["18:00-20:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.5,
+        "experience": 4,
+        "qualifications": "B.Sc. in Chemistry",
+        "specialization_areas": ["Organic Chemistry"],
+        "certifications": [],
+        "performance_metrics": {
+          "average_improvement": "30%",
+          "student_retention": "80%"
+        },
+        "availability_time_zone": "CST",
+        "tutoring_approach": "Experiments and real-life applications",
+        "past_student_outcomes": ["Successful lab practicals"],
+        "professional_development": "Science conferences",
+        "personal_interests": ["Gardening", "Cooking"]
+      }
+    ]
+  },
+  {
+    "username": "tutor4",
+    "email": "<tutor4_email>",
+    "profile": [
+      {
+        "subject_expertise": ["statistics", "economics"],
+        "grade_levels": [11, 12],
+        "teaching_style": "visual and practical",
+        "availability": {
+          "Wed": ["15:00-17:00"],
+          "Sat": ["10:00-12:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.7,
+        "experience": 6,
+        "qualifications": "M.Sc. in Economics",
+        "specialization_areas": ["Data Analysis"],
+        "certifications": ["Certified Data Analyst"],
+        "performance_metrics": {
+          "average_improvement": "15%",
+          "student_retention": "88%"
+        },
+        "availability_time_zone": "EST",
+        "tutoring_approach": "Real-world case studies",
+        "past_student_outcomes": ["Enhanced analytical skills"],
+        "professional_development": "Statistics training sessions",
+        "personal_interests": ["Running", "Reading"]
+      }
+    ]
+  },
+  {
+    "username": "tutor5",
+    "email": "<tutor5_email>",
+    "profile": [
+      {
+        "subject_expertise": ["music theory", "piano"],
+        "grade_levels": [6, 7, 8],
+        "teaching_style": "interactive",
+        "availability": {
+          "Mon": ["14:00-16:00"],
+          "Thu": ["16:00-18:00"]
+        },
+        "languages_spoken": ["English", "Italian"],
+        "rating": 4.9,
+        "experience": 10,
+        "qualifications": "M.A. in Music Education",
+        "specialization_areas": ["Classical Piano"],
+        "certifications": ["Certified Music Educator"],
+        "performance_metrics": {
+          "average_improvement": "40%",
+          "student_retention": "92%"
+        },
+        "availability_time_zone": "CET",
+        "tutoring_approach": "Performance-based learning",
+        "past_student_outcomes": ["Prepared for music exams"],
+        "professional_development": "Music workshops",
+        "personal_interests": ["Composing", "Traveling"]
+      }
+    ]
+  },
+  {
+    "username": "tutor6",
+    "email": "<tutor6_email>",
+    "profile": [
+      {
+        "subject_expertise": ["computer science", "programming"],
+        "grade_levels": [9, 10, 11],
+        "teaching_style": "project-based",
+        "availability": {
+          "Tue": ["17:00-19:00"],
+          "Thu": ["18:00-20:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.5,
+        "experience": 5,
+        "qualifications": "B.Sc. in Computer Science",
+        "specialization_areas": ["Web Development"],
+        "certifications": ["Certified Java Programmer"],
+        "performance_metrics": {
+          "average_improvement": "35%",
+          "student_retention": "87%"
+        },
+        "availability_time_zone": "PST",
+        "tutoring_approach": "Hands-on coding projects",
+        "past_student_outcomes": ["Developed personal websites"],
+        "professional_development": "Coding boot camps",
+        "personal_interests": ["Gaming", "Technology"]
+      }
+    ]
+  },
+  {
+    "username": "tutor7",
+    "email": "<tutor7_email>",
+    "profile": [
+      {
+        "subject_expertise": ["graphic design", "visual arts"],
+        "grade_levels": [8, 9, 10],
+        "teaching_style": "creative workshops",
+        "availability": {
+          "Mon": ["13:00-15:00"],
+          "Fri": ["14:00-16:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.8,
+        "experience": 3,
+        "qualifications": "BFA in Graphic Design",
+        "specialization_areas": ["Adobe Creative Suite"],
+        "certifications": [],
+        "performance_metrics": {
+          "average_improvement": "30%",
+          "student_retention": "85%"
+        },
+        "availability_time_zone": "CST",
+        "tutoring_approach": "Hands-on art projects",
+        "past_student_outcomes": ["Portfolio development"],
+        "professional_development": "Art exhibitions",
+        "personal_interests": ["Painting", "Traveling"]
+      }
+    ]
+  },
+  {
+    "username": "tutor8",
+    "email": "<tutor8_email>",
+    "profile": [
+      {
+        "subject_expertise": ["physics", "math"],
+        "grade_levels": [11, 12],
+        "teaching_style": "conceptual learning",
+        "availability": {
+          "Tue": ["14:00-16:00"],
+          "Thu": ["17:00-19:00"]
+        },
+        "languages_spoken": ["English", "German"],
+        "rating": 4.6,
+        "experience": 5,
+        "qualifications": "M.Sc. in Physics",
+        "specialization_areas": ["Thermodynamics"],
+        "certifications": [],
+        "performance_metrics": {
+          "average_improvement": "28%",
+          "student_retention": "86%"
+        },
+        "availability_time_zone": "EST",
+        "tutoring_approach": "Problem-solving sessions",
+        "past_student_outcomes": ["Improved AP exam scores"],
+        "professional_development": "Physics workshops",
+        "personal_interests": ["Hiking", "Photography"]
+      }
+    ]
+  },
+  {
+    "username": "tutor9",
+    "email": "<tutor9_email>",
+    "profile": [
+      {
+        "subject_expertise": ["Spanish", "French"],
+        "grade_levels": [6, 7, 8],
+        "teaching_style": "immersive",
+        "availability": {
+          "Wed": ["09:00-11:00"],
+          "Fri": ["12:00-14:00"]
+        },
+        "languages_spoken": ["English", "Spanish", "French"],
+        "rating": 4.7,
+        "experience": 8,
+        "qualifications": "M.A. in Linguistics",
+        "specialization_areas": ["Language Acquisition"],
+        "certifications": ["TESOL Certified"],
+        "performance_metrics": {
+          "average_improvement": "22%",
+          "student_retention": "89%"
+        },
+        "availability_time_zone": "PST",
+        "tutoring_approach": "Conversation and immersion",
+        "past_student_outcomes": ["Improved language fluency"],
+        "professional_development": "Language conferences",
+        "personal_interests": ["Traveling", "Cooking"]
+      }
+    ]
+  },
+  {
+    "username": "tutor10",
+    "email": "<tutor10_email>",
+    "profile": [
+      {
+        "subject_expertise": ["biology", "chemistry"],
+        "grade_levels": [10, 11, 12],
+        "teaching_style": "interactive",
+        "availability": {
+          "Mon": ["15:00-17:00"],
+          "Thu": ["10:00-12:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.6,
+        "experience": 6,
+        "qualifications": "Ph.D. in Biological Sciences",
+        "specialization_areas": ["Genetics"],
+        "certifications": ["Certified Biology Instructor"],
+        "performance_metrics": {
+          "average_improvement": "18%",
+          "student_retention": "84%"
+        },
+        "availability_time_zone": "EST",
+        "tutoring_approach": "Lab-based learning",
+        "past_student_outcomes": ["Research projects"],
+        "professional_development": "Scientific workshops",
+        "personal_interests": ["Birdwatching", "Cycling"]
+      }
+    ]
+  },
+  {
+    "username": "tutor11",
+    "email": "<tutor11_email>",
+    "profile": [
+      {
+        "subject_expertise": ["economics", "mathematics"],
+        "grade_levels": [11, 12],
+        "teaching_style": "application-based",
+        "availability": {
+          "Tue": ["10:00-12:00"],
+          "Fri": ["13:00-15:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.8,
+        "experience": 7,
+        "qualifications": "M.A. in Economics",
+        "specialization_areas": ["Microeconomics"],
+        "certifications": ["Certified Economic Educator"],
+        "performance_metrics": {
+          "average_improvement": "20%",
+          "student_retention": "90%"
+        },
+        "availability_time_zone": "CST",
+        "tutoring_approach": "Real-world problem solving",
+        "past_student_outcomes": ["College placements"],
+        "professional_development": "Economics seminars",
+        "personal_interests": ["Reading", "Travel"]
+      }
+    ]
+  },
+  {
+    "username": "tutor12",
+    "email": "<tutor12_email>",
+    "profile": [
+      {
+        "subject_expertise": ["engineering", "physics"],
+        "grade_levels": [10, 11, 12],
+        "teaching_style": "conceptual and practical",
+        "availability": {
+          "Mon": ["08:00-10:00"],
+          "Thu": ["14:00-16:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.7,
+        "experience": 9,
+        "qualifications": "M.Sc. in Engineering",
+        "specialization_areas": ["Mechanics"],
+        "certifications": ["Professional Engineer"],
+        "performance_metrics": {
+          "average_improvement": "25%",
+          "student_retention": "87%"
+        },
+        "availability_time_zone": "EST",
+        "tutoring_approach": "Project-based learning",
+        "past_student_outcomes": ["Engineering competitions"],
+        "professional_development": "Engineering workshops",
+        "personal_interests": ["DIY projects", "Camping"]
+      }
+    ]
+  },
+  {
+    "username": "tutor13",
+    "email": "<tutor13_email>",
+    "profile": [
+      {
+        "subject_expertise": ["history", "philosophy"],
+        "grade_levels": [10, 11, 12],
+        "teaching_style": "analytical",
+        "availability": {
+          "Wed": ["11:00-13:00"],
+          "Sat": ["14:00-16:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.6,
+        "experience": 5,
+        "qualifications": "M.A. in History",
+        "specialization_areas": ["Modern History"],
+        "certifications": [],
+        "performance_metrics": {
+          "average_improvement": "19%",
+          "student_retention": "83%"
+        },
+        "availability_time_zone": "PST",
+        "tutoring_approach": "Discussion-based learning",
+        "past_student_outcomes": ["Research papers"],
+        "professional_development": "Historical research projects",
+        "personal_interests": ["Reading", "Historical reenactments"]
+      }
+    ]
+  },
+  {
+    "username": "tutor14",
+    "email": "<tutor14_email>",
+    "profile": [
+      {
+        "subject_expertise": ["biology", "environmental science"],
+        "grade_levels": [9, 10, 11],
+        "teaching_style": "experiential",
+        "availability": {
+          "Tue": ["09:00-11:00"],
+          "Thu": ["12:00-14:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.7,
+        "experience": 6,
+        "qualifications": "M.Sc. in Environmental Science",
+        "specialization_areas": ["Ecology"],
+        "certifications": [],
+        "performance_metrics": {
+          "average_improvement": "22%",
+          "student_retention": "85%"
+        },
+        "availability_time_zone": "CST",
+        "tutoring_approach": "Field-based learning",
+        "past_student_outcomes": ["Environmental projects"],
+        "professional_development": "Environmental workshops",
+        "personal_interests": ["Nature walks", "Gardening"]
+      }
+    ]
+  },
+  {
+    "username": "tutor15",
+    "email": "<tutor15_email>",
+    "profile": [
+      {
+        "subject_expertise": ["art", "design"],
+        "grade_levels": [6, 7, 8],
+        "teaching_style": "creative",
+        "availability": {
+          "Mon": ["16:00-18:00"],
+          "Thu": ["09:00-11:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.9,
+        "experience": 4,
+        "qualifications": "BFA in Art",
+        "specialization_areas": ["Digital Art"],
+        "certifications": [],
+        "performance_metrics": {
+          "average_improvement": "30%",
+          "student_retention": "90%"
+        },
+        "availability_time_zone": "PST",
+        "tutoring_approach": "Project-based creativity",
+        "past_student_outcomes": ["Art exhibitions"],
+        "professional_development": "Art workshops",
+        "personal_interests": ["Drawing", "Photography"]
+      }
+    ]
+  },
+  {
+    "username": "tutor16",
+    "email": "<tutor16_email>",
+    "profile": [
+      {
+        "subject_expertise": ["music theory", "violin"],
+        "grade_levels": [8, 9, 10],
+        "teaching_style": "instructional",
+        "availability": {
+          "Tue": ["14:00-16:00"],
+          "Fri": ["13:00-15:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.8,
+        "experience": 6,
+        "qualifications": "M.M. in Music Performance",
+        "specialization_areas": ["Classical Violin"],
+        "certifications": ["Certified Music Instructor"],
+        "performance_metrics": {
+          "average_improvement": "35%",
+          "student_retention": "93%"
+        },
+        "availability_time_zone": "EST",
+        "tutoring_approach": "Technique and performance",
+        "past_student_outcomes": ["Music competitions"],
+        "professional_development": "Music masterclasses",
+        "personal_interests": ["Composing", "Travel"]
+      }
+    ]
+  },
+  {
+    "username": "tutor17",
+    "email": "<tutor17_email>",
+    "profile": [
+      {
+        "subject_expertise": ["mathematics", "computer science"],
+        "grade_levels": [10, 11, 12],
+        "teaching_style": "interactive",
+        "availability": {
+          "Mon": ["11:00-13:00"],
+          "Wed": ["14:00-16:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.6,
+        "experience": 7,
+        "qualifications": "B.Sc. in Mathematics",
+        "specialization_areas": ["Algorithm Design"],
+        "certifications": ["Certified Python Developer"],
+        "performance_metrics": {
+          "average_improvement": "30%",
+          "student_retention": "85%"
+        },
+        "availability_time_zone": "CST",
+        "tutoring_approach": "Problem-solving and coding exercises",
+        "past_student_outcomes": ["Competitive programming achievements"],
+        "professional_development": "Tech conferences",
+        "personal_interests": ["Coding challenges", "Sci-fi books"]
+      }
+    ]
+  },
+  {
+    "username": "tutor18",
+    "email": "<tutor18_email>",
+    "profile": [
+      {
+        "subject_expertise": ["english literature", "creative writing"],
+        "grade_levels": [9, 10, 11],
+        "teaching_style": "writing workshops",
+        "availability": {
+          "Tue": ["13:00-15:00"],
+          "Thu": ["16:00-18:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.7,
+        "experience": 8,
+        "qualifications": "M.F.A. in Creative Writing",
+        "specialization_areas": ["Poetry", "Fiction"],
+        "certifications": ["Published Author"],
+        "performance_metrics": {
+          "average_improvement": "25%",
+          "student_retention": "90%"
+        },
+        "availability_time_zone": "EST",
+        "tutoring_approach": "Creative exercises and peer reviews",
+        "past_student_outcomes": ["Published works"],
+        "professional_development": "Literary workshops",
+        "personal_interests": ["Reading", "Traveling"]
+      }
+    ]
+  },
+  {
+    "username": "tutor19",
+    "email": "<tutor19_email>",
+    "profile": [
+      {
+        "subject_expertise": ["physics", "mathematics"],
+        "grade_levels": [11, 12],
+        "teaching_style": "conceptual",
+        "availability": {
+          "Mon": ["09:00-11:00"],
+          "Fri": ["15:00-17:00"]
+        },
+        "languages_spoken": ["English"],
+        "rating": 4.8,
+        "experience": 5,
+        "qualifications": "M.Sc. in Physics",
+        "specialization_areas": ["Quantum Mechanics"],
+        "certifications": [],
+        "performance_metrics": {
+          "average_improvement": "28%",
+          "student_retention": "88%"
+        },
+        "availability_time_zone": "PST",
+        "tutoring_approach": "Theory and practical applications",
+        "past_student_outcomes": ["High performance in exams"],
+        "professional_development": "Physics seminars",
+        "personal_interests": ["Astronomy", "Tennis"]
+      }
+    ]
+  },
+  {
+    "username": "tutor20",
+    "email": "<tutor20_email>",
+    "profile": [
+      {
+        "subject_expertise": ["french", "spanish"],
+        "grade_levels": [6, 7, 8],
+        "teaching_style": "immersive",
+        "availability": {
+          "Tue": ["10:00-12:00"],
+          "Thu": ["14:00-16:00"]
+        },
+        "languages_spoken": ["English", "French", "Spanish"],
+        "rating": 4.9,
+        "experience": 4,
+        "qualifications": "B.A. in Modern Languages",
+        "specialization_areas": ["Conversational Skills"],
+        "certifications": ["TEFL Certified"],
+        "performance_metrics": {
+          "average_improvement": "30%",
+          "student_retention": "92%"
+        },
+        "availability_time_zone": "EST",
+        "tutoring_approach": "Language immersion and conversation practice",
+        "past_student_outcomes": ["Improved language fluency"],
+        "professional_development": "Language immersion programs",
+        "personal_interests": ["Traveling", "Culinary arts"]
+      }
+    ]
+  }]
+  

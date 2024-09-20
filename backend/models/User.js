@@ -5,7 +5,8 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true }, // Store encrypted passwords
   email: { type: String, required: true, unique: true },
   role: { type: String, required: true, enum: ['Student', 'Tutor'] },
+  resetPasswordToken: { type: String },  // Token for password reset
+  resetPasswordExpires: { type: Date }   // Expiry time for the token
 });
 
 module.exports = mongoose.model('User', UserSchema);
-

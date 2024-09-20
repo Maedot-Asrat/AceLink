@@ -97,7 +97,7 @@ router.post('/sessions', async (req, res) => {
         // Save the session
         await session.save();
 
-        // Notify students about the new session
+       
         const students = session.studentsInvolved; // Assuming this is an array of student IDs
         students.forEach(studentId => {
             console.log(`Notifying student ${studentId.toString()}`);
@@ -134,8 +134,9 @@ router.get('/sessions', async (req, res) => {
 
 // Get a specific session by ID
 router.get('/sessions/:id', async (req, res) => {
+    const sessionId = req.params.id;
     try {
-        const session = await Session.findById(req.params.id)
+        const session = await Session.findById(sessionId)
             .populate('studentsInvolved')
             .populate('createdBy'); // Populates the tutor details
 
@@ -179,5 +180,43 @@ router.delete('/sessions/:id', async (req, res) => {
         res.status(500).json({ error: 'Error deleting session' });
     }
 });
+router.get('/sessions/student/:studentId', async (req, res) => {
+    try {
+      const { studentId } = req.params;
+  
+      // Find sessions where the student is involved
+      const sessions = await Session.find({ studentsInvolved: studentId }).populate('createdBy', 'name');
+  
+      if (sessions.length === 0) {
+        return res.status(404).json({ message: 'No sessions found for this student.' });
+      }
+  
+      res.status(200).json(sessions);
+    } catch (error) {
+      console.error('Error fetching sessions:', error);
+      res.status(500).json({ message: 'Failed to fetch sessions' });
+    }
+  });
+
+  // Get all sessions created by a specific tutor
+router.get('/sessions/tutor/:tutorId', async (req, res) => {
+    try {
+        const { tutorId } = req.params;
+
+        // Find sessions created by the specified tutor
+        const sessions = await Session.find({ createdBy: tutorId }).populate('studentsInvolved', 'name');
+
+        if (sessions.length === 0) {
+            return res.status(404).json({ message: 'No sessions found for this tutor.' });
+        }
+
+        res.status(200).json(sessions);
+    } catch (error) {
+        console.error('Error fetching sessions for tutor:', error);
+        res.status(500).json({ message: 'Failed to fetch sessions' });
+    }
+});
+
+
 
 module.exports = router;

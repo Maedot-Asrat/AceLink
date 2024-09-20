@@ -1,4 +1,3 @@
-// studyGroupRoutes.js
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
@@ -14,12 +13,24 @@ const storage = multer.diskStorage({
     }
 });
 
+
 const upload = multer({ storage: storage });
 
 // Create a new study group
-router.post('/', async (req, res) => {
+router.post('/', upload.single('picture'), async (req, res) => {
     try {
-        const studyGroup = new StudyGroup(req.body);
+        // Create the new study group
+        const studyGroup = new StudyGroup({
+            ...req.body,
+            owner: req.body.owner  // Ensure owner is passed in the request body
+        });
+
+        // If a picture is uploaded, store its path in the study group
+        if (req.file) {
+            studyGroup.picture = req.file.path;
+        }
+
+        // Save the new study group to the database
         const savedStudyGroup = await studyGroup.save();
         res.status(201).json(savedStudyGroup);
     } catch (error) {
@@ -63,36 +74,32 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Delete a study group by ID
-router.delete('/:id', async (req, res) => {
-    try {
-        const studyGroup = await StudyGroup.findByIdAndDelete(req.params.id);
-        if (studyGroup == null) {
-            return res.status(404).json({ message: 'Study group not found' });
-        }
-        res.json({ message: 'Study group deleted' });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-});
-
-// Upload a file to a study group
-router.post('/:id/files', upload.single('file'), async (req, res) => {
+// Get previous chats for a group
+router.get('/:id/previous-chats', async (req, res) => {
     try {
         const studyGroup = await StudyGroup.findById(req.params.id);
         if (studyGroup == null) {
             return res.status(404).json({ message: 'Study group not found' });
         }
-        
-        // You can store the file path in the study group document
-        studyGroup.resources.push(req.file.path);
-        await studyGroup.save();
-
-        res.status(201).json({ message: 'File uploaded successfully', filePath: req.file.path });
+        res.json({ chats: studyGroup.previousChats || [] });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
+
+// Get files of a group
+router.get('/:id/files', async (req, res) => {
+    try {
+        const studyGroup = await StudyGroup.findById(req.params.id);
+        if (studyGroup == null) {
+            return res.status(404).json({ message: 'Study group not found' });
+        }
+        res.json({ files: studyGroup.resources || [] });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Request to join a study group
 router.post('/:id/request', async (req, res) => {
     try {
@@ -112,6 +119,16 @@ router.post('/:id/request', async (req, res) => {
         } else {
             return res.status(400).json({ message: 'Request already exists' });
         }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Get groups created by the owner
+router.get('/owner/:userId', async (req, res) => {
+    try {
+        const studyGroups = await StudyGroup.find({ owner: req.params.userId });
+        res.json(studyGroups);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -164,6 +181,81 @@ router.post('/:id/reject', async (req, res) => {
     }
 });
 
+// Get join requests for groups created by the user (group owner)
+router.get('/requests/:userId', async (req, res) => {
+    try {
+        const studyGroups = await StudyGroup.find({ owner: req.params.userId });
+        const requests = studyGroups.map(group => ({
+            groupId: group._id,
+            title: group.title,
+            pendingRequests: group.pendingRequests
+        }));
+        res.json(requests);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
+// Get study groups the user has joined
+router.get('/member/:userId', async (req, res) => {
+    const { userId } = req.params;
+    try {
+      const userGroups = await StudyGroup.find({ members: userId });
+      res.status(200).json(userGroups);
+    } catch (error) {
+      res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// Get a specific group the user has joined and open the chat page
+router.get('/member/:userId/:groupId', async (req, res) => {
+    const { userId, groupId } = req.params;
+    try {
+        const studyGroup = await StudyGroup.findOne({ _id: groupId, members: userId });
+        if (!studyGroup) {
+            return res.status(404).json({ message: 'Study group not found or user is not a member' });
+        }
+        res.status(200).json(studyGroup);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// Add a message to the study group chat
+router.post('/:id/chat', async (req, res) => {
+    const { message, userId } = req.body;
+    try {
+        const studyGroup = await StudyGroup.findById(req.params.id);
+        if (!studyGroup) {
+            return res.status(404).json({ message: 'Study group not found' });
+        }
+
+        // Add the message to the group's chat array
+        studyGroup.chat.push({ userId, message, timestamp: new Date() });
+        await studyGroup.save();
+
+        res.status(201).json({ message: 'Message sent successfully' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Upload a file to a study group
+router.post('/:id/files', upload.single('file'), async (req, res) => {
+    try {
+        const studyGroup = await StudyGroup.findById(req.params.id);
+        if (!studyGroup) {
+            return res.status(404).json({ message: 'Study group not found' });
+        }
+
+        // Store the file path in the study group's resources field
+        studyGroup.resources.push({ fileName: req.file.originalname, filePath: req.file.path });
+        await studyGroup.save();
+
+        res.status(201).json({ message: 'File uploaded successfully', filePath: req.file.path });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 module.exports = router;
