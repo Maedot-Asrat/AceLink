@@ -17,4 +17,4 @@ AI models are significantly enhancing AceLink by introducing advanced features t
 
 Additionally, AI models deliver data-driven insights to tutors, allowing them to customize their teaching strategies based on each student's performance. The platform also adapts learning paths dynamically, adjusting content in real-time to match a student's progress. Gamification features, powered by AI, make learning more engaging and motivating by offering personalized challenges and rewards.
 
-In summary, AI is central to AceLink’s ability to provide a personalized, adaptive, and interactive learning experience, making it a leading platform in the realm of online education.
+In summary, AI is central to AceLink’s ability to provide a personalized, adaptive, and interactive learning experience, making it a leading platform in the realm of online education
